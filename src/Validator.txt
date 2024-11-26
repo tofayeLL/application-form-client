@@ -1,0 +1,1344 @@
+function app_form_validator(theForm) {
+
+    if (theForm.result_gpa1.value && isNaN(theForm.result_gpa1.value)) {
+        alert("Your SSC/Equivalent GPA is not a Valid GPA");
+        theForm.result_gpa1.focus();
+        return (false);
+    }
+
+    if (theForm.result_gpa2.value && isNaN(theForm.result_gpa2.value)) {
+        alert("Your HSC/Diploma/Equivalent GPA is not a Valid GPA");
+        theForm.result_gpa2.focus();
+        return (false);
+    }
+
+    if (theForm.result_gpa3.value && isNaN(theForm.result_gpa3.value)) {
+        alert("Your Graduation/Equivalent CGPA is not a Valid CGPA");
+        theForm.result_gpa3.focus();
+        return (false);
+    }
+
+    if (theForm.result_gpa4.value && isNaN(theForm.result_gpa4.value)) {
+        alert("Your Masters/Equivalent CGPA is not a Valid CGPA");
+        theForm.result_gpa4.focus();
+        return (false);
+    }
+
+    if (theForm.name.value == "") {
+        alert("Please Enter Applicant's Name.");
+        theForm.name.focus();
+        return (false);
+    }
+    if (theForm.name.value.length < 3) {
+        alert("Please Enter a Valid Applicant's Name.");
+        theForm.name.focus();
+        return (false);
+    }
+    // Father Name 
+    if (theForm.fathername.value == "") {
+        alert("Please Enter Father's Name.");
+        theForm.fathername.focus();
+        return (false);
+    }
+    if (theForm.fathername.value.length < 3) {
+        alert("Please Enter a Valid Father's Name.");
+        theForm.fathername.focus();
+        return (false);
+    }
+    // Mother Name
+    if (theForm.mothername.value == "") {
+        alert("Please Enter Mother's Name.");
+        theForm.mothername.focus();
+        return (false);
+    }
+    if (theForm.mothername.value.length < 3) {
+        alert("Please Enter a Valid Mother's Name.");
+        theForm.mothername.focus();
+        return (false);
+    }
+    // Date of Birth - Day
+    if (theForm.b_day.selectedIndex <= 0) {
+        alert("Please Select Birth Day.");
+        theForm.b_day.focus();
+        return (false);
+    }
+    // Date of Birth - Month
+    if (theForm.b_month.selectedIndex <= 0) {
+        alert("Please Select Month of Birth.");
+        theForm.b_month.focus();
+        return (false);
+    }
+    // Date of Birth - Year
+    if (theForm.b_year.selectedIndex <= 0) {
+        alert("Please Select Year of Birth.");
+        theForm.b_year.focus();
+        return (false);
+    }
+
+
+
+    // Sex - require at least one radio button be selected
+    var radioSelected = false;
+    for (i = 0; i < theForm.sex.length; i++) {
+        if (theForm.sex[i].checked)
+            radioSelected = true;
+    }
+    if (!radioSelected) {
+        alert("Please Select Gender Option.");
+        return (false);
+    }
+
+
+
+
+    // Religion Status
+    if (theForm.religion.selectedIndex <= 0) {
+        alert("Please Select Religion.");
+        theForm.religion.focus();
+        return (false);
+    }
+
+
+
+
+    // Nantional ID 
+    var radioSelected = false;
+    for (i = 0; i < theForm.nid.length; i++) {
+        if (theForm.nid[i].checked) {
+            radioSelected = true;
+        }
+        if (theForm.nid[0].checked) {
+            if (theForm.nid_no.value == "") {
+                alert("Please Enter National ID.");
+                theForm.nid_no.focus();
+                return (false);
+            }
+        }
+    }
+    if (!radioSelected) {
+        alert("Please Select National ID Option.");
+        return (false);
+    }
+
+
+    // Passport ID 
+    var radioSelected = false;
+    for (i = 0; i < theForm.passport.length; i++) {
+        if (theForm.passport[i].checked) {
+            radioSelected = true;
+        }
+
+
+
+        if (theForm.passport[0].checked) {
+            if (theForm.passport_no.value == "") {
+                alert("Please Enter Passport No.");
+                theForm.passport_no.focus();
+                return (false);
+            }
+        }
+
+
+    }
+    if (!radioSelected) {
+        alert("Please Select Passport ID Option.");
+        return (false);
+    }
+
+
+
+
+    // Birth Registration No. 
+    var radioSelected = false;
+    for (i = 0; i < theForm.breg.length; i++) {
+        if (theForm.breg[i].checked) {
+            radioSelected = true;
+        }
+
+
+
+
+        if (theForm.breg[0].checked) {
+            if (theForm.breg_no.value == "") {
+                alert("Please Enter Birth Registration No.");
+                theForm.breg_no.focus();
+                return (false);
+            }
+        }
+
+
+    }
+    if (!radioSelected) {
+        alert("Please Select Birth Registration Option.");
+        return (false);
+    }
+
+
+
+    // Nantional ID/ Passport ID/ Birth Registration No. rquired.
+
+    if ((theForm.nid[1].checked) && (theForm.breg[1].checked)) {
+        alert("Please Enter National ID/Birth Registration No.");
+        return (false);
+    }
+
+
+
+    // Marital Status
+    var radioSelected = false;
+    for (i = 0; i < theForm.mstatus.length; i++) {
+        if (theForm.mstatus[i].checked) {
+            radioSelected = true;
+        }
+
+
+
+
+
+        if (theForm.mstatus[0].checked) {
+            if (theForm.s_name.value == "") {
+                alert("Please Enter Spouse Name.");
+                theForm.s_name.focus();
+                return (false);
+            }
+        }
+
+
+
+
+    }
+    if (!radioSelected) {
+        alert("Please Select Maritial Status Option.");
+        return (false);
+    }
+
+
+
+
+    // Fredom Fighter
+    if (theForm.ffq.selectedIndex <= 0) {
+        alert("Please Select Quota Option.");
+        theForm.ffq.focus();
+        return (false);
+    }
+
+
+    // Mailing/ Present Address information
+
+
+    //Present  care of
+
+    if (theForm.present_care.value == "") {
+        alert("Please fill up Present Care Of.");
+        theForm.present_care.focus();
+        return (false);
+    }
+    if (theForm.present_care.value.length > 150) {
+        alert("Please Enter at Most 150 Characters in Care of Field of Present Address.");
+        theForm.present_care.focus();
+        return (false);
+    }
+
+
+
+
+    // Present Village
+    if (theForm.present_vill.value == "") {
+        alert("Please fill up Present Village/Town/Road/House/Flat no.");
+        theForm.present_vill.focus();
+        return (false);
+    }
+    if (theForm.present_vill.value.length > 150) {
+        alert("Please Enter at Most 150 Characters in the Village field of Present Address.");
+        theForm.present_vill.focus();
+        return (false);
+    }
+
+    // Present District
+    if (theForm.menu_one.selectedIndex <= 0) {
+        alert("Please Select District in the Present Address.");
+        theForm.menu_one.focus();
+        return (false);
+    }
+    // Present Upazilla
+    if (theForm.menu_one_list.selectedIndex <= 0) {
+        alert("Please Select Upazila/PS in the Present Address.");
+        theForm.menu_one_list.focus();
+        return (false);
+    }
+    if (theForm.menu_one_list.value == "Others") {
+        if (theForm.ops1.value == "") {
+            alert("Please Enter Upazila/PS in the Present Address.");
+            theForm.ops1.focus();
+            return (false);
+        }
+    }
+
+
+    // Present Post Office
+    if (theForm.present_post.value == "") {
+        alert("Please  Enter Name of Post Office in the Present Address.");
+        theForm.present_post.focus();
+        return (false);
+    }
+
+
+
+
+    // Present Post Code
+    if (theForm.present_pcode.value == "") {
+        alert("Please  Enter Post Code in the Present Address.");
+        theForm.present_pcode.focus();
+        return (false);
+    }
+
+
+
+    //  ****************************                Permanent Address information *************************************
+
+    if (!theForm.copy.checked) {
+
+        // Present  care of
+
+        if (theForm.permanent_care.value == "") {
+            alert("Please fill up Permanent Care Of.");
+            theForm.permanent_care.focus();
+            return (false);
+        }
+
+        if (theForm.permanent_care.value.length > 150) {
+            alert("Please Enter at Most 150 Characters in Care of Field of Permanent Address.");
+            theForm.permanent_care.focus();
+            return (false);
+        }
+
+
+        // Permanent Village
+        if (theForm.permanent_vill.value == "") {
+            alert("Please Fill up Permanent Village/Town/Road/House/Flat no.");
+            theForm.permanent_vill.focus();
+            return (false);
+        }
+        if (theForm.permanent_vill.value.length > 150) {
+            alert("Please Enter at Most 150 Characters in the Village Field of Permanent Address.");
+            theForm.permanent_vill.focus();
+            return (false);
+        }
+
+
+        // Permanent District
+        if (theForm.menu_two.selectedIndex <= 0) {
+            alert("Please Select District in the Permanent Address.");
+            theForm.menu_two.focus();
+            return (false);
+        }
+
+
+        // Permanent Upazilla
+        if (theForm.menu_two_list.selectedIndex <= 0) {
+            alert("Please Select Upazila/PS in the Permanent Address.");
+            theForm.menu_two_list.focus();
+            return (false);
+        }
+        if (theForm.menu_two_list.value == "Others") {
+            if (theForm.ops2.value == "") {
+                alert("Please Mention Upazila/PS in the Permanent Address.");
+                theForm.ops2.focus();
+                return (false);
+            }
+        }
+
+
+
+        // Permanent Post Office
+        if (theForm.permanent_post.value == "") {
+            alert("Please Enter Name of Post Office in the Permanent Address.");
+            theForm.permanent_post.focus();
+            return (false);
+        }
+
+
+
+        // Present Post Code
+        if (theForm.permanent_pcode.value == "") {
+            alert("Please  Enter Post Code in the Permanent Address.");
+            theForm.permanent_pcode.focus();
+            return (false);
+        }
+
+    }
+
+
+    //Mandatory of JSC
+    if (theForm.jsc_required.value == "1") {
+        //if (theForm.exam0.selectedIndex <= "0" && theForm.exam1.selectedIndex <= "0")
+        if (!theForm.jsc.checked) {
+            alert("JSC/JDC/Class Eight Information is required.");
+            theForm.jsc.focus();
+            return (false);
+        }
+    }
+
+    // Mandatory of Masters
+    if (theForm.min_edu_stage.value == "4") {
+        if (!theForm.masters.checked) {
+            alert("Masters Degree is Requried.");
+            theForm.masters.focus();
+            return (false);
+        }
+    }
+
+
+    // Contact Mobile
+    if (theForm.mobileno.value == "") {
+        alert("Please Enter Mobile Number.");
+        theForm.mobileno.focus();
+        return (false);
+    }
+
+    var checkOK = "0123456789";
+    var checkStr = theForm.mobileno.value;
+    var allValid = true;
+    var allNum = "";
+    for (i = 0; i < checkStr.length; i++) {
+        ch = checkStr.charAt(i);
+        for (j = 0; j < checkOK.length; j++)
+            if (ch == checkOK.charAt(j))
+                break;
+        if (j == checkOK.length) {
+            allValid = false;
+            break;
+        }
+        if (ch != ",")
+            allNum += ch;
+    }
+    if (!allValid) {
+        alert("Incorrect Mobile Number.");
+        theForm.mobileno.focus();
+        return (false);
+    }
+
+    if (theForm.mobileno.value.length < 11) {
+        alert("Mobile Number Must be 11 Digits.");
+        theForm.mobileno.focus();
+        return (false);
+    }
+
+
+    // Confirm Mobile
+    if (theForm.mobileno.value != theForm.confirmmobile.value) {
+        alert(" Mobile Number and Cinfirm Mobile Number Must be Same.");
+        theForm.confirmmobile.focus();
+        return (false);
+    }
+
+
+
+
+
+
+
+
+    // *************************              SSC or Equivalent level - Exam  *****************************************
+
+    if (theForm.min_edu_stage.value == "1") {
+
+
+        if (theForm.exam1.selectedIndex <= 0) {
+            alert("Please Select Examination of SSC or Equivalent level.");
+            theForm.exam1.focus();
+            return (false);
+        }
+        // SSC - Board
+        if (theForm.institute1.selectedIndex <= 0) {
+            alert("Please Select SSC or Equivalent level Board Name.");
+            theForm.institute1.focus();
+            return (false);
+        }
+        // SSC or Equivalent level Roll No
+        if (theForm.roll1.value == "") {
+            alert("Please Enter SSC or Equivalent level Roll No.");
+            theForm.roll1.focus();
+            return (false);
+        }
+        // SSC or Equivalent level - Result
+        if (theForm.result1.selectedIndex <= 0) {
+            alert("Please Select SSC or Equivalent level Result.");
+            theForm.result1.focus();
+            return (false);
+        }
+        if (theForm.result1.value == "4") {
+            if (theForm.result_gpa1.value == "" || theForm.result_gpa1.value < 1 || theForm.result_gpa1.value > 4) {
+                alert("Please Mention SSC or Equivalent level GPA Correctly.");
+                theForm.result_gpa1.focus();
+                return (false);
+            }
+        }
+        if (theForm.result1.value == "5") {
+            if (theForm.result_gpa1.value == "" || theForm.result_gpa1.value < 1 || theForm.result_gpa1.value > 5) {
+                alert("Please Mention SSC or Equivalent level GPA Correctly.");
+                theForm.result_gpa1.focus();
+                return (false);
+            }
+        }
+        // SSC or Equivalent level - Group
+        if (theForm.subject1.selectedIndex <= 0) {
+            alert("Please Select SSC or Equivalent level Group.");
+            theForm.subject1.focus();
+            return (false);
+        }
+        // SSC or Equivalent level - year
+        if (theForm.year1.selectedIndex <= 0) {
+            alert("Please Select SSC or Equivalent level Passing Year.");
+            theForm.year1.focus();
+            return (false);
+        }
+
+
+
+    } else if (theForm.min_edu_stage.value == "2") {
+
+
+        // ************************* SSC or Equivalent level - Exam  *****************************************
+
+
+        if (theForm.exam1.selectedIndex <= 0) {
+            alert("Please Select Examination of SSC or Equivalent level.");
+            theForm.exam1.focus();
+            return (false);
+        }
+        // SSC - Board
+        if (theForm.institute1.selectedIndex <= 0) {
+            alert("Please Select SSC or Equivalent level Board Name.");
+            theForm.institute1.focus();
+            return (false);
+        }
+        // SSC or Equivalent level Roll No
+        if (theForm.roll1.value == "") {
+            alert("Please Enter SSC or Equivalent level Roll No.");
+            theForm.roll1.focus();
+            return (false);
+        }
+        // SSC or Equivalent level - Result
+        if (theForm.result1.selectedIndex <= 0) {
+            alert("Please Select SSC or Equivalent level Result.");
+            theForm.result1.focus();
+            return (false);
+        }
+        if (theForm.result1.value == "4") {
+            if (theForm.result_gpa1.value == "" || theForm.result_gpa1.value < 1 || theForm.result_gpa1.value > 4) {
+                alert("Please Mention SSC or Equivalent level GPA Correctly.");
+                theForm.result_gpa1.focus();
+                return (false);
+            }
+        }
+        if (theForm.result1.value == "5") {
+            if (theForm.result_gpa1.value == "" || theForm.result_gpa1.value < 1 || theForm.result_gpa1.value > 5) {
+                alert("Please Mention SSC or Equivalent level GPA Correctly.");
+                theForm.result_gpa1.focus();
+                return (false);
+            }
+        }
+        // SSC or Equivalent level - Group
+        if (theForm.subject1.selectedIndex <= 0) {
+            alert("Please Select SSC or Equivalent level Group.");
+            theForm.subject1.focus();
+            return (false);
+        }
+        // SSC or Equivalent level - year
+        if (theForm.year1.selectedIndex <= 0) {
+            alert("Please Select SSC or Equivalent level Passing Year.");
+            theForm.year1.focus();
+            return (false);
+        }
+
+
+        // ******************************** HSC or Equivalent level - Exam ******************************************
+
+
+        if (theForm.exam2.selectedIndex <= 0) {
+            alert("Please Select Examination of H.S.C or Equivalent level.");
+            theForm.exam2.focus();
+            return (false);
+        }
+        // HSC or Equivalent level - Board
+        if (theForm.institute2.selectedIndex <= 0) {
+            alert("Please Select HSC or Equivalent level Board Name.");
+            theForm.institute2.focus();
+            return (false);
+        }
+        // HSC or Equivalent level Roll No
+        if (theForm.roll2.value == "") {
+            alert("Please Enter HSC or Equivalent level Roll No.");
+            theForm.roll2.focus();
+            return (false);
+        }
+        // HSC or Equivalent level - Result
+        if (theForm.result2.selectedIndex <= 0) {
+            alert("Please Select HSC or Equivalent level Result.");
+            theForm.result2.focus();
+            return (false);
+        }
+        if (theForm.result2.value == "4") {
+            if (theForm.result_gpa2.value == "" || theForm.result_gpa2.value < 1 || theForm.result_gpa2.value > 4) {
+                alert("Please Mention HSC or Equivalent level GPA Correctly.");
+                theForm.result_gpa2.focus();
+                return (false);
+            }
+        }
+        if (theForm.result2.value == "5") {
+            if (theForm.result_gpa2.value == "" || theForm.result_gpa2.value < 1 || theForm.result_gpa2.value > 5) {
+                alert("Please Mention HSC or Equivalent level GPA Correctly.");
+                theForm.result_gpa2.focus();
+                return (false);
+            }
+        }
+        // HSC or Equivalent level - Group
+        if (theForm.subject2.selectedIndex <= 0) {
+            alert("Please Select HSC or Equivalent level Group.");
+            theForm.subject2.focus();
+            return (false);
+        }
+        // HSC or Equivalent level - Year
+        if (theForm.year2.selectedIndex <= 0) {
+            alert("Please Select HSC or Equivalent level Passing Year.");
+            theForm.year2.focus();
+            return (false);
+        }
+
+
+        // SSC or Equivalent level < HSC or Equivalent level
+        if (theForm.year1.value >= theForm.year2.value) {
+            alert("HSC or Equivalent level Passing Year is not less than SSC Passing Year.");
+            return (false);
+        }
+    }
+
+
+
+    // Graduation Result
+    else if (theForm.min_edu_stage.value == "3") {
+
+
+        // *************************              SSC or Equivalent level - Exam  *****************************************
+
+
+        if (theForm.exam1.selectedIndex <= 0) {
+            alert("Please Select Examination of SSC or Equivalent level.");
+            theForm.exam1.focus();
+            return (false);
+        }
+        // SSC - Board
+        if (theForm.institute1.selectedIndex <= 0) {
+            alert("Please Select SSC or Equivalent level Board Name.");
+            theForm.institute1.focus();
+            return (false);
+        }
+        // SSC or Equivalent level Roll No
+        if (theForm.roll1.value == "") {
+            alert("Please Enter SSC or Equivalent level Roll No.");
+            theForm.roll1.focus();
+            return (false);
+        }
+        // SSC or Equivalent level - Result
+        if (theForm.result1.selectedIndex <= 0) {
+            alert("Please Select SSC or Equivalent level Result.");
+            theForm.result1.focus();
+            return (false);
+        }
+        if (theForm.result1.value == "4") {
+            if (theForm.result_gpa1.value == "" || theForm.result_gpa1.value < 1 || theForm.result_gpa1.value > 4) {
+                alert("Please Mention SSC or Equivalent level GPA Correctly.");
+                theForm.result_gpa1.focus();
+                return (false);
+            }
+        }
+        if (theForm.result1.value == "5") {
+            if (theForm.result_gpa1.value == "" || theForm.result_gpa1.value < 1 || theForm.result_gpa1.value > 5) {
+                alert("Please Mention SSC or Equivalent level GPA Correctly.");
+                theForm.result_gpa1.focus();
+                return (false);
+            }
+        }
+        // SSC or Equivalent level - Group
+        if (theForm.subject1.selectedIndex <= 0) {
+            alert("Please Select SSC or Equivalent level Group.");
+            theForm.subject1.focus();
+            return (false);
+        }
+        // SSC or Equivalent level - year
+        if (theForm.year1.selectedIndex <= 0) {
+            alert("Please Select SSC or Equivalent level Passing Year.");
+            theForm.year1.focus();
+            return (false);
+        }
+
+
+
+
+        // ******************************** HSC or Equivalent level - Exam ******************************************
+
+
+        if (theForm.exam2.selectedIndex <= 0) {
+            alert("Please Select Examination of H.S.C or Equivalent level.");
+            theForm.exam2.focus();
+            return (false);
+        }
+        // HSC or Equivalent level - Board
+        if (theForm.institute2.selectedIndex <= 0) {
+            alert("Please Select HSC or Equivalent level Board Name.");
+            theForm.institute2.focus();
+            return (false);
+        }
+        // HSC or Equivalent level Roll No
+        if (theForm.roll2.value == "") {
+            alert("Please Enter HSC or Equivalent level Roll No.");
+            theForm.roll2.focus();
+            return (false);
+        }
+        // HSC or Equivalent level - Result
+        if (theForm.result2.selectedIndex <= 0) {
+            alert("Please Select HSC or Equivalent level Result.");
+            theForm.result2.focus();
+            return (false);
+        }
+        if (theForm.result2.value == "4") {
+            if (theForm.result_gpa2.value == "" || theForm.result_gpa2.value < 1 || theForm.result_gpa2.value > 4) {
+                alert("Please Mention HSC or Equivalent level GPA Correctly.");
+                theForm.result_gpa2.focus();
+                return (false);
+            }
+        }
+        if (theForm.result2.value == "5") {
+            if (theForm.result_gpa2.value == "" || theForm.result_gpa2.value < 1 || theForm.result_gpa2.value > 5) {
+                alert("Please Mention HSC or Equivalent level GPA Correctly.");
+                theForm.result_gpa2.focus();
+                return (false);
+            }
+        }
+        // HSC or Equivalent level - Group
+        if (theForm.subject2.selectedIndex <= 0) {
+            alert("Please Select HSC or Equivalent level Group.");
+            theForm.subject2.focus();
+            return (false);
+        }
+        // HSC or Equivalent level - Year
+        if (theForm.year2.selectedIndex <= 0) {
+            alert("Please Select HSC or Equivalent level Passing Year.");
+            theForm.year2.focus();
+            return (false);
+        }
+        // SSC or Equivalent level < HSC or Equivalent level
+        if (theForm.year1.value >= theForm.year2.value) {
+            alert("HSC or Equivalent level Passing Year is not less than SSC Passing Year.");
+            return (false);
+        }
+
+
+        // *************************************       Require Graduation or Equivalent Degree  *******************************************
+
+
+        // Graduation or Equivalent - Exam
+        if (theForm.exam3.selectedIndex <= 0) {
+            alert("Please Select Examination of Graduation or Equivalent.");
+            theForm.exam3.focus();
+            return (false);
+        }
+        if (theForm.exam3.value == "9") {
+            if (theForm.other_exam3.value == "") {
+                alert("Please Enter Name of Examination in Gaduation.");
+                theForm.other_exam3.focus();
+                return (false);
+            }
+        }
+        // Graduation or Equivalent - Subject
+        if (theForm.subject3.selectedIndex <= 0) {
+            alert("Please Select Name of Subject of Graduation or Equivalent.");
+            theForm.subject3.focus();
+            return (false);
+        }
+        if (theForm.subject3.value == "999") {
+            if (theForm.other_subject3.value == "") {
+                alert("Please Enter Name of Subject in Gaduation.");
+                theForm.other_subject3.focus();
+                return (false);
+            }
+        }
+        // Graduation or Equivalent - Uni
+        if (theForm.institute3.selectedIndex <= 0) {
+            alert("Please Select University/Institute of Gaduation.");
+            theForm.institute3.focus();
+            return (false);
+        }
+        if (theForm.institute3.value == "999") {
+            if (theForm.other_institute3.value == "") {
+                alert("Please Enter University/Institute of Gaduation.");
+                theForm.other_institute3.focus();
+                return (false);
+            }
+        }
+        // Graduation or Equivalent - Result
+        if (theForm.result3.selectedIndex <= 0) {
+            alert("Please Select Graduation or Equivalent Result.");
+            theForm.result3.focus();
+            return (false);
+        }
+        if (theForm.result3.value == "4") {
+            if (theForm.result_gpa3.value == "" || theForm.result_gpa3.value < 1 || theForm.result_gpa3.value > 4) {
+                alert("Please Mention Graduation or Equivalent GPA Correctly.");
+                theForm.result_gpa3.focus();
+                return (false);
+            }
+        }
+        if (theForm.result3.value == "5") {
+            if (theForm.result_gpa3.value == "" || theForm.result_gpa3.value < 1 || theForm.result_gpa3.value > 5) {
+                alert("Please Mention Graduation or Equivalent GPA Correctly.");
+                theForm.result_gpa3.focus();
+                return (false);
+            }
+        }
+
+
+        // Graduation or Equivalent - Year
+        if (theForm.year3.selectedIndex <= 0) {
+            alert("Please Select Graduation or Equivalent Passing Year.");
+            theForm.year3.focus();
+            return (false);
+        }
+        // Graduation or Equivalent - Duration
+        if (theForm.duration3.selectedIndex <= 0) {
+            alert("Please Select Graduation or Equivalent Course Duration.");
+            theForm.duration3.focus();
+            return (false);
+
+        }
+
+
+        // HSC or Equivalent level < Graduation or Equivalent level
+        if (theForm.year2.value >= theForm.year3.value) {
+            alert("Graduation or Equivalent level Passing Year is not less than HSC Passing Year.");
+            return (false);
+        }
+
+    }
+
+
+
+    // Validation Code
+
+    if (theForm.validation.value == "") {
+        alert("Please Enter Validation Code.");
+        theForm.validation.focus();
+        return (false);
+    }
+
+
+
+
+    if (theForm.code.value != theForm.validation.value) {
+        alert("Please Enter Correct Validation Code.");
+        theForm.validation.focus();
+        return (false);
+    }
+
+    // document.images["im"].src = "images/pload.gif";
+
+
+
+
+    // test if valid email address, must have @ and .
+    var checkEmail = "@.";
+    var checkStr = theForm.Email.value;
+    var EmailValid = false;
+    var EmailAt = false;
+    var EmailPeriod = false;
+    if (checkStr != "") {
+        for (i = 0; i < checkStr.length; i++) {
+            ch = checkStr.charAt(i);
+            for (j = 0; j < checkEmail.length; j++) {
+                if (ch == checkEmail.charAt(j) && ch == "@")
+                    EmailAt = true;
+                if (ch == checkEmail.charAt(j) && ch == ".")
+                    EmailPeriod = true;
+                if (EmailAt && EmailPeriod)
+                    break;
+                if (j == checkEmail.length)
+                    break;
+            }
+            // if both the @ and . were in the string
+            if (EmailAt && EmailPeriod) {
+                EmailValid = true
+                break;
+            }
+        }
+        if (!EmailValid) {
+            alert("Invalid E-Mail Address!");
+            theForm.Email.focus();
+            return (false);
+        }
+    }
+
+
+
+
+
+
+    // Require Graduation or Equivalent/ Masters Degree
+    if (theForm.min_edu_stage.value >= 3) {
+        // Graduation or Equivalent - Exam
+        if (theForm.exam3.selectedIndex <= 0) {
+            alert("Please Select Examination of Graduation or Equivalent.");
+            theForm.exam3.focus();
+            return (false);
+        }
+        if (theForm.exam3.value == "9") {
+            if (theForm.other_exam3.value == "") {
+                alert("Please Enter Name of Examination in Gaduation.");
+                theForm.other_exam3.focus();
+                return (false);
+            }
+        }
+        // Graduation or Equivalent - Subject
+        if (theForm.subject3.selectedIndex <= 0) {
+            alert("Please Select Name of Subject of Graduation or Equivalent.");
+            theForm.subject3.focus();
+            return (false);
+        }
+        if (theForm.subject3.value == "999") {
+            if (theForm.other_subject3.value == "") {
+                alert("Please Enter Name of Subject in Gaduation.");
+                theForm.other_subject3.focus();
+                return (false);
+            }
+        }
+        // Graduation or Equivalent - Uni
+        if (theForm.institute3.selectedIndex <= 0) {
+            alert("Please Select University/Institute of Gaduation.");
+            theForm.institute3.focus();
+            return (false);
+        }
+        if (theForm.institute3.value == "999") {
+            if (theForm.other_institute3.value == "") {
+                alert("Please Enter University/Institute of Gaduation.");
+                theForm.other_institute3.focus();
+                return (false);
+            }
+        }
+        // Graduation or Equivalent - Result
+        if (theForm.result3.selectedIndex <= 0) {
+            alert("Please Select Graduation or Equivalent Result.");
+            theForm.result3.focus();
+            return (false);
+        }
+        if (theForm.result3.value == "4") {
+            if (theForm.result_gpa3.value == "" || theForm.result_gpa3.value < 1 || theForm.result_gpa3.value > 4) {
+                alert("Please Mention Graduation or Equivalent GPA Correctly.");
+                theForm.result_gpa3.focus();
+                return (false);
+            }
+        }
+        if (theForm.result3.value == "5") {
+            if (theForm.result_gpa3.value == "" || theForm.result_gpa3.value < 1 || theForm.result_gpa3.value > 5) {
+                alert("Please Mention Graduation or Equivalent GPA Correctly.");
+                theForm.result_gpa3.focus();
+                return (false);
+            }
+        }
+        // PASSED for MBBS
+        if (theForm.exam3.value != "3" && theForm.result3.value == "7") {
+            alert("Passed Option is Only Allowed for MBBS/BDS.");
+            theForm.result3.focus();
+            return (false);
+        }
+        // Graduation or Equivalent - Year
+        if (theForm.year3.selectedIndex <= 0) {
+            alert("Please Select Graduation or Equivalent Passing Year.");
+            theForm.year3.focus();
+            return (false);
+        }
+        // Graduation or Equivalent - Duration
+        if (theForm.duration3.selectedIndex <= 0) {
+            alert("Please Select Graduation or Equivalent Course Duration.");
+            theForm.duration3.focus();
+            return (false);
+
+        }
+        // HSC or Equivalent level > GRA
+        if (theForm.year2.value >= theForm.year3.value) {
+            alert("Invalid Graduation or Equivalent Passing Year.");
+            return (false);
+        }
+    }
+    //Masters
+    if (theForm.masters.checked) {
+        // Masters - Exam
+        if (theForm.exam4.selectedIndex <= 0) {
+            alert("Please Select Examination of Masters Degree.");
+            theForm.exam4.focus();
+            return (false);
+        }
+        if (theForm.exam4.value == "9") {
+            if (theForm.other_exam4.value == "") {
+                alert("Please Enter Name of Examination of Masters Degree.");
+                theForm.other_exam4.focus();
+                return (false);
+            }
+        }
+        // Masters - Subject
+        if (theForm.subject4.selectedIndex <= 0) {
+            alert("Please Select Name of Subject of Masters Degree.");
+            theForm.subject4.focus();
+            return (false);
+        }
+        if (theForm.subject4.value == "999") {
+            if (theForm.other_subject4.value == "") {
+                alert("Please Enter Name of Subject of Masters Degree.");
+                theForm.other_subject4.focus();
+                return (false);
+            }
+        }
+        // Masters - Uni
+        if (theForm.institute4.selectedIndex <= 0) {
+            alert("Please Select University/Institute of Masters Degree.");
+            theForm.institute4.focus();
+            return (false);
+        }
+        if (theForm.institute4.value == "999") {
+            if (theForm.other_institute4.value == "") {
+                alert("Please Enter Name of University/Institute of Masters Degree.");
+                theForm.other_institute4.focus();
+                return (false);
+            }
+        }
+        // Masters - Result
+        if (theForm.result4.selectedIndex <= 0) {
+            alert("Please Select Masters Degree Result.");
+            theForm.result4.focus();
+            return (false);
+        }
+        if (theForm.result4.value == "4") {
+            if (theForm.result_gpa4.value == "" || theForm.result_gpa4.value < 1 || theForm.result_gpa4.value > 4) {
+                alert("Please Mention Masters Degree GPA Correctly.");
+                theForm.result_gpa4.focus();
+                return (false);
+            }
+        }
+        if (theForm.result4.value == "5") {
+            if (theForm.result_gpa4.value == "" || theForm.result_gpa4.value < 1 || theForm.result_gpa4.value > 5) {
+                alert("Please Mention Masters Degree GPA Correctly.");
+                theForm.result_gpa4.focus();
+                return (false);
+            }
+        }
+        // Masters - Year
+        if (theForm.year4.selectedIndex <= 0) {
+            alert("Please Select Masters Degree Passing Year.");
+            theForm.year4.focus();
+            return (false);
+        }
+        // Masters - Duration
+        if (theForm.duration4.selectedIndex <= 0) {
+            alert("Please Select Masters Degree Course Duration.");
+            theForm.duration4.focus();
+            return (false);
+        }
+        // GRA > MAS
+        if (theForm.year3.value >= theForm.year4.value) {
+            alert("Invalid Masters Degree Passing Year.");
+            return (false);
+        }
+    }
+
+
+    if (theForm.jsc.checked) {
+        // Masters - Exam
+        if (theForm.exam0.selectedIndex <= 0) {
+            alert("Please Select Examination of JSC/JDC/Class Eight.");
+            theForm.exam0.focus();
+            return (false);
+        }
+
+        if (theForm.year0.selectedIndex <= 0) {
+            alert("Please Select Passing Year of JSC/JDC/Class Eight.");
+            theForm.year0.focus();
+            return (false);
+        }
+        if (theForm.institute0.value == "") {
+            alert("Please Write Institute Name of JSC/JDC/Class Eight.");
+            theForm.institute0.focus();
+            return (false);
+        }
+
+        if (theForm.result0.value == "") {
+            alert("Please Write Result of JSC/JDC/Class Eight.");
+            theForm.result0.focus();
+            return (false);
+        }
+    }
+
+    if (theForm.jsc_required.value == "1") {
+        //if (theForm.exam0.selectedIndex <= "0" && theForm.exam1.selectedIndex <= "0")
+        if (!theForm.jsc.checked) {
+            alert("JSC/JDC/Class Eight Information is required.");
+            theForm.jsc.focus();
+            return (false);
+        }
+    }
+
+
+
+    // Typing
+    if (theForm.post_code.value == "108" && !theForm.ts.checked) {
+        alert("Please Select Typing Speed.");
+        return (false)
+    }
+    if (theForm.ts && theForm.ts.checked) {
+        if (theForm.tsb.selectedIndex <= 0) {
+            alert("Please Select Bengali Typing Speed.");
+            theForm.tsb.focus();
+            return (false);
+        }
+        if (theForm.tse.selectedIndex <= 0) {
+            alert("Please Select English Typing Speed.");
+            theForm.tse.focus();
+            return (false);
+        }
+    }
+
+    // JOB
+    if (theForm.job_no.checked) {
+        if (theForm.job_exp.value == "") {
+            alert("Please Mention Experience.");
+            theForm.job_exp.focus();
+            return (false);
+        }
+        if (theForm.job_exp.value.length > 200) {
+            alert("Please Enter at Most 200 Characters in the Field of Experience.");
+            theForm.job_exp.focus();
+            return (false);
+        }
+    }
+    // Computer
+    if (theForm.com && theForm.com.checked) {
+        if (theForm.computer.value == "") {
+            alert("Please Mention Computer Literacy.");
+            theForm.computer.focus();
+            return (false);
+        }
+        if (theForm.computer.value.length > 200) {
+            alert("Please Enter at Most 200 Characters in the Field of Computer Literacy.");
+            theForm.computer.focus();
+            return (false);
+        }
+    }
+
+
+
+    // Validation Code
+    if (theForm.code.value != theForm.validation.value) {
+        alert("Incorrect Validation Code");
+        theForm.validation.focus();
+        return (false);
+    }
+
+    document.images["im"].src = "images/pload.gif";
+
+    return true;
+}
+
+
+
+
+
+//Masters
+function masfd() {
+    if (document.getElementById('masters').checked) {
+        document.getElementById('exam4').disabled = false;
+        document.getElementById('other_exam4').disabled = false;
+        document.getElementById('result4').disabled = false;
+        document.getElementById('result_gpa4').disabled = false;
+        document.getElementById('subject4').disabled = false;
+        document.getElementById('other_subject4').disabled = false;
+        document.getElementById('year4').disabled = false;
+        document.getElementById('institute4').disabled = false;
+        document.getElementById('other_institute4').disabled = false;
+        document.getElementById('duration4').disabled = false;
+    }
+    if (!document.getElementById('masters').checked) {
+        document.getElementById('exam4').disabled = true;
+        document.getElementById('other_exam4').disabled = true;
+        document.getElementById('result4').disabled = true;
+        document.getElementById('result_gpa4').disabled = true;
+        document.getElementById('subject4').disabled = true;
+        document.getElementById('other_subject4').disabled = true;
+        document.getElementById('year4').disabled = true;
+        document.getElementById('institute4').disabled = true;
+        document.getElementById('other_institute4').disabled = true;
+        document.getElementById('duration4').disabled = true;
+    }
+}
+
+function jscfd() {
+    if (document.getElementById('jsc').checked) {
+        document.getElementById('exam0').disabled = false;
+        document.getElementById('year0').disabled = false;
+        document.getElementById('institute0').disabled = false;
+        document.getElementById('result0').disabled = false;
+        document.getElementById('board0').disabled = false;
+        document.getElementById('roll0').disabled = false;
+
+    }
+    if (!document.getElementById('jsc').checked) {
+        document.getElementById('exam0').disabled = true;
+        document.getElementById('year0').disabled = true;
+        document.getElementById('institute0').disabled = true;
+        document.getElementById('result0').disabled = true;
+        document.getElementById('board0').disabled = true;
+        document.getElementById('roll0').disabled = true;
+    }
+}
+
+
+
+// Permanent address Disable
+function fd() {
+    if (document.getElementById('copy').checked) {
+        document.getElementById('permanent_care').value = "";
+        document.getElementById('permanent_care').disabled = true;
+        document.getElementById('permanent_care').style.visibility = "hidden";
+
+        document.getElementById('permanent_vill').value = "";
+        document.getElementById('permanent_vill').disabled = true;
+        document.getElementById('permanent_vill').style.visibility = "hidden";
+
+        document.getElementById('permanent_post').value = "";
+        document.getElementById('permanent_post').disabled = true;
+        document.getElementById('permanent_post').style.visibility = "hidden";
+
+        document.getElementById('menu_two').value = "";
+        document.getElementById('menu_two').disabled = true;
+        document.getElementById('menu_two').style.visibility = "hidden";
+
+        document.getElementById('menu_two_list').value = "";
+        document.getElementById('menu_two_list').disabled = true;
+        document.getElementById('menu_two_list').style.visibility = "hidden";
+
+        document.getElementById('permanent_pcode').value = "";
+        document.getElementById('permanent_pcode').disabled = true;
+        document.getElementById('permanent_pcode').style.visibility = "hidden";
+    }
+
+    if (!document.getElementById('copy').checked) {
+        document.getElementById('permanent_care').value = "";
+        document.getElementById('permanent_care').disabled = false;
+        document.getElementById('permanent_care').style.visibility = "visible";
+
+        document.getElementById('permanent_vill').value = "";
+        document.getElementById('permanent_vill').disabled = false;
+        document.getElementById('permanent_vill').style.visibility = "visible";
+
+        document.getElementById('permanent_post').value = "";
+        document.getElementById('permanent_post').disabled = false;
+        document.getElementById('permanent_post').style.visibility = "visible";
+
+        document.getElementById('menu_two').value = "";
+        document.getElementById('menu_two').disabled = false;
+        document.getElementById('menu_two').style.visibility = "visible";
+
+        document.getElementById('menu_two_list').value = "";
+        document.getElementById('menu_two_list').disabled = false;
+        document.getElementById('menu_two_list').style.visibility = "visible";
+
+        document.getElementById('permanent_pcode').value = "";
+        document.getElementById('permanent_pcode').disabled = false;
+        document.getElementById('permanent_pcode').style.visibility = "visible";
+    }
+}
+//Typing Speed
+function tsfd() {
+    if (document.getElementById('ts').checked) {
+        document.getElementById('tsb').disabled = false;
+        document.getElementById('tse').disabled = false;
+    }
+    if (!document.getElementById('ts').checked) {
+        document.getElementById('tsb').disabled = true;
+        document.getElementById('tse').disabled = true;
+    }
+}
+//Shorthand Speed
+function shfd() {
+    if (document.getElementById('sh').checked) {
+        document.getElementById('shb').disabled = false;
+        document.getElementById('she').disabled = false;
+    }
+    if (!document.getElementById('sh').checked) {
+        document.getElementById('shb').disabled = true;
+        document.getElementById('she').disabled = true;
+    }
+}
+//JOB
+function jefd() {
+    if (document.getElementById('je').checked) {
+        document.getElementById('job_exp').disabled = false;
+    }
+    if (!document.getElementById('je').checked) {
+        document.getElementById('job_exp').disabled = true;
+    }
+}
+
+//Computer
+function comfd() {
+    if (document.getElementById('com').checked) {
+        document.getElementById('computer').disabled = false;
+    }
+    if (!document.getElementById('com').checked) {
+        document.getElementById('computer').disabled = true;
+    }
+}
+
+// Customize Alpha set -----------------------------------------------------------------------------------
+//var letters=' ABCÃ‡DEFGHIJKLMNÃ‘OPQRSTUVWXYZabcÃ§defghijklmnÃ±opqrstuvwxyzÃ Ã¡Ã€ÃÃ©Ã¨ÃˆÃ‰Ã­Ã¬ÃÃŒÃ¯ÃÃ³Ã²Ã“Ã’ÃºÃ¹ÃšÃ™Ã¼Ãœ'
+var letters = ' -ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz'
+var numbers = '1234567890'
+var flot = '.1234567890'
+var signs = ',.:;@-\''
+var mathsigns = '+-=()*/'
+//var custom='<>#$%&?Â¿'
+var custom = '#(),.-/:'
+
+function alpha(e, allow) {
+    // Backspace and Delete
+    var charCode = (e.which) ? e.which : e.keyCode
+    if (charCode == 8 || charCode == 46) return true;
+
+    var k;
+    k = document.all ? parseInt(e.keyCode) : parseInt(e.which);
+    return (allow.indexOf(String.fromCharCode(k)) != -1);
+}
+
+function bangla_only(e) {
+    // Backspace and Space Hipen and Delete
+    var charCode = (e.which) ? e.which : e.keyCode;
+    if (charCode == 8 || charCode == 32 || charCode == 45 || charCode == 46) return true;
+
+    var k;
+    k = document.all ? parseInt(e.keyCode) : parseInt(e.which);
+    var res = (k >= 2432 && k <= 2559);
+    if (!res) {
+        alert('Only "Bangla Unicode" is accepted!');
+    }
+    return res;
+}
+
+function bangla_only_string(str) {
+    // Space Hipen
+    for (let i = 0; i < str.length; i++) {
+        var charCode = str.charCodeAt(i);
+        var res = ((charCode >= 2432 && charCode <= 2559) || charCode == 32 || charCode == 45 || charCode == 46);
+        if (!res) {
+            alert('Only "Bangla Unicode" is accepted!');
+            return false;
+        }
+    }
+    return true;
+}

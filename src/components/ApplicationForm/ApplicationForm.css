@@ -1,0 +1,39 @@
+.formWrapper{
+    background-color: #dfdfdf;
+}
+.formWrapper table{
+    width: 100%;
+    text-align: left;
+}
+.formWrapper table tr{
+    height: 35px;
+   
+}
+.formWrapper table tr:first-child{
+    background-color: #BDBABA;
+}
+.formWrapper table tr td:nth-child(1){
+    width: 200px;
+    text-align: left;
+
+}
+.formWrapper table tr td:nth-child(2){
+    width: 30px;
+    text-align: center;
+}
+
+.inputField{
+    padding: 3px;
+    width: 98%;
+}
+input{
+    outline: none;
+}
+input:focus{
+    /* outline: none; */
+    border: 2px solid;
+    border-color: green;
+}
+.boxTable input, select{
+    padding: 3px;
+}

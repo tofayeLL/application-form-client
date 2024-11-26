@@ -1,0 +1,49 @@
+.header {
+    /* margin-top: 10px; */
+    width: 780px;
+    margin: 0 auto;
+}
+
+.menuTable {
+    margin-top: 10px;
+}
+
+.menuTable table {
+    width: 100%;
+    /* margin-top: 10px; */
+    background-color: #025c3b;
+    color: white;
+    border-collapse: collapse;
+    /* border: 1px solid; */
+}
+
+
+
+.menuTable table span {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.menuTable table img {
+    width: 100px;
+    height: 100px;
+}
+
+.header nav a {
+    text-decoration: none;
+    margin-right: 20px;
+    color: black;
+    padding: 0 5px;
+
+}
+
+.header nav a:hover {
+    font-weight: bold;
+    color: rgb(252, 57, 8);
+}
+
+@media print {
+    #menu {
+        display: none;
+    }
+}
