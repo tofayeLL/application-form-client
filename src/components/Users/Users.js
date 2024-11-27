@@ -26,7 +26,7 @@ const Users = () => {
 
                     }
                 })
-        }
+        }  
     }
     return (
         <div>

@@ -38,7 +38,7 @@ const Header = () => {
                             <td><Link to="/home" style={menuStyle}>Home</Link></td>
                             <td>
                                 {user?.email ? <button onClick={logOut}>Logout</button>
-                                    : <Link to="/login2" style={menuStyle}>Login</Link>}
+                                    : <Link to="/login3" style={menuStyle}>Login</Link>}
                             </td>
                             <td><Link to="/payment" style={menuStyle}>Payment Status</Link></td>
                             <td><Link to="/instruction" style={menuStyle}>Instructions</Link></td>

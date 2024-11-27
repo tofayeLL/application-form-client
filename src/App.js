@@ -16,6 +16,8 @@ import AuthProvider from "./contexts/AuthProvider/AuthProvider";
 import PrivateRoute from "./components/Login/PrivateRoute/PrivateRoute";
 import Applicant from "./components/Applicant/Applicant";
 import Login2 from "./components/Login/Login2";
+import Login3 from "./components/Login/Login3";
+import UserDashboard from "./components/UserDashboard/UserDashboard";
 
 
 function App() {
@@ -64,6 +66,13 @@ function App() {
               </Route> */}
               <Route path="/login2">
                 <Login2></Login2>
+              </Route>
+              <Route path="/login3">
+                <Login3></Login3>
+              </Route>
+
+              <Route path="/userDashboard">
+                <UserDashboard></UserDashboard>
               </Route>
 
 
