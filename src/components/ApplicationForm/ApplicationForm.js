@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import useAuth from '../../hooks/useAuth';
 import './ApplicationForm.css';
+import Swal from "sweetalert2";
 
 const ApplicationForm = () => {
     const [applicant, setApplicant] = useState({});
@@ -883,7 +884,7 @@ const ApplicationForm = () => {
     const handleOnblur = e => {
         const field = e.target.name;
         const value = e.target.value;
-        const file = e.target.files[0]; // Get the first file from the input
+        const file = e.target.files[0]; 
         console.log(file);
         
 
@@ -894,43 +895,68 @@ const ApplicationForm = () => {
 
 
     // Submit Form
-    const handleAddUser = e => {
 
-        // const formData = new FormData();
-        // formData.append(applicant);
-        // formData.append('image', canImg);
-        // formData.append('sign', canSign);
-
+    const handleAddUser = (e) => {
+        e.preventDefault();
+    
         if (applicant.postName <= 0) {
-            alert('plz select a post');
-            return (false);
+            Swal.fire({
+                title: 'Warning!',
+                text: 'Please select a post.',
+                icon: 'warning',
+                confirmButtonText: 'OK',
+            });
+            return false;
         }
-
+    
         if (applicant.applicantName.length < 3) {
-            alert('plz enter a valid name');
-            // applicant.applicantName.focus();
-            return (false);
+            Swal.fire({
+                title: 'Warning!',
+                text: 'Please enter a valid name.',
+                icon: 'warning',
+                confirmButtonText: 'OK',
+            });
+            return false;
         }
-
+    
         fetch('http://localhost:5000/applicantCollection', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json',
             },
-            body: JSON.stringify(applicant)
+            body: JSON.stringify(applicant),
         })
-            .then(res => res.json())
-            .then(data => {
+            .then((res) => res.json())
+            .then((data) => {
                 if (data.insertedId) {
-                    alert('Your Application Seccessfully Submitted');
+                    Swal.fire({
+                        title: 'Success!',
+                        text: 'Your application was successfully submitted.',
+                        icon: 'success',
+                        confirmButtonText: 'OK',
+                    });
                     setId(data.insertedId);
                     e.target.reset();
+                } else if (data.message) {
+                    Swal.fire({
+                        title: 'Warning!',
+                        text: data.message, 
+                        icon: 'warning',
+                        confirmButtonText: 'OK',
+                    });
                 }
             })
-        registerUser(applicant.email, applicant.password);
-
-        e.preventDefault();
-    }
+            .catch((error) => {
+                Swal.fire({
+                    title: 'Error!',
+                    text: 'Something went wrong. Please try again.',
+                    icon: 'error',
+                    confirmButtonText: 'OK',
+                });
+                console.error('Error:', error);
+            });
+    };
+    
     return (
         <div className='formWrapper'>
             <form onSubmit={handleAddUser}>
