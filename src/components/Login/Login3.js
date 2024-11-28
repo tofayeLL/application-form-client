@@ -1,5 +1,6 @@
 import { useHistory } from 'react-router-dom';
 
+// import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import useAxiosPublic from "../../hooks/useAxiosPublic";
 import Swal from "sweetalert2";
 import { useContext } from 'react';
@@ -8,7 +9,7 @@ import { UserContext } from '../../contexts/UserProvider/UserProvider';
 const Login3 = () => {
     const axiosPublic = useAxiosPublic();
     const history = useHistory();
-    const { setUserEmail } = useContext(UserContext);
+    const {setUserEmail} = useContext(UserContext);
 
     const loginStyle = {
         backgroundColor: '#ddd',
@@ -35,15 +36,15 @@ const Login3 = () => {
             const res = await axiosPublic.post('/loginUser', userInfo);
 
             if (res.data.success) {
-                setUserEmail(userEmail); // Save email in the context
+                setUserEmail(userEmail)
                 Swal.fire({
                     title: 'Success!',
                     text: res.data.message,
                     icon: 'success',
                     confirmButtonText: 'Cool',
                 }).then(() => {
-
-                    history.push('/userDashboard');
+                  
+                    history.push('/userDashboard'); 
 
                 });
             } else {
