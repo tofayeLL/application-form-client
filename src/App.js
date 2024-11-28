@@ -18,13 +18,15 @@ import Applicant from "./components/Applicant/Applicant";
 import Login2 from "./components/Login/Login2";
 import Login3 from "./components/Login/Login3";
 import UserDashboard from "./components/UserDashboard/UserDashboard";
+import UserProvider from "./contexts/UserProvider/UserProvider";
 
 
 function App() {
   return (
     <div className="App">
       <AuthProvider>
-        <Router>
+       <UserProvider>
+       <Router>
           <div>
             <Header></Header>
             <Switch>
@@ -88,6 +90,7 @@ function App() {
             </Switch>
           </div>
         </Router>
+       </UserProvider>
       </AuthProvider>
     </div>
   );
