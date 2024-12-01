@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { CirclesWithBar } from 'react-loader-spinner';
+import { InfinitySpin } from 'react-loader-spinner';
 import { UserContext } from '../../contexts/UserProvider/UserProvider';
 import { Redirect } from 'react-router-dom/cjs/react-router-dom.min';
 
@@ -24,17 +24,11 @@ const ProtectedRoute = ({ children, ...rest }) => {
     if (loading) {
         return (
             <div className="flex flex-col justify-center min-h-screen items-center">
-                <CirclesWithBar
-                    height="200"
-                    width="300"
-                    color="#4f4d5d"
-                    outerCircleColor="#4f4d5d"
-                    innerCircleColor="#4f4d5d"
-                    barColor="#f88207"
-                    ariaLabel="circles-with-bar-loading"
-                    wrapperStyle={{}}
-                    wrapperClass=""
+                <InfinitySpin
                     visible={true}
+                    width="400"
+                    color="#4fa94d"
+                    ariaLabel="infinity-spin-loading"
                 />
             </div>
         );
