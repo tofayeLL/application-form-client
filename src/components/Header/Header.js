@@ -2,10 +2,12 @@ import React, { useContext, useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 // import useAuth from '../../hooks/useAuth';
 import './Header.css';
+import { Toaster, toast } from 'react-hot-toast';
 import bsri from './images/bsri.png';
 import govt_logo from './images/govt_logo.png';
 import { UserContext } from '../../contexts/UserProvider/UserProvider';
 import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
+
 
 const Header = () => {
 
@@ -24,6 +26,7 @@ const Header = () => {
     const handleLogout = () => {
         setUserEmail(null); // Clears user email from context and localStorage
         console.log("User logged out successfully");
+        toast.success("User logged out successfully");
         history.push("/login3"); // Redirect to the login page
 
     }

@@ -21,6 +21,7 @@ import Login3 from "./components/Login/Login3";
 import UserDashboard from "./components/UserDashboard/UserDashboard";
 import UserProvider from "./contexts/UserProvider/UserProvider";
 import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute";
+import { Toaster } from "react-hot-toast";
 
 
 function App() {
@@ -97,10 +98,12 @@ function App() {
                 </Route>
               </Switch>
             </div>
+
           </Router>
+
         </UserProvider>
       </AuthProvider>
-  
+      <Toaster />
     </div>
   );
 }
