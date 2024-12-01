@@ -3,13 +3,15 @@ import { useHistory } from 'react-router-dom';
 // import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import useAxiosPublic from "../../hooks/useAxiosPublic";
 import Swal from "sweetalert2";
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
 import { UserContext } from '../../contexts/UserProvider/UserProvider';
+import { GoEye, GoEyeClosed } from 'react-icons/go';
 
 const Login3 = () => {
     const axiosPublic = useAxiosPublic();
     const history = useHistory();
     const {setUserEmail} = useContext(UserContext);
+    const [passwordVisible, setPasswordVisible] = useState(false); // State to toggle password visibility
 
     const loginStyle = {
         backgroundColor: '#ddd',
@@ -66,15 +68,49 @@ const Login3 = () => {
         }
     };
 
+
+
+    // Toggle password visibility
+    const togglePassword = () => {
+        setPasswordVisible(!passwordVisible);
+    };
+
     return (
         <div style={loginStyle}>
             <h2 style={{ color: '#025c3b' }}>Login</h2>
             <form onSubmit={handleLogin2}>
                 <input style={fieldStyle} type="email" name='userEmail' placeholder='Enter your email' /> <br />
-                <input style={fieldStyle} type="password" name='password' placeholder='Enter your password' /> <br />
+
+                <div style={{
+                    position:'relative'
+                }}>
+                    <input
+                        style={fieldStyle}
+                        type={passwordVisible ? 'text' : 'password'}
+                        name='password'
+                        placeholder='Enter your password'
+                        
+                    />
+                    <span
+                        onClick={togglePassword}
+                        style={{
+                            position: 'absolute',
+                            top: '50%',
+                            right: '10px',
+                            transform: 'translate(-1170%,-45%)',
+                            cursor: 'pointer',
+                            fontSize: '20px',
+                        }}
+                    >
+                        {passwordVisible ? <GoEye /> : <GoEyeClosed />}
+                    </span>
+                </div>
+                
+          
                 <input style={fieldStyle} type="number" name='number' placeholder='Enter your number' /> <br />
                 <input style={fieldStyle} type="submit" value="Submit" />
             </form>
+        
         </div>
     );
 };

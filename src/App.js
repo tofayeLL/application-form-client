@@ -1,5 +1,6 @@
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import './App.css';
+import './index.css';
 import ApplicationForm from "./components/ApplicationForm/ApplicationForm";
 import Home from "./components/Home/Home";
 import UpdateUser from "./components/UpdateUser/UpdateUser";
@@ -99,6 +100,7 @@ function App() {
           </Router>
         </UserProvider>
       </AuthProvider>
+  
     </div>
   );
 }

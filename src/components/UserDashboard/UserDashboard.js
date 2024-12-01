@@ -6,32 +6,35 @@ import useIndividualUserData from "../../hooks/useIndividualUserData";
 const UserDashboard = () => {
     const { userEmail } = useContext(UserContext); // Retrieve userEmail from context
     /* const [userData, setUserData] = useState(null); */ // Store fetched user data
-   /*  const axiosPublic = useAxiosPublic();  */// Axios instance for API calls
+    /*  const axiosPublic = useAxiosPublic();  */// Axios instance for API calls
 
-   /*  useEffect(() => {
-        // Fetch user data when the component mounts
-        const fetchUserData = async () => {
-            if (userEmail) { // Ensure userEmail is available
-                try {
-                    const res = await axiosPublic.get(`/user/${userEmail}`);
-                    setUserData(res.data); // Store user data in state
-                } catch (error) {
-                    console.error("Error fetching user data:", error);
-                }
-            }
-        };
-
-        fetchUserData();
-    }, [axiosPublic, userEmail]); */ // Re-run effect if userEmail changes
+    /*  useEffect(() => {
+         // Fetch user data when the component mounts
+         const fetchUserData = async () => {
+             if (userEmail) { // Ensure userEmail is available
+                 try {
+                     const res = await axiosPublic.get(`/user/${userEmail}`);
+                     setUserData(res.data); // Store user data in state
+                 } catch (error) {
+                     console.error("Error fetching user data:", error);
+                 }
+             }
+         };
+ 
+         fetchUserData();
+     }, [axiosPublic, userEmail]); */ // Re-run effect if userEmail changes
 
     const { userData } = useIndividualUserData();
 
-    const {_id, userEmail: email, number, password} = userData || {};
+    const { _id, userEmail: email, number, password } = userData || {};
 
     return (
         <div className="dashboard-container">
+           
             <div className="dashboard-card">
-                <h2 className="dashboard-title">User Dashboard</h2>
+            
+           
+                <h2 className="dashboard-title ">User Dashboard</h2>
                 <p className="welcome-text">Welcome, {userEmail}</p>
 
                 {userData ? (
@@ -58,7 +61,14 @@ const UserDashboard = () => {
                     <p className="loading-text">Loading user data...</p>
                 )}
             </div>
+            
+
+           
+
+           
+           
         </div>
+      
     );
 };
 
