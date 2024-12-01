@@ -1,0 +1,41 @@
+/* Center the spinner on the screen */
+.spinner-container {
+  display: flex;
+  justify-content: center;
+  /* Center horizontally */
+  align-items: center;
+  /* Center vertically */
+  min-height: 100vh;
+  /* Full screen height */
+  width: 100%;
+  /* Full width */
+  background-color: rgba(0, 0, 0, 0.1);
+  /* Optional: light background to make the spinner more visible */
+}
+
+/* Define the spinner */
+.spinner {
+  border: 16px solid #f3f3f3;
+  /* Light gray background */
+  /*   border-top: 16px solid #007bff; */
+  /* Blue spinner color */
+  border-top: 16px solid #32CD32;
+  border-radius: 50%;
+  width: 120px;
+  /* Bigger size */
+  height: 120px;
+  /* Bigger size */
+  animation: spin 2s linear infinite;
+  /* Slower infinite spinning animation */
+}
+
+/* Keyframes for spinning animation */
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}

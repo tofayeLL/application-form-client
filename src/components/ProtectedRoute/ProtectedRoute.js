@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from 'react';
 import { InfinitySpin } from 'react-loader-spinner';
 import { UserContext } from '../../contexts/UserProvider/UserProvider';
 import { Redirect } from 'react-router-dom/cjs/react-router-dom.min';
+import "../Spinner/LoadingSpinner.css"
 
 
 const ProtectedRoute = ({ children, ...rest }) => {
@@ -23,13 +24,10 @@ const ProtectedRoute = ({ children, ...rest }) => {
 
     if (loading) {
         return (
-            <div className="flex flex-col justify-center min-h-screen items-center">
-                <InfinitySpin
-                    visible={true}
-                    width="400"
-                    color="#4fa94d"
-                    ariaLabel="infinity-spin-loading"
-                />
+            <div className="flex flex-col justify-center min-h-screen items-center spinner-container ">
+               <div className="spinner">
+                {/* loading spinner */}
+               </div>
             </div>
         );
     }
