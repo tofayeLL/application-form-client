@@ -1,13 +1,18 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import useAuth from '../../hooks/useAuth';
 import './Header.css';
 import bsri from './images/bsri.png';
 import govt_logo from './images/govt_logo.png';
+import { UserContext } from '../../contexts/UserProvider/UserProvider';
 
 const Header = () => {
 
     const { user, logOut } = useAuth();
+    // const {userEmail} = useContext(UserContext);
+    const { userEmail } = useContext(UserContext); 
+    // console.log("from header page",userEmail);
+
 
 
     const menuStyle = {
@@ -37,7 +42,7 @@ const Header = () => {
                         <tr height="45" style={{ backgroundColor: 'rgb(1, 129, 83)' }}>
                             <td><Link to="/home" style={menuStyle}>Home</Link></td>
                             <td>
-                                {user?.email ? <button onClick={logOut}>Logout</button>
+                                {userEmail ? <button onClick={logOut}>Logout</button>
                                     : <Link to="/login3" style={menuStyle}>Login</Link>}
                             </td>
                             <td><Link to="/payment" style={menuStyle}>Payment Status</Link></td>
