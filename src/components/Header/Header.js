@@ -1,17 +1,18 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
-import useAuth from '../../hooks/useAuth';
+// import useAuth from '../../hooks/useAuth';
 import './Header.css';
 import bsri from './images/bsri.png';
 import govt_logo from './images/govt_logo.png';
 import { UserContext } from '../../contexts/UserProvider/UserProvider';
+import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
 
 const Header = () => {
 
-    const { user, logOut } = useAuth();
-    // const {userEmail} = useContext(UserContext);
-    const { userEmail } = useContext(UserContext); 
-    // console.log("from header page",userEmail);
+    // const { user, logOut } = useAuth();
+    const { userEmail, setUserEmail } = useContext(UserContext);
+    const history = useHistory();
+
 
 
 
@@ -19,6 +20,15 @@ const Header = () => {
         textDecoration: 'none',
         color: 'white'
     }
+
+    const handleLogout = () => {
+        setUserEmail(null); // Clears user email from context and localStorage
+        console.log("User logged out successfully");
+        history.push("/login3"); // Redirect to the login page
+
+    }
+
+
     return (
         <div className="header">
             <div className='menuTable'>
@@ -42,7 +52,19 @@ const Header = () => {
                         <tr height="45" style={{ backgroundColor: 'rgb(1, 129, 83)' }}>
                             <td><Link to="/home" style={menuStyle}>Home</Link></td>
                             <td>
-                                {userEmail ? <button onClick={logOut}>Logout</button>
+                                {userEmail ? <button
+                                    onClick={handleLogout}
+                                    style={{
+                                        textDecoration: 'none',
+                                        color: 'white',
+                                        backgroundColor: 'transparent',
+                                        border: 'none',
+                                        cursor: 'pointer',
+                                    }}
+                                >
+                                    Logout
+                                </button>
+
                                     : <Link to="/login3" style={menuStyle}>Login</Link>}
                             </td>
                             <td><Link to="/payment" style={menuStyle}>Payment Status</Link></td>
