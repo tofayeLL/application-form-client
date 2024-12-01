@@ -43,6 +43,7 @@ function App() {
                 <SignatureValidator></SignatureValidator>
               </Route>
               <Route path="/payment">
+            
                 <PaymentStatus></PaymentStatus>
               </Route>
               <Route path="/instruction">
