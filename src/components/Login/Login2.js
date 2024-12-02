@@ -4,6 +4,16 @@ import Swal from "sweetalert2";
 import { useState } from "react";
 
 
+const imgbbAPIKey = process.env.REACT_APP_IMAGE_HOSTING_API_KEY; // Replace with your ImageBB API key
+const imgbbURL = `https://api.imgbb.com/1/upload?key=${imgbbAPIKey}`;
+
+
+// console.log(imgbbAPIKey);
+// console.log(imgbbURL);
+
+
+// console.log(process.env.REACT_APP_IMAGE_HOSTING_API_KEY);
+
 const Login2 = () => {
     const axiosPublic = useAxiosPublic();
     const history = useHistory();
@@ -46,6 +56,7 @@ const Login2 = () => {
 
     }
     console.log("from local folder get image",image);
+   
 
 
 
@@ -68,6 +79,24 @@ const Login2 = () => {
             return;
         }
 
+          // Upload image to ImageBB
+          const formData = new FormData();
+          formData.append('image', image);
+
+        const res = await axiosPublic.post(imgbbURL, formData, {
+            headers: {
+                'Content-Type': 'multipart/form-data'
+            }
+        });
+        console.log("get image url",res.data);
+        if (!res.data.success) {
+            throw new Error('Image upload failed');
+        }
+
+        const imageUrl = res.data.data.display_url;
+        console.log(imageUrl);
+
+       
 
 
 
