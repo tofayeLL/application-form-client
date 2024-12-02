@@ -81,10 +81,11 @@ function App() {
                 </Route>
 
 
-                <ProtectedRoute path="/userDashboard">
+                {/* <ProtectedRoute >
+                </ProtectedRoute> */}
+                <Route path="/userDashboard">
                   <UserDashboard></UserDashboard>
-                </ProtectedRoute>
-
+                  </Route>
 
 
                 {/* <PrivateRoute path="/applicant">
