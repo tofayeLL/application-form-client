@@ -26,20 +26,24 @@ const UserDashboard = () => {
 
     const { userData } = useIndividualUserData();
 
-    const { _id, userEmail: email, number, password, image } = userData || {};
+    const { app_id,_id, userEmail: email, number, password, image } = userData || {};
 
     return (
         <div className="dashboard-container">
         <div className="dashboard-card">
             {/* Profile Section */}
             <div className="profile-section">
-                {image ? (
-                    <img src={image} alt="User Profile" className="profile-image-large" />
-                ) : (
-                    <div className="placeholder-large">No Image</div>
-                )}
-                <h2 className="dashboard-title">Welcome, {userEmail}</h2>
-            </div>
+                    {image ? (
+                        <img
+                            src={image}
+                            alt="User Profile"
+                            className="profile-image-large"
+                        />
+                    ) : (
+                        <div className="placeholder-large">No Image</div>
+                    )}
+                    <h2 className="dashboard-title">Welcome, {userEmail}</h2>
+                </div>
 
             {/* User Information */}
             {userData ? (
@@ -47,7 +51,7 @@ const UserDashboard = () => {
                     <h3 className="details-title">User Information</h3>
                     <div className="detail">
                         <span className="label">User ID:</span>
-                        <span className="value">{_id}</span>
+                        <span className="value">{app_id}</span>
                     </div>
                     <div className="detail">
                         <span className="label">Email:</span>

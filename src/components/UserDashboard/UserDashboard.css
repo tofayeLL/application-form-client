@@ -27,35 +27,36 @@
 
 /* Large profile image styling */
 .profile-image-large {
-    width: 120px;
-    height: 120px;
+    width: 200px; /* Increase width for larger image */
+    height: 200px; /* Maintain equal height for circular shape */
     border-radius: 50%;
-    object-fit: cover;
-    border: 4px solid #ddd; /* Border around the image */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    object-fit: cover; /* Ensure the image doesn't stretch */
+    border: 5px solid #ddd; /* Thicker border for prominence */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Enhanced shadow for clarity */
     margin-bottom: 10px;
 }
 
 /* Placeholder for profile image */
 .placeholder-large {
-    width: 120px;
-    height: 120px;
+    width: 180px; /* Match size with image */
+    height: 180px;
     border-radius: 50%;
     background-color: #ddd;
     color: #666;
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 14px;
+    font-size: 16px;
     font-weight: bold;
     margin-bottom: 10px;
 }
 
 /* Dashboard title */
 .dashboard-title {
-    font-size: 22px;
+    font-size: 24px;
     font-weight: bold;
     color: #333; /* Dark text color */
+    margin-top: 10px;
 }
 
 /* User details section */
