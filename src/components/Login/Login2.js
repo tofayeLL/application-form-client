@@ -32,35 +32,20 @@ const Login2 = () => {
 
     }
 
-    const labelStyle = {
-        display: 'block',
-        marginBottom: '5px',
-        color: '#025c3b',
-        fontWeight: 'bold',
-    };
 
-    const buttonStyle = {
-        padding: '10px 20px',
-        backgroundColor: '#025c3b',
-        color: '#fff',
-        border: 'none',
-        borderRadius: '5px',
-        cursor: 'pointer',
-        marginTop: '10px',
-    };
-
-
+    // handle image
     const handleImageChange = (e) => {
         const file = e.target.files[0];
         setImage(file);
 
     }
-    console.log("from local folder get image",image);
-   
+
+    // console.log("get image", image);
 
 
 
 
+    // handle login
     const handleLogin2 = async (e) => {
         e.preventDefault();
 
@@ -69,6 +54,7 @@ const Login2 = () => {
         const password = form.password.value;
         const number = form.number.value;
 
+        // validation if image not have get error
         if (!image) {
             Swal.fire({
                 title: 'Error!',
@@ -79,39 +65,31 @@ const Login2 = () => {
             return;
         }
 
-          // Upload image to ImageBB
-          const formData = new FormData();
-          formData.append('image', image);
+
+        // Upload image to ImageBB
+        const formData = new FormData();
+        formData.append('image', image);
+
 
         const res = await axiosPublic.post(imgbbURL, formData, {
             headers: {
                 'Content-Type': 'multipart/form-data'
             }
         });
-        console.log("get image url",res.data);
+
+        // console.log("get image url",res.data);
+
+        
         if (!res.data.success) {
             throw new Error('Image upload failed');
         }
 
         const imageUrl = res.data.data.display_url;
-        console.log(imageUrl);
-
-       
+        // console.log(imageUrl);
 
 
 
-
-
-
-
-
-
-
-
-        const userInfo = { userEmail, password, number };
-
-
-
+        const userInfo = { userEmail, password, number, image: imageUrl };
 
         try {
             const res = await axiosPublic.post('/userInfo', userInfo);
