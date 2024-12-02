@@ -24,13 +24,23 @@ const Login2 = () => {
         padding: '20px 60px',
         borderBottom: '5px solid #025c3b'
     };
+    const fieldStyle2 = {
+        padding: '8px',
+        margin: '10px',
+        borderRadius: '10px',
+        border: '2px solid #025c3b',
+        width: 'calc(100% - 60%)', // Adjusted width for consistency
+        boxSizing: 'border-box',
+        backgroundColor: '#f0f8ff', // Ensures padding and border are included in width
+    };
     const fieldStyle = {
         padding: '8px',
         margin: '10px',
         borderRadius: '10px',
         border: '2px solid #025c3b'
+    };
 
-    }
+   
 
 
     // handle image
@@ -129,13 +139,13 @@ const Login2 = () => {
     return (
         <div style={loginStyle}>
             <h2 style={{ color: '#025c3b' }}>Login</h2>
-            <form onSubmit={handleLogin2}>
-                <input style={fieldStyle} type="email" name='userEmail' placeholder='Enter your email' /> <br />
-                <input style={fieldStyle} type="password" name='password' placeholder='Enter your password' /> <br />
-                <input style={fieldStyle} type="number" name='number' placeholder='Enter your number' /> <br />
-                <input style={fieldStyle} type="file" name="image" id="image" onChange={handleImageChange} accept="image/*" required />
-                <br />
-                <input style={fieldStyle} type="submit" value="Submit" />
+            <form  onSubmit={handleLogin2}>
+                <input style={fieldStyle2} type="email" name='userEmail' placeholder='Enter your email' /> <br />
+                <input style={fieldStyle2} type="password" name='password' placeholder='Enter your password' /> <br />
+                <input style={fieldStyle2} type="number" name='number' placeholder='Enter your number' /> <br />
+                <input style={fieldStyle2} type="file" name="image" id="image" onChange={handleImageChange} accept="image/*" required />  <br />
+              
+                <input  style={fieldStyle} type="submit" value="Submit" />
                 {/* <button type='submit'>Login</button> */}
             </form>
 

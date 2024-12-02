@@ -12,26 +12,50 @@
 /* Card styling */
 .dashboard-card {
     background-color: #ffffff; /* White card background */
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    border-radius: 12px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1); /* Subtle shadow */
     padding: 20px;
-    width: 400px; /* Fixed width for better layout */
+    width: 500px; /* Adjusted width for better layout */
     text-align: center;
+    overflow: hidden;
 }
 
-/* Title styling */
-.dashboard-title {
-    font-size: 24px;
-    font-weight: bold;
-    color: #333; /* Dark text color */
+/* Profile Section */
+.profile-section {
+    margin-bottom: 20px;
+}
+
+/* Large profile image styling */
+.profile-image-large {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 4px solid #ddd; /* Border around the image */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     margin-bottom: 10px;
 }
 
-/* Welcome text */
-.welcome-text {
-    font-size: 16px;
-    color: #666; /* Grey color for welcome text */
-    margin-bottom: 20px;
+/* Placeholder for profile image */
+.placeholder-large {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    background-color: #ddd;
+    color: #666;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 14px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+/* Dashboard title */
+.dashboard-title {
+    font-size: 22px;
+    font-weight: bold;
+    color: #333; /* Dark text color */
 }
 
 /* User details section */
@@ -45,14 +69,15 @@
     font-size: 18px;
     font-weight: bold;
     color: #555;
-    margin-bottom: 10px;
+    margin-bottom: 15px;
+    text-align: center;
 }
 
 /* Individual detail */
 .detail {
     display: flex;
     justify-content: space-between;
-    margin-bottom: 8px;
+    margin-bottom: 12px;
     padding: 8px 0;
     border-bottom: 1px solid #eee; /* Separator */
 }
@@ -61,12 +86,16 @@
 .label {
     font-weight: bold;
     color: #444;
+    flex-basis: 40%; /* Adjust width */
+    text-align: left;
 }
 
 /* Values */
 .value {
     color: #666;
+    flex-basis: 60%; /* Adjust width */
     word-break: break-word; /* Ensure long values wrap */
+    text-align: right;
 }
 
 /* Loading text */
