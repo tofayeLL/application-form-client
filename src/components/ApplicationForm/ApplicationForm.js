@@ -884,8 +884,8 @@ const ApplicationForm = () => {
     const handleOnblur = e => {
         const field = e.target.name;
         const value = e.target.value;
-        const file = e.target.files[0]; 
-        console.log(file);
+    /*     const file = e.target.files[0]; 
+        console.log(file); */
         
 
         const newObj = { ...applicant }
@@ -1544,9 +1544,9 @@ const ApplicationForm = () => {
                                                                                 <input type='file' id='cand_img' style={{ width: '300px' }} onChange={showPreview} name='image'
 
                                                                                 />
-                                                                               {/*  <div style={{ width: '300px', marginTop: '10px' }} >
+                                                                                <div style={{ width: '300px', marginTop: '10px' }} >
                                                                                     <img id='preview' src='https://i.pinimg.com/736x/8b/16/7a/8b167af653c2399dd93b952a48740620.jpg' alt='' width='100' height='100' />
-                                                                                </div> */}
+                                                                                </div>
                                                                             </td>
                                                                         </tr>
                                                                     </tbody>
