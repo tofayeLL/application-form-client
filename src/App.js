@@ -22,6 +22,7 @@ import UserDashboard from "./components/UserDashboard/UserDashboard";
 import UserProvider from "./contexts/UserProvider/UserProvider";
 import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute";
 import { Toaster } from "react-hot-toast";
+import CheckTailwind from "./components/CheckTailwind/CheckTailwind";
 
 
 function App() {
@@ -78,6 +79,9 @@ function App() {
                 </Route>
                 <Route path="/login3">
                   <Login3></Login3>
+                </Route>
+                <Route path="/tailwind">
+                  <CheckTailwind></CheckTailwind>
                 </Route>
 
 

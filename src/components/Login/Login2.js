@@ -1,4 +1,4 @@
-import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
+// import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import useAxiosPublic from "../../hooks/useAxiosPublic";
 import Swal from "sweetalert2";
 import { useState } from "react";
@@ -16,7 +16,7 @@ const imgbbURL = `https://api.imgbb.com/1/upload?key=${imgbbAPIKey}`;
 
 const Login2 = () => {
     const axiosPublic = useAxiosPublic();
-    const history = useHistory();
+    // const history = useHistory();
     const [image, setImage] = useState(null);
 
     const loginStyle = {
@@ -113,7 +113,7 @@ const Login2 = () => {
                 })
                     .then(() => {
                         // Redirect to userDashboard after success
-                        history.push('/userDashboard');
+                        // history.push('/userDashboard');
                     });
                 form.reset();
             } else if (res.data.message) {

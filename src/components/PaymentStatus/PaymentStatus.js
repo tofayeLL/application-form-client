@@ -34,6 +34,9 @@ const PaymentStatus = () => {
             {/* <span>Input 4</span><input type="checkbox" id="4" name="chk" onClick={myfun} />
             <span>Input 5</span><input type="checkbox" id="5" name="chk" onClick={myfun} /> */}
             {/* <span>Input 6</span><input type="checkbox" id="6" name="chk" onClick={myfun} /> */}
+
+
+            
         </div>
     );
 };
