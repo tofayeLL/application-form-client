@@ -31,26 +31,91 @@ const Login2 = () => {
         border: '2px solid #025c3b',
     };
 
+
+    // Function to check image size
+    const validateImageSize = (imageFile, requiredWidth, requiredHeight) => {
+        return new Promise((resolve, reject) => {
+            const reader = new FileReader();
+            reader.onload = (e) => {
+                const img = new Image();
+                img.onload = () => {
+                    if (img.width !== requiredWidth || img.height !== requiredHeight) {
+                        reject(`Image size must be ${requiredWidth}x${requiredHeight}`);
+                    } else {
+                        resolve();
+                    }
+                };
+                img.src = e.target.result;
+            };
+            reader.readAsDataURL(imageFile);
+        });
+    };
+
+
+
+
+
     // Handle image change
-    const handleImageChange = (e) => {
+    const handleImageChange = async (e) => {
         const { name, files } = e.target;
         const file = files[0];
         if (file) {
-            // Update the images state
-            setImages((prevImages) => ({
-                ...prevImages,
-                [name]: file,
-            }));
+            // Image size validation for image1 (300x300)
+            if (name === 'image1') {
+                try {
+                    await validateImageSize(file, 300, 300);
+                    // Update the images state if validation passes
+                    setImages((prevImages) => ({
+                        ...prevImages,
+                        [name]: file,
+                    }));
 
-            // Generate a preview URL
-            const reader = new FileReader();
-            reader.onload = () => {
-                setPreviews((prevPreviews) => ({
-                    ...prevPreviews,
-                    [name]: reader.result, // Update the preview URL
-                }));
-            };
-            reader.readAsDataURL(file);
+                    // Generate a preview URL
+                    const reader = new FileReader();
+                    reader.onload = () => {
+                        setPreviews((prevPreviews) => ({
+                            ...prevPreviews,
+                            [name]: reader.result,
+                        }));
+                    };
+                    reader.readAsDataURL(file);
+                } catch (error) {
+                    Swal.fire({
+                        title: 'Error!',
+                        text: error,
+                        icon: 'error',
+                        confirmButtonText: 'OK',
+                    });
+                }
+            }
+            // Image size validation for image2 (300x80)
+            else if (name === 'image2') {
+                try {
+                    await validateImageSize(file, 300, 80);
+                    // Update the images state if validation passes
+                    setImages((prevImages) => ({
+                        ...prevImages,
+                        [name]: file,
+                    }));
+
+                    // Generate a preview URL
+                    const reader = new FileReader();
+                    reader.onload = () => {
+                        setPreviews((prevPreviews) => ({
+                            ...prevPreviews,
+                            [name]: reader.result,
+                        }));
+                    };
+                    reader.readAsDataURL(file);
+                } catch (error) {
+                    Swal.fire({
+                        title: 'Error!',
+                        text: error,
+                        icon: 'error',
+                        confirmButtonText: 'OK',
+                    });
+                }
+            }
         }
     };
 
