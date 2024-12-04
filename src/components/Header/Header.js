@@ -52,9 +52,9 @@ const Header = () => {
                 </table>
                 <table border='2' bordercolor='#025c3b' cellPadding='4' id='menu'>
                     <tbody>
-                        <tr height="45" style={{ backgroundColor: 'rgb(1, 129, 83)' }}>
-                            <td><Link to="/home" style={menuStyle}>Home</Link></td>
-                            <td>
+                        <tr height="45" style={{ backgroundColor: 'rgb(1, 129, 83)' }} >
+                            <td className='border-r-[1px] border-green-950'><Link to="/home" style={menuStyle}>Home</Link></td>
+                            <td className='border-r-[1px] border-green-950'>
                                 {userEmail ? <button
                                     onClick={handleLogout}
                                     style={{
@@ -70,9 +70,9 @@ const Header = () => {
 
                                     : <Link to="/login3" style={menuStyle}>Login</Link>}
                             </td>
-                            <td><Link to="/payment" style={menuStyle}>Payment Status</Link></td>
-                            <td><Link to="/instruction" style={menuStyle}>Instructions</Link></td>
-                            <td><Link to="applicant" style={menuStyle}>Admit Card</Link></td>
+                            <td className='border-r-[1px] border-green-950'><Link to="/payment" style={menuStyle}>Payment Status</Link></td>
+                            <td className='border-r-[1px] border-green-950'><Link to="/instruction" style={menuStyle}>Instructions</Link></td>
+                            <td className='border-r-[1px] border-green-950'><Link to="applicant" style={menuStyle}>Admit Card</Link></td>
                         </tr>
                     </tbody>
                 </table>
