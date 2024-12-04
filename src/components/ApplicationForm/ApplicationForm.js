@@ -1039,7 +1039,11 @@ const ApplicationForm = () => {
                             confirmButtonText: 'OK',
                         });
                         setId(data.insertedId);
-                        e.target.reset();
+                        // Reset the form and images state after submission
+                        setImages({ image1: null, image2: null });
+                        setPreviews({ image1: null, image2: null }); 
+                        e.target.reset(); // Reset form fields
+
                     } else if (data.message) {
                         Swal.fire({
                             title: 'Warning!',
@@ -1664,9 +1668,11 @@ const ApplicationForm = () => {
                                                                                     required
                                                                                 />{' '}
 
-                                                                                <div style={{ width: '300px', marginTop: '10px' }}>
-                                                                                    <img id="preview2" src={previews.image1 || ''} alt="Preview 2" width="120" height="80" />
-                                                                                </div>
+                                                                                {previews.image1 && <div style={{ width: '300px', marginTop: '10px' }}>
+                                                                                    <img id="preview1" src={previews.image1 || ''} alt="coming.."
+                                                                                        width="120"
+                                                                                        height="80" />
+                                                                                </div>}
                                                                             </td>
                                                                         </tr>
                                                                     </tbody>
@@ -1692,9 +1698,10 @@ const ApplicationForm = () => {
                                                                                     required
                                                                                 />{' '}
 
-                                                                                <div style={{ width: '300px', marginTop: '10px' }}>
-                                                                                    <img id="preview2" src={previews.image2 || ''} alt="Preview 2" width="120" height="80" />
+                                                                                {previews.image2 && <div style={{ width: '300px', marginTop: '10px' }}>
+                                                                                    <img id="preview2" src={previews.image2 || ''} alt="coming.." width="120" height="80" />
                                                                                 </div>
+                                                                                }
                                                                             </td>
                                                                         </tr>
                                                                     </tbody>
