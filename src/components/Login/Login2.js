@@ -144,6 +144,7 @@ const Login2 = () => {
                 <input style={fieldStyle2} type="password" name='password' placeholder='Enter your password' /> <br />
                 <input style={fieldStyle2} type="number" name='number' placeholder='Enter your number' /> <br />
                 <input style={fieldStyle2} type="file" name="image" id="image" onChange={handleImageChange} accept="image/*" required />  <br />
+                <input style={fieldStyle2} type="file" name="image" id="image" onChange={handleImageChange} accept="image/*" required />  <br />
               
                 <input  style={fieldStyle} type="submit" value="Submit" />
                 {/* <button type='submit'>Login</button> */}

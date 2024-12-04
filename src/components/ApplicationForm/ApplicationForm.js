@@ -843,25 +843,25 @@ const ApplicationForm = () => {
             union1.push(union[un]);
         }
     }
-  /*   function showPreview(event) {
-        if (event.target.files.length > 0) {
-            var src = URL.createObjectURL(event.target.files[0]);
-            var preview = document.getElementById("preview");
-            preview.src = src;
-            preview.style.display = "block";
-            setCanImg(event.target.files[0]);
-        }
-
-    }
-    function showPreview2(event) {
-        if (event.target.files.length > 0) {
-            var src = URL.createObjectURL(event.target.files[0]);
-            var preview = document.getElementById("preview2");
-            preview.src = src;
-            preview.style.display = "block";
-
-        }
-    } */
+    /*   function showPreview(event) {
+          if (event.target.files.length > 0) {
+              var src = URL.createObjectURL(event.target.files[0]);
+              var preview = document.getElementById("preview");
+              preview.src = src;
+              preview.style.display = "block";
+              setCanImg(event.target.files[0]);
+          }
+  
+      }
+      function showPreview2(event) {
+          if (event.target.files.length > 0) {
+              var src = URL.createObjectURL(event.target.files[0]);
+              var preview = document.getElementById("preview2");
+              preview.src = src;
+              preview.style.display = "block";
+  
+          }
+      } */
 
     function sbBtn() {
 
@@ -885,11 +885,19 @@ const ApplicationForm = () => {
     // const axiosPublic = useAxiosPublic();
 
 
+
+    const axiosPublic = useAxiosPublic();
+    const imgbbAPIKey = process.env.REACT_APP_IMAGE_HOSTING_API_KEY; // Replace with your ImageBB API key
+    const imgbbURL = `https://api.imgbb.com/1/upload?key=${imgbbAPIKey}`;
+    // console.log(imgbbAPIKey);
+    // console.log(imgbbURL);
+
+
     const [image, setImage] = useState(null);
 
 
-      // handle image
-      const handleImageChange = (e) => {
+    // handle image
+    const handleImageChange = (e) => {
         const file = e.target.files[0];
         setImage(file);
 
@@ -902,14 +910,14 @@ const ApplicationForm = () => {
 
 
 
-    
+
 
     const handleOnblur = e => {
         const field = e.target.name;
         const value = e.target.value;
-    /*     const file = e.target.files[0]; 
-        console.log(file); */
-        
+        /*     const file = e.target.files[0]; 
+            console.log(file); */
+
 
         const newObj = { ...applicant }
         newObj[field] = value;
@@ -919,9 +927,9 @@ const ApplicationForm = () => {
 
     // Submit Form
 
-    const handleAddUser = (e) => {
+    const handleAddUser = async (e) => {
         e.preventDefault();
-    
+
         if (applicant.postName <= 0) {
             Swal.fire({
                 title: 'Warning!',
@@ -931,7 +939,7 @@ const ApplicationForm = () => {
             });
             return false;
         }
-    
+
         if (applicant.applicantName.length < 3) {
             Swal.fire({
                 title: 'Warning!',
@@ -941,13 +949,58 @@ const ApplicationForm = () => {
             });
             return false;
         }
-    
+
+
+        // validation if image not have get error
+        if (!image) {
+            Swal.fire({
+                title: 'Error!',
+                text: 'Please upload an image.',
+                icon: 'error',
+                confirmButtonText: 'OK',
+            });
+            return;
+        }
+
+
+        // Upload image to ImageBB
+        const formData = new FormData();
+        formData.append('image', image);
+
+
+        const res = await axiosPublic.post(imgbbURL, formData, {
+            headers: {
+                'Content-Type': 'multipart/form-data'
+            }
+        });
+
+        // console.log("get image url",res.data);
+
+
+        if (!res.data.success) {
+            throw new Error('Image upload failed');
+        }
+
+        const imageUrl = res.data.data.display_url;
+        console.log(imageUrl);
+
+
+
+
+        const updateApplicant = { ...applicant, imageUrl }
+
+
+
+
+
+
+
         fetch('http://localhost:5000/applicantCollection', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json',
             },
-            body: JSON.stringify(applicant),
+            body: JSON.stringify(updateApplicant),
         })
             .then((res) => res.json())
             .then((data) => {
@@ -963,7 +1016,7 @@ const ApplicationForm = () => {
                 } else if (data.message) {
                     Swal.fire({
                         title: 'Warning!',
-                        text: data.message, 
+                        text: data.message,
                         icon: 'warning',
                         confirmButtonText: 'OK',
                     });
@@ -979,7 +1032,7 @@ const ApplicationForm = () => {
                 console.error('Error:', error);
             });
     };
-    
+
     return (
         <div className='formWrapper px-[1px]'>
             <form onSubmit={handleAddUser}>
@@ -1004,17 +1057,17 @@ const ApplicationForm = () => {
                         <tr>
                             <td>Applicant's Name <small style={{ color: 'red' }}>*</small></td>
                             <td>:</td>
-                            <td><input className='inputField' type="text" placeholder=" " name="applicantName" id="applicantName" onBlur={handleOnblur}  /></td>
+                            <td><input className='inputField' type="text" placeholder=" " name="applicantName" id="applicantName" onBlur={handleOnblur} /></td>
                         </tr>
                         <tr>
                             <td>Father's Name <small style={{ color: 'red' }}>*</small></td>
                             <td>:</td>
-                            <td><input className='inputField' type="text" placeholder=" " name="fname" id="fname" onBlur={handleOnblur}  /></td>
+                            <td><input className='inputField' type="text" placeholder=" " name="fname" id="fname" onBlur={handleOnblur} /></td>
                         </tr>
                         <tr>
                             <td>Mother's Name <small style={{ color: 'red' }}>*</small></td>
                             <td>:</td>
-                            <td><input className='inputField' type="text" placeholder=" " name="mname" id="mname" onBlur={handleOnblur}  /></td>
+                            <td><input className='inputField' type="text" placeholder=" " name="mname" id="mname" onBlur={handleOnblur} /></td>
                         </tr>
                         <tr>
                             <td>Gender <small style={{ color: 'red' }}>*</small></td>
@@ -1564,9 +1617,9 @@ const ApplicationForm = () => {
 
                                                                         <tr>
                                                                             <td colSpan='2'>
-                                                                            <input type="file" name="image" id="image" onChange={handleImageChange} accept="image/*" required />
-                                                                              
-                                                                               {/*  <div style={{ width: '300px', marginTop: '10px' }} >
+                                                                                <input type="file" name="image" id="image" onChange={handleImageChange} accept="image/*" required />
+
+                                                                                {/*  <div style={{ width: '300px', marginTop: '10px' }} >
                                                                                     <img id='preview' src='https://i.pinimg.com/736x/8b/16/7a/8b167af653c2399dd93b952a48740620.jpg' alt='' width='100' height='100' />
                                                                                 </div> */}
                                                                             </td>
@@ -1585,8 +1638,9 @@ const ApplicationForm = () => {
 
                                                                         <tr>
                                                                             <td colSpan='2'>
-                                                                               
-                                                                               {/*  <div style={{ width: '300px', marginTop: '10px' }} >
+                                                                                <input type="file" name="image" id="image" onChange={handleImageChange} accept="image/*" required />
+
+                                                                                {/*  <div style={{ width: '300px', marginTop: '10px' }} >
                                                                                     <img id='preview2' src='https://raw.githubusercontent.com/rashel68/cv-maker/main/signature1.jpg' alt='' width='120' height='80' />
                                                                                 </div> */}
                                                                             </td>
