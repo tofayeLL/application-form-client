@@ -4,6 +4,7 @@ import useAuth from '../../hooks/useAuth';
 import './ApplicationForm.css';
 import Swal from "sweetalert2";
 import useAxiosPublic from '../../hooks/useAxiosPublic';
+import useIndividualUserData from '../../hooks/useIndividualUserData';
 
 const ApplicationForm = () => {
     const [applicant, setApplicant] = useState({});
@@ -893,17 +894,22 @@ const ApplicationForm = () => {
     // console.log(imgbbURL);
 
 
-    const [image, setImage] = useState(null);
+    const [images, setImages] = useState({ image1: null, image2: null });
 
 
-    // handle image
+    // Handle image change
     const handleImageChange = (e) => {
-        const file = e.target.files[0];
-        setImage(file);
+        const { name, files } = e.target;
+        const file = files[0];
+        if (file) {
+            setImages((prevImages) => ({
+                ...prevImages,
+                [name]: file, // Dynamically update based on input name
+            }));
+        }
+    };
 
-    }
-
-    console.log("get image", image);
+    console.log("get image", images);
 
 
 
@@ -923,6 +929,13 @@ const ApplicationForm = () => {
         newObj[field] = value;
         setApplicant(newObj);
     }
+
+
+
+
+    const { userData } = useIndividualUserData();
+    const { images:imagess } = userData || {};
+    console.log("user images",imagess);
 
 
     // Submit Form
@@ -951,87 +964,99 @@ const ApplicationForm = () => {
         }
 
 
-        // validation if image not have get error
-        if (!image) {
+        // Validation to check both images
+        if (!images.image1 || !images.image2) {
             Swal.fire({
                 title: 'Error!',
-                text: 'Please upload an image.',
+                text: 'Please upload both images.',
                 icon: 'error',
                 confirmButtonText: 'OK',
             });
             return;
         }
 
+        try {
+            // Helper function to upload a single image
+            const uploadImage = async (imageFile) => {
+                const formData = new FormData();
+                formData.append('image', imageFile);
 
-        // Upload image to ImageBB
-        const formData = new FormData();
-        formData.append('image', image);
-
-
-        const res = await axiosPublic.post(imgbbURL, formData, {
-            headers: {
-                'Content-Type': 'multipart/form-data'
-            }
-        });
-
-        // console.log("get image url",res.data);
-
-
-        if (!res.data.success) {
-            throw new Error('Image upload failed');
-        }
-
-        const imageUrl = res.data.data.display_url;
-        console.log(imageUrl);
-
-
-
-
-        const updateApplicant = { ...applicant, imageUrl }
-
-
-
-
-
-
-
-        fetch('http://localhost:5000/applicantCollection', {
-            method: 'POST',
-            headers: {
-                'content-type': 'application/json',
-            },
-            body: JSON.stringify(updateApplicant),
-        })
-            .then((res) => res.json())
-            .then((data) => {
-                if (data.insertedId) {
-                    Swal.fire({
-                        title: 'Success!',
-                        text: 'Your application was successfully submitted.',
-                        icon: 'success',
-                        confirmButtonText: 'OK',
-                    });
-                    setId(data.insertedId);
-                    e.target.reset();
-                } else if (data.message) {
-                    Swal.fire({
-                        title: 'Warning!',
-                        text: data.message,
-                        icon: 'warning',
-                        confirmButtonText: 'OK',
-                    });
-                }
-            })
-            .catch((error) => {
-                Swal.fire({
-                    title: 'Error!',
-                    text: 'Something went wrong. Please try again.',
-                    icon: 'error',
-                    confirmButtonText: 'OK',
+                const res = await axiosPublic.post(imgbbURL, formData, {
+                    headers: { 'Content-Type': 'multipart/form-data' },
                 });
-                console.error('Error:', error);
+
+                if (!res.data.success) {
+                    throw new Error('Image upload failed');
+                }
+
+                return res.data.data.display_url;
+            };
+
+            // Upload both images
+            const [image1Url, image2Url] = await Promise.all([
+                uploadImage(images.image1),
+                uploadImage(images.image2),
+            ]);
+
+
+
+
+
+            const updateApplicant = { ...applicant, images: { image1: image1Url, image2: image2Url } }
+
+
+
+
+
+
+
+            fetch('http://localhost:5000/applicantCollection', {
+                method: 'POST',
+                headers: {
+                    'content-type': 'application/json',
+                },
+                body: JSON.stringify(updateApplicant),
+            })
+                .then((res) => res.json())
+                .then((data) => {
+                    if (data.insertedId) {
+                        Swal.fire({
+                            title: 'Success!',
+                            text: 'Your application was successfully submitted.',
+                            icon: 'success',
+                            confirmButtonText: 'OK',
+                        });
+                        setId(data.insertedId);
+                        e.target.reset();
+                    } else if (data.message) {
+                        Swal.fire({
+                            title: 'Warning!',
+                            text: data.message,
+                            icon: 'warning',
+                            confirmButtonText: 'OK',
+                        });
+                    }
+                }).catch((error) => {
+                    Swal.fire({
+                        title: 'Error!',
+                        text: 'Something went wrong. Please try again.',
+                        icon: 'error',
+                        confirmButtonText: 'OK',
+                    });
+                    console.error('Error:', error);
+                });
+        } catch (error) {
+            // Catch errors during the image upload or `fetch` preparation
+            Swal.fire({
+                title: 'Error!',
+                text: 'An unexpected error occurred. Please try again.',
+                icon: 'error',
+                confirmButtonText: 'OK',
             });
+            console.error('Error in try block:', error);
+        }
     };
+
 
     return (
         <div className='formWrapper px-[1px]'>
@@ -1617,11 +1642,19 @@ const ApplicationForm = () => {
 
                                                                         <tr>
                                                                             <td colSpan='2'>
-                                                                                <input type="file" name="image" id="image" onChange={handleImageChange} accept="image/*" required />
+                                                                                <input
 
-                                                                                {/*  <div style={{ width: '300px', marginTop: '10px' }} >
-                                                                                    <img id='preview' src='https://i.pinimg.com/736x/8b/16/7a/8b167af653c2399dd93b952a48740620.jpg' alt='' width='100' height='100' />
-                                                                                </div> */}
+                                                                                    type="file"
+                                                                                    name="image1"
+                                                                                    id="image1"
+                                                                                    onChange={handleImageChange}
+                                                                                    accept="image/*"
+                                                                                    required
+                                                                                />{' '}
+
+                                                                                 <div style={{ width: '300px', marginTop: '10px' }} >
+                                                                                    <img id='preview' src='' alt='' width='100' height='100' />
+                                                                                </div>
                                                                             </td>
                                                                         </tr>
                                                                     </tbody>
@@ -1638,11 +1671,18 @@ const ApplicationForm = () => {
 
                                                                         <tr>
                                                                             <td colSpan='2'>
-                                                                                <input type="file" name="image" id="image" onChange={handleImageChange} accept="image/*" required />
+                                                                                <input
+                                                                                    type="file"
+                                                                                    name="image2"
+                                                                                    id="image2"
+                                                                                    onChange={handleImageChange}
+                                                                                    accept="image/*"
+                                                                                    required
+                                                                                />{' '}
 
-                                                                                {/*  <div style={{ width: '300px', marginTop: '10px' }} >
-                                                                                    <img id='preview2' src='https://raw.githubusercontent.com/rashel68/cv-maker/main/signature1.jpg' alt='' width='120' height='80' />
-                                                                                </div> */}
+                                                                                 <div style={{ width: '300px', marginTop: '10px' }} >
+                                                                                    <img id='preview2' src={images?.image1} alt='' width='120' height='80' />
+                                                                                </div>
                                                                             </td>
                                                                         </tr>
                                                                     </tbody>

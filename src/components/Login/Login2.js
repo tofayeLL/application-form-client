@@ -8,6 +8,7 @@ const imgbbURL = `https://api.imgbb.com/1/upload?key=${imgbbAPIKey}`;
 const Login2 = () => {
     const axiosPublic = useAxiosPublic();
     const [images, setImages] = useState({ image1: null, image2: null });
+    const [previews, setPreviews] = useState({ image1: null, image2: null }); // To store preview URLs
 
     const loginStyle = {
         backgroundColor: '#ddd',
@@ -19,7 +20,7 @@ const Login2 = () => {
         margin: '10px',
         borderRadius: '10px',
         border: '2px solid #025c3b',
-        width: 'calc(100% - 60%)', // Adjusted width for consistency
+        width: 'calc(100% - 60%)',
         boxSizing: 'border-box',
         backgroundColor: '#f0f8ff',
     };
@@ -35,10 +36,21 @@ const Login2 = () => {
         const { name, files } = e.target;
         const file = files[0];
         if (file) {
+            // Update the images state
             setImages((prevImages) => ({
                 ...prevImages,
-                [name]: file, // Dynamically update based on input name
+                [name]: file,
             }));
+
+            // Generate a preview URL
+            const reader = new FileReader();
+            reader.onload = () => {
+                setPreviews((prevPreviews) => ({
+                    ...prevPreviews,
+                    [name]: reader.result, // Update the preview URL
+                }));
+            };
+            reader.readAsDataURL(file);
         }
     };
 
@@ -104,6 +116,8 @@ const Login2 = () => {
                     confirmButtonText: 'Cool',
                 }).then(() => {
                     form.reset();
+                    setImages({ image1: null, image2: null }); // Reset images
+                    setPreviews({ image1: null, image2: null }); // Reset previews
                 });
             } else if (res.data.message) {
                 Swal.fire({
@@ -159,6 +173,14 @@ const Login2 = () => {
                     required
                 />{' '}
                 <br />
+                {previews.image1 && (
+                    <img
+                        src={previews.image1}
+                        alt="Preview 1"
+                        style={{ width: '100px', marginTop: '10px' }}
+                    />
+                )}
+                <br />
                 <input
                     style={fieldStyle2}
                     type="file"
@@ -168,6 +190,14 @@ const Login2 = () => {
                     accept="image/*"
                     required
                 />{' '}
+                <br />
+                {previews.image2 && (
+                    <img
+                        src={previews.image2}
+                        alt="Preview 2"
+                        style={{ width: '100px', marginTop: '10px' }}
+                    />
+                )}
                 <br />
                 <input style={fieldStyle} type="submit" value="Submit" />
             </form>
