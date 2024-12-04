@@ -26,17 +26,22 @@ const UserDashboard = () => {
 
     const { userData } = useIndividualUserData();
 
-    const { app_id, _id, userEmail: email, number, password, image } = userData || {};
+    const { app_id, _id, userEmail: email, number, password, images } = userData || {};
 
     return (
         <div className="dashboard-container">
             <div className="dashboard-card">
                 {/* Profile Section */}
                 <div className="profile-section ">
-                    {image ? (
+                    {images ? (
                         <div className="flex justify-center items-center">
                             <img
-                                src={image}
+                                src={images.image1}
+                                alt="User Profile"
+                                className="profile-image-large object-center object-cover"
+                            />
+                            <img
+                                src={images.image2}
                                 alt="User Profile"
                                 className="profile-image-large object-center object-cover"
                             />
