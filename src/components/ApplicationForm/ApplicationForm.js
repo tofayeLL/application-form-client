@@ -895,6 +895,7 @@ const ApplicationForm = () => {
 
 
     const [images, setImages] = useState({ image1: null, image2: null });
+    const [previews, setPreviews] = useState({ image1: null, image2: null });
 
 
     // Handle image change
@@ -902,14 +903,25 @@ const ApplicationForm = () => {
         const { name, files } = e.target;
         const file = files[0];
         if (file) {
+            // Update the images state
             setImages((prevImages) => ({
                 ...prevImages,
-                [name]: file, // Dynamically update based on input name
+                [name]: file,
             }));
+
+            // Generate a preview URL
+            const reader = new FileReader();
+            reader.onload = () => {
+                setPreviews((prevPreviews) => ({
+                    ...prevPreviews,
+                    [name]: reader.result, // Update the preview URL
+                }));
+            };
+            reader.readAsDataURL(file);
         }
     };
 
-    console.log("get image", images);
+    console.log("get up images", images);
 
 
 
@@ -933,9 +945,9 @@ const ApplicationForm = () => {
 
 
 
-    const { userData } = useIndividualUserData();
-    const { images:imagess } = userData || {};
-    console.log("user images",imagess);
+    /*   const { userData } = useIndividualUserData();
+      const { images:imagess } = userData || {};
+      console.log("user images",imagess); */
 
 
     // Submit Form
@@ -1652,8 +1664,8 @@ const ApplicationForm = () => {
                                                                                     required
                                                                                 />{' '}
 
-                                                                                 <div style={{ width: '300px', marginTop: '10px' }} >
-                                                                                    <img id='preview' src='' alt='' width='100' height='100' />
+                                                                                <div style={{ width: '300px', marginTop: '10px' }}>
+                                                                                    <img id="preview2" src={previews.image1 || ''} alt="Preview 2" width="120" height="80" />
                                                                                 </div>
                                                                             </td>
                                                                         </tr>
@@ -1680,8 +1692,8 @@ const ApplicationForm = () => {
                                                                                     required
                                                                                 />{' '}
 
-                                                                                 <div style={{ width: '300px', marginTop: '10px' }} >
-                                                                                    <img id='preview2' src={images?.image1} alt='' width='120' height='80' />
+                                                                                <div style={{ width: '300px', marginTop: '10px' }}>
+                                                                                    <img id="preview2" src={previews.image2 || ''} alt="Preview 2" width="120" height="80" />
                                                                                 </div>
                                                                             </td>
                                                                         </tr>
