@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import useAuth from '../../hooks/useAuth';
 import './ApplicationForm.css';
 import Swal from "sweetalert2";
+import useAxiosPublic from '../../hooks/useAxiosPublic';
 
 const ApplicationForm = () => {
     const [applicant, setApplicant] = useState({});
@@ -842,7 +843,7 @@ const ApplicationForm = () => {
             union1.push(union[un]);
         }
     }
-    function showPreview(event) {
+  /*   function showPreview(event) {
         if (event.target.files.length > 0) {
             var src = URL.createObjectURL(event.target.files[0]);
             var preview = document.getElementById("preview");
@@ -860,7 +861,7 @@ const ApplicationForm = () => {
             preview.style.display = "block";
 
         }
-    }
+    } */
 
     function sbBtn() {
 
@@ -880,6 +881,28 @@ const ApplicationForm = () => {
     //     permanentDist.value = dist;
     //     // p_upzilla.push(mupzilla);
     // }
+
+    // const axiosPublic = useAxiosPublic();
+
+
+    const [image, setImage] = useState(null);
+
+
+      // handle image
+      const handleImageChange = (e) => {
+        const file = e.target.files[0];
+        setImage(file);
+
+    }
+
+    console.log("get image", image);
+
+
+
+
+
+
+    
 
     const handleOnblur = e => {
         const field = e.target.name;
@@ -967,7 +990,7 @@ const ApplicationForm = () => {
                             <td>Name of the Post <small style={{ color: 'red' }}>*</small></td>
                             <td>:</td>
                             <td>
-                                <select className='inputField' style={{ backgroundColor: '#bdbaba', width: '100%', outline: 'none' }} name="postName" id="postName" onBlur={handleOnblur} required>
+                                <select className='inputField' style={{ backgroundColor: '#bdbaba', width: '100%', outline: 'none' }} name="postName" id="postName" onBlur={handleOnblur} >
                                     <option value='0'>Select a Post</option>
                                     <option value='Computer Operator'>Computer Operator</option>
                                     <option value='Steno Typist'>Steno Typist</option>
@@ -981,23 +1004,23 @@ const ApplicationForm = () => {
                         <tr>
                             <td>Applicant's Name <small style={{ color: 'red' }}>*</small></td>
                             <td>:</td>
-                            <td><input className='inputField' type="text" placeholder=" " name="applicantName" id="applicantName" onBlur={handleOnblur} required /></td>
+                            <td><input className='inputField' type="text" placeholder=" " name="applicantName" id="applicantName" onBlur={handleOnblur}  /></td>
                         </tr>
                         <tr>
                             <td>Father's Name <small style={{ color: 'red' }}>*</small></td>
                             <td>:</td>
-                            <td><input className='inputField' type="text" placeholder=" " name="fname" id="fname" onBlur={handleOnblur} required /></td>
+                            <td><input className='inputField' type="text" placeholder=" " name="fname" id="fname" onBlur={handleOnblur}  /></td>
                         </tr>
                         <tr>
                             <td>Mother's Name <small style={{ color: 'red' }}>*</small></td>
                             <td>:</td>
-                            <td><input className='inputField' type="text" placeholder=" " name="mname" id="mname" onBlur={handleOnblur} required /></td>
+                            <td><input className='inputField' type="text" placeholder=" " name="mname" id="mname" onBlur={handleOnblur}  /></td>
                         </tr>
                         <tr>
                             <td>Gender <small style={{ color: 'red' }}>*</small></td>
                             <td>:</td>
                             <td>
-                                <select style={{ padding: '3px', width: '150px' }} name="gender" id="gender" onBlur={handleOnblur} required>
+                                <select style={{ padding: '3px', width: '150px' }} name="gender" id="gender" onBlur={handleOnblur} >
                                     <option value='0'>Select Gender</option>
                                     <option value='Male'>Male</option>
                                     <option value='Female'>Female</option>
@@ -1541,12 +1564,11 @@ const ApplicationForm = () => {
 
                                                                         <tr>
                                                                             <td colSpan='2'>
-                                                                                <input type='file' id='cand_img' style={{ width: '300px' }} onChange={showPreview} name='image'
-
-                                                                                />
-                                                                                <div style={{ width: '300px', marginTop: '10px' }} >
+                                                                            <input type="file" name="image" id="image" onChange={handleImageChange} accept="image/*" required />
+                                                                              
+                                                                               {/*  <div style={{ width: '300px', marginTop: '10px' }} >
                                                                                     <img id='preview' src='https://i.pinimg.com/736x/8b/16/7a/8b167af653c2399dd93b952a48740620.jpg' alt='' width='100' height='100' />
-                                                                                </div>
+                                                                                </div> */}
                                                                             </td>
                                                                         </tr>
                                                                     </tbody>
@@ -1563,12 +1585,10 @@ const ApplicationForm = () => {
 
                                                                         <tr>
                                                                             <td colSpan='2'>
-                                                                                <input type='file' id='cand_sign' style={{ width: '300px' }} onChange={showPreview2}
-
-                                                                                />
-                                                                                <div style={{ width: '300px', marginTop: '10px' }} >
+                                                                               
+                                                                               {/*  <div style={{ width: '300px', marginTop: '10px' }} >
                                                                                     <img id='preview2' src='https://raw.githubusercontent.com/rashel68/cv-maker/main/signature1.jpg' alt='' width='120' height='80' />
-                                                                                </div>
+                                                                                </div> */}
                                                                             </td>
                                                                         </tr>
                                                                     </tbody>
