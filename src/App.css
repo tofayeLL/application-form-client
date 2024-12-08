@@ -1,6 +1,7 @@
 .App {
   text-align: center;
   /* width: 780px; */
+  width: 80%;
   margin: 0 auto;
 }
 /* Full width for the dashboard */
