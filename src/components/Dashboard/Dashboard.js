@@ -2,6 +2,8 @@ import React from 'react';
 import { Route, Switch, Link } from "react-router-dom";
 import DashboardHome from './DashboardPages/DashboardHome/DashboardHome';
 import AllApplicant from './AllApplicant/AllApplicant';
+import govt_logo from '../../assets/images/govt_logo.png';
+
 
 
 const Dashboard = () => {
@@ -9,11 +11,11 @@ const Dashboard = () => {
         <div className="flex h-screen flex-col">
 
             {/* Full Dashboard Header */}
-            <header className="bg-slate-100 shadow-md w-full p-4 flex justify-between items-center ">
+            <header className="bg-slate-100 shadow-md w-full p-1  flex justify-between items-center  px-10">
                 {/* Left side: Logo */}
-                <div className="flex items-center space-x-2">
-                    <img src='' alt="Logo" className="h-8" />
-                    <span className="text-2xl font-semibold text-gray-800"></span>
+                <div className="w-20 h-20">
+                    <img  src={govt_logo} alt="Logo" className='w-20 h-20' />
+                  
                 </div>
 
                 {/* Right side: Two lines */}

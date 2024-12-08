@@ -3,8 +3,8 @@ import { Link, useParams } from 'react-router-dom';
 // import useAuth from '../../hooks/useAuth';
 import './Header.css';
 import { Toaster, toast } from 'react-hot-toast';
-import bsri from './images/bsri.png';
-import govt_logo from './images/govt_logo.png';
+import bsri from '../../assets/images/bsri.png';
+import govt_logo from '../../assets/images/govt_logo.png';
 import { UserContext } from '../../contexts/UserProvider/UserProvider';
 import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
 
