@@ -28,7 +28,7 @@ import Dashboard from "./components/Dashboard/Dashboard";
 // Component to check if it's a dashboard route
 const AppContent = withRouter(({ location }) => {
   // Check if the current route is a dashboard route
-  const isDashboardRoute = location.pathname.includes('/dashboard');
+  const isDashboardRoute = location.pathname.includes('/dashboard/admin');
 
   return (
     <div>
@@ -42,7 +42,7 @@ const AppContent = withRouter(({ location }) => {
         <Route path="/home">
           <Home></Home>
         </Route>
-        <Route path="/dashboard" component={Dashboard} />
+        <Route path="/dashboard/admin" component={Dashboard} />
         <Route path="/adevertisement">
           <Advertisement></Advertisement>
         </Route>

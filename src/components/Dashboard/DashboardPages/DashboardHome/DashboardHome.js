@@ -78,7 +78,7 @@ const DashboardHome = () => {
 
                         <td class="border border-gray-400 px-4 py-2" colspan="2">4th Row - 1st Column (Colspan 2)</td>
 
-                        <td class="border border-gray-400 px-4 py-2">4th Row - </td>
+                        <td class="border border-gray-400 px-4 py-2">4th Row  </td>
                     </tr>
                     {/* row 5 */}
                     <tr class="border text-start font-medium">

@@ -34,7 +34,7 @@ const Dashboard = () => {
                         <ul className="space-y-2 ">
                             <li>
                                 <Link
-                                    to="/dashboard/home"
+                                    to="/dashboard/admin"
                                     className="block p-1 pl-4 text-start bg-pink-200 text-gray-900 rounded-md hover:bg-pink-300 transition-colors"
                                 >
                                     Dashboard 
@@ -42,7 +42,7 @@ const Dashboard = () => {
                             </li>
                             <li>
                                 <Link
-                                    to="/dashboard/applicant"
+                                    to="/dashboard/admin/applicant"
                                     className="block p-1 pl-4 text-start bg-pink-200 text-gray-900 rounded-md hover:bg-pink-300 transition-colors"
                                 >
                                     All Applicant
@@ -55,8 +55,8 @@ const Dashboard = () => {
                 {/* Main Content */}
                 <div className="flex-1 p-6 bg-white">
                     <Switch>
-                        <Route exact path="/dashboard/home" component={DashboardHome} />
-                        <Route path="/dashboard/applicant" component={AllApplicant} />
+                        <Route exact path="/dashboard/admin" component={DashboardHome} />
+                        <Route path="/dashboard/admin/applicant" component={AllApplicant} />
                     </Switch>
                 </div>
             </div>
