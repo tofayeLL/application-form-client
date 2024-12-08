@@ -2,11 +2,11 @@ import React from 'react';
 
 const DashboardHome = () => {
     return (
-        <section className='p-4'>
+        <section className='px-4'>
             <div className='border-blue-500 border-2 '>
                 {/* Header Section */}
-                <h1 className='bg-blue-400 text-white p-1 text-start'>
-                    Merchant Real-Time Product
+                <h1 className='bg-blue-500 text-gray-200 p-1 text-start text-lg font-semibold'>
+                    Merchant Real-Time Portal (MRP) Dashboard
                 </h1>
 
                 <div className='p-4 text-start '>
@@ -18,28 +18,28 @@ const DashboardHome = () => {
                     {/* Card 1 */}
                     <div className='bg-white shadow-md rounded-lg p-3 border border-gray-200'>
                         <h2 className='text-lg font-semibold text-gray-700'>Total Application</h2>
-                        <p className='text-2xl font-bold text-blue-500 mt-2'>₹120,000</p>
+                        <p className='text-2xl font-bold text-blue-500 mt-2'>1139</p>
                        
                     </div>
 
                     {/* Card 2 */}
                     <div className='bg-white shadow-md rounded-lg p-3 border border-gray-200'>
                         <h2 className='text-lg font-semibold text-gray-700'>Application (paid)</h2>
-                        <p className='text-2xl font-bold text-green-500 mt-2'>85</p>
+                        <p className='text-2xl font-bold text-green-500 mt-2'>9998</p>
                        
                     </div>
 
                     {/* Card 3 */}
                     <div className='bg-white shadow-md rounded-lg p-3 border border-gray-200'>
                         <h2 className='text-lg font-semibold text-gray-700'>Admit Print</h2>
-                        <p className='text-2xl font-bold text-purple-500 mt-2'>25</p>
+                        <p className='text-2xl font-bold text-purple-500 mt-2'>9654(904)</p>
                        
                     </div>
 
                     {/* Card 4 */}
                     <div className='bg-white shadow-md rounded-lg p-3 border border-gray-200'>
                         <h2 className='text-lg font-semibold text-gray-700'>Total Amount</h2>
-                        <p className='text-2xl font-bold text-red-500 mt-2'>12</p>
+                        <p className='text-2xl font-bold text-red-500 mt-2'>4979000</p>
                        
                     </div>
                 </div>
