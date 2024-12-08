@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route, withRouter } from "react-router-dom";
 import './App.css';
 import './index.css';
 import ApplicationForm from "./components/ApplicationForm/ApplicationForm";
@@ -23,7 +23,77 @@ import UserProvider from "./contexts/UserProvider/UserProvider";
 import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute";
 import { Toaster } from "react-hot-toast";
 import CheckTailwind from "./components/CheckTailwind/CheckTailwind";
+import Dashboard from "./components/Dashboard/Dashboard";
 
+// Component to check if it's a dashboard route
+const AppContent = withRouter(({ location }) => {
+  // Check if the current route is a dashboard route
+  const isDashboardRoute = location.pathname.includes('/dashboard');
+
+  return (
+    <div>
+      {/* Conditionally render Header */}
+      {!isDashboardRoute && <Header />}
+
+      <Switch>
+        <Route exact path="/">
+          <Home></Home>
+        </Route>
+        <Route path="/home">
+          <Home></Home>
+        </Route>
+        <Route path="/dashboard" component={Dashboard} />
+        <Route path="/adevertisement">
+          <Advertisement></Advertisement>
+        </Route>
+        <Route path="/signature">
+          <SignatureValidator></SignatureValidator>
+        </Route>
+        {/*    <PrivateRoute path="/adminRoute">
+                <AdminRoute></AdminRoute>
+              </PrivateRoute> */}
+
+        <ProtectedRoute path="/payment">
+          <PaymentStatus></PaymentStatus>
+        </ProtectedRoute>
+
+        <Route path="/instruction">
+          <Instructions></Instructions>
+        </Route>
+        <Route path='/admitCard/:id'>
+          <AdmitCard></AdmitCard>
+        </Route>
+        <Route exact path="/users">
+          <Users></Users>
+        </Route>
+        <Route path="/applicationForm">
+          <ApplicationForm></ApplicationForm>
+        </Route>
+
+        <Route path="/login2">
+          <Login2></Login2>
+        </Route>
+        <Route path="/login3">
+          <Login3></Login3>
+        </Route>
+        <Route path="/tailwind">
+          <CheckTailwind></CheckTailwind>
+        </Route>
+
+        <Route path="/userDashboard">
+          <UserDashboard></UserDashboard>
+        </Route>
+
+        <Route path="/adminRoute">
+          <AdminRoute></AdminRoute>
+        </Route>
+        <Route path="/applicant">
+          <Applicant></Applicant>
+        </Route>
+      </Switch>
+    </div>
+  );
+});
 
 function App() {
   return (
@@ -31,81 +101,8 @@ function App() {
       <AuthProvider>
         <UserProvider>
           <Router>
-            <div>
-              <Header></Header>
-              <Switch>
-                <Route exact path="/">
-                  <Home></Home>
-                </Route>
-                <Route path="/home">
-                  <Home></Home>
-                </Route>
-                <Route path="/adevertisement">
-                  <Advertisement></Advertisement>
-                </Route>
-                <Route path="/signature">
-                  <SignatureValidator></SignatureValidator>
-                </Route>
-
-                <ProtectedRoute path="/payment">
-                  <PaymentStatus></PaymentStatus>
-                </ProtectedRoute>
-
-
-
-                <Route path="/instruction">
-                  <Instructions></Instructions>
-                </Route>
-                <Route path='/admitCard/:id'>
-                  <AdmitCard></AdmitCard>
-                </Route>
-                <Route exact path="/users">
-                  <Users></Users>
-                </Route>
-                <Route path="/applicationForm">
-                  <ApplicationForm></ApplicationForm>
-                </Route>
-                {/* <Route path="/userCollection/update/:id">
-                <UpdateUser></UpdateUser>
-              </Route>
-              <PrivateRoute path="/adminRoute">
-                <AdminRoute></AdminRoute>
-              </PrivateRoute> */}
-                {/*    <Route path="/login">
-                <Login></Login>
-              </Route> */}
-                <Route path="/login2">
-                  <Login2></Login2>
-                </Route>
-                <Route path="/login3">
-                  <Login3></Login3>
-                </Route>
-                <Route path="/tailwind">
-                  <CheckTailwind></CheckTailwind>
-                </Route>
-
-
-                {/* <ProtectedRoute >
-                </ProtectedRoute> */}
-                <Route path="/userDashboard">
-                  <UserDashboard></UserDashboard>
-                  </Route>
-
-
-                {/* <PrivateRoute path="/applicant">
-                <Applicant></Applicant>
-              </PrivateRoute> */}
-                <Route path="/adminRoute">
-                  <AdminRoute></AdminRoute>
-                </Route>
-                <Route path="/applicant">
-                  <Applicant></Applicant>
-                </Route>
-              </Switch>
-            </div>
-
+            <AppContent />
           </Router>
-
         </UserProvider>
       </AuthProvider>
       <Toaster />
