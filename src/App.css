@@ -3,6 +3,16 @@
   width: 780px;
   margin: 0 auto;
 }
+/* Full width for the dashboard */
+.full-width {
+  width: 100vh;
+  margin: 0; /* Ensure there's no margin */
+}
+
+/* Add this to make sure the full-width layout spans the entire height of the viewport */
+.full-width > .App-content {
+  height: 100vh;
+}
 
 body {
   /* background-image: url(); */

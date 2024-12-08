@@ -68,7 +68,7 @@ const Header = () => {
                                     Logout
                                 </button>
 
-                                    : <Link to="/login2" style={menuStyle}>Login</Link>}
+                                    : <Link to="/login3" style={menuStyle}>Login</Link>}
                             </td>
                             <td className='border-r-[1px] border-green-950'><Link to="/payment" style={menuStyle}>Payment Status</Link></td>
                             <td className='border-r-[1px] border-green-950'><Link to="/instruction" style={menuStyle}>Instructions</Link></td>
