@@ -3,6 +3,7 @@ import { Route, Switch, Link } from "react-router-dom";
 import DashboardHome from './DashboardPages/DashboardHome/DashboardHome';
 import AllApplicant from './AllApplicant/AllApplicant';
 
+
 const Dashboard = () => {
     return (
         <div className="flex h-screen flex-col">
@@ -11,14 +12,14 @@ const Dashboard = () => {
             <header className="bg-slate-100 shadow-md w-full p-4 flex justify-between items-center ">
                 {/* Left side: Logo */}
                 <div className="flex items-center space-x-2">
-                    <img src="/path/to/logo.png" alt="Logo" className="h-8" />
+                    <img src='' alt="Logo" className="h-8" />
                     <span className="text-2xl font-semibold text-gray-800"></span>
                 </div>
 
                 {/* Right side: Two lines */}
                 <div className="text-right">
-                    <div className="text-sm text-gray-600">Line 1: </div>
-                    <div className="text-sm text-gray-600">Line 2: </div>
+                    <div className="text-sm text-green-700 font-medium">গণপ্রজাতন্ত্রী বাংলাদেশ সরকার</div>
+                    <div className="text-xl font-semibold text-purple-900">Directorate General of Nursing and Midwifery </div>
                 </div>
             </header>
 
