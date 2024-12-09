@@ -24,6 +24,7 @@ import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute";
 import { Toaster } from "react-hot-toast";
 import CheckTailwind from "./components/CheckTailwind/CheckTailwind";
 import Dashboard from "./components/Dashboard/Dashboard";
+import AdminLogin from "./components/AdminLogin/AdminLogin";
 
 // Component to check if it's a dashboard route
 const AppContent = withRouter(({ location }) => {
@@ -73,9 +74,21 @@ const AppContent = withRouter(({ location }) => {
         <Route path="/login2">
           <Login2></Login2>
         </Route>
+
+        {/* applicant login */}
         <Route path="/login3">
           <Login3></Login3>
         </Route>
+
+
+        {/* admin login */}
+        <Route path="/login/admin">
+          <AdminLogin></AdminLogin>
+        </Route>
+
+
+
+
         <Route path="/tailwind">
           <CheckTailwind></CheckTailwind>
         </Route>
