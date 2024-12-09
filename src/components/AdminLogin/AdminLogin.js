@@ -26,9 +26,9 @@ const AdminLogin = () => {
         e.preventDefault();
 
         const form = e.target;
-        const userEmail = form.userEmail.value;
+        const adminEmail = form.adminEmail.value;
         const password = form.password.value;
-        const adminInfo = { userEmail, password};
+        const adminInfo = { adminEmail, password};
         console.log(adminInfo);
 
         try {
@@ -75,7 +75,7 @@ const AdminLogin = () => {
         <div style={loginStyle}>
         <h2 style={{ color: '#025c3b' }}>Login</h2>
         <form onSubmit={handleLogin2}>
-            <input style={fieldStyle} type="email" name='userEmail' placeholder='Enter admin email' /> <br />
+            <input style={fieldStyle} type="email" name='adminEmail' placeholder='Enter admin email' /> <br />
 
             <div style={{
                 position:'relative'
