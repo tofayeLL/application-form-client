@@ -56,35 +56,35 @@ const DashboardHome = () => {
                 <table class="table-auto border-collapse border border-gray-400 w-full text-center">
                     {/* row 1 */}
                     <tr class="border text-start font-semibold text-lg">
-                        <td class="border border-gray-400 px-4 py-2" colspan="3">1st Row - 1 Column</td>
+                        <td class="border border-gray-400 px-4 py-2" colspan="3">Payment Mode Wise Application Summery</td>
                     </tr>
 
                     {/* row 2 */}
                     <tr class="border text-start font-medium">
-                        <td class="border border-gray-400 px-4 py-2 w-1/2">2nd Row - 1st Column (Bigger)</td>
-                        <td class="border border-gray-400 px-4 py-2 w-1/4">2nd Row - 2nd Column</td>
-                        <td class="border border-gray-400 px-4 py-2 w-1/4">2nd Row - 3rd Column</td>
+                        <td class="border border-gray-400 px-4 py-2 w-1/2">Payment Mode</td>
+                        <td class="border border-gray-400 px-4 py-2 w-1/4">Total</td>
+                        <td class="border border-gray-400 px-4 py-2 w-1/4">Amount</td>
                     </tr>
 
                     {/* row 3 */}
                     <tr class="border text-start font-medium">
-                        <td class="border border-gray-400 px-4 py-2 w-1/2">3rd Row - 1st Column (Bigger)</td>
-                        <td class="border border-gray-400 px-4 py-2 w-1/4">3rd Row - 2nd Column</td>
-                        <td class="border border-gray-400 px-4 py-2 w-1/4">3rd Row - 3rd Column</td>
+                        <td class="border border-gray-400 px-4 py-2 w-1/2">BKash</td>
+                        <td class="border border-gray-400 px-4 py-2 w-1/4">9958</td>
+                        <td class="border border-gray-400 px-4 py-2 w-1/4">99957876</td>
                     </tr>
 
                     {/* 4th */}
                     <tr class="border text-start font-medium">
 
-                        <td class="border border-gray-400 px-4 py-2" colspan="2">4th Row - 1st Column (Colspan 2)</td>
+                        <td class="border border-gray-400 px-4 py-2" colspan="2">All PAid Applicant Data</td>
 
-                        <td class="border border-gray-400 px-4 py-2">4th Row  </td>
+                        <td class="border border-gray-400 px-4 py-2"><button className='border-[1px] border-black rounded-md px-2 text-blue-700'>Download</button> </td>
                     </tr>
                     {/* row 5 */}
                     <tr class="border text-start font-medium">
-                        <td class="border border-gray-400 px-4 py-2" colSpan={2}>5th Row - 1st Column</td>
+                        <td class="border border-gray-400 px-4 py-2" colSpan={2}>All Choice Data</td>
 
-                        <td class="border border-gray-400 px-4 py-2 w-1/4">5th Row - 2nd Column</td>
+                        <td class="border border-gray-400 px-4 py-2 w-1/4"> <button className='border-[1px] border-black rounded-md px-2 text-blue-700'>Download</button> </td>
                     </tr>
                 </table>
             </div>
