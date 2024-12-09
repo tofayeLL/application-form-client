@@ -29,7 +29,7 @@ const AdminLogin = () => {
         const adminEmail = form.adminEmail.value;
         const password = form.password.value;
         const adminInfo = { adminEmail, password};
-        console.log(adminInfo);
+        // console.log(adminInfo);
 
         try {
             const res = await axiosPublic.post('/adminLogin', adminInfo);
@@ -75,7 +75,7 @@ const AdminLogin = () => {
         <div style={loginStyle}>
         <h2 style={{ color: '#025c3b' }}>Login</h2>
         <form onSubmit={handleLogin2}>
-            <input style={fieldStyle} type="email" name='adminEmail' placeholder='Enter admin email' /> <br />
+            <input style={fieldStyle} type="email" name='adminEmail' placeholder='Enter admin email'  required/> <br />
 
             <div style={{
                 position:'relative'
@@ -85,6 +85,7 @@ const AdminLogin = () => {
                     type={passwordVisible ? 'text' : 'password'}
                     name='password'
                     placeholder='Enter admin password'
+                    required
                     
                 />
                 <span
