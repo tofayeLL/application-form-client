@@ -10,7 +10,7 @@ const DashboardHome = () => {
                 </h1>
 
                 <div className='p-4 text-start '>
-                    <p className='bg-yellow-100 p-4 rounded-md text-sm'><span className='font-semibold'>Active Login:</span> ANZA Admin</p>
+                    <p className='bg-[#a8d5ba] p-4 rounded-md text-sm'><span className='font-semibold'>Active Login:</span> ANZA Admin</p>
                 </div>
 
 

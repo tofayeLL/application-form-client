@@ -30,14 +30,14 @@ const Dashboard = () => {
             {/* Flex container for Sidebar and Main Content */}
             <div className="flex flex-1">
                 {/* Sidebar */}
-                <div className="bg-yellow-100 p-6 w-56 h-full shadow-md">
+                <div className="bg-[#a8d5ba] p-6 w-56 h-full shadow-md">
                     {/* <h2 className="text-xl font-semibold text-gray-800">Dashboard</h2> */}
                     <nav>
                         <ul className="space-y-2 ">
                             <li>
                                 <Link
                                     to="/dashboard/admin"
-                                    className="block p-1 pl-4 text-start bg-pink-200 text-gray-900 rounded-md hover:bg-pink-300 transition-colors"
+                                    className="block p-1 pl-4 text-start bg-[#e0f0d9] text-gray-900 rounded-md hover:bg-[#c9e9c9] transition-colors"
                                 >
                                     Dashboard
                                 </Link>
@@ -45,7 +45,7 @@ const Dashboard = () => {
                             <li>
                                 <Link
                                     to="/dashboard/admin/dateApplicant"
-                                    className="block p-1 pl-4 text-start bg-pink-200 text-gray-900 rounded-md hover:bg-pink-300 transition-colors"
+                                    className="block p-1 pl-4 text-start bg-[#e0f0d9] text-gray-900 rounded-md hover:bg-[#c9e9c9] transition-colors"
                                 >
                                     Date Wise Applicant
                                 </Link>
@@ -53,7 +53,7 @@ const Dashboard = () => {
                             <li>
                                 <Link
                                     to="/dashboard/admin/applicant"
-                                    className="block p-1 pl-4 text-start bg-pink-200 text-gray-900 rounded-md hover:bg-pink-300 transition-colors"
+                                    className="block p-1 pl-4 text-start bg-[#e0f0d9] text-gray-900 rounded-md hover:bg-[#c9e9c9] transition-colors"
                                 >
                                     All Applicant
                                 </Link>
@@ -61,7 +61,7 @@ const Dashboard = () => {
                             <li>
                                 <Link
                                     to="/dashboard/admin/applicantPaid"
-                                    className="block p-1 pl-4 text-start bg-pink-200 text-gray-900 rounded-md hover:bg-pink-300 transition-colors"
+                                    className="block p-1 pl-4 text-start bg-[#e0f0d9] text-gray-900 rounded-md hover:bg-[#c9e9c9] transition-colors"
                                 >
                                     All Applicant (Paid)
                                 </Link>

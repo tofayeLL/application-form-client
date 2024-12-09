@@ -1012,11 +1012,16 @@ const ApplicationForm = () => {
 
 
 
+            // Add current date
+            const currentDate = new Date().toISOString();
 
 
-            const updateApplicant = { ...applicant, images: { image1: image1Url, image2: image2Url } }
 
-
+            const updateApplicant = {
+                ...applicant,
+                images: { image1: image1Url, image2: image2Url },
+                date: currentDate, // Include the current date
+            }
 
 
 
@@ -1041,7 +1046,7 @@ const ApplicationForm = () => {
                         setId(data.insertedId);
                         // Reset the form and images state after submission
                         setImages({ image1: null, image2: null });
-                        setPreviews({ image1: null, image2: null }); 
+                        setPreviews({ image1: null, image2: null });
                         e.target.reset(); // Reset form fields
 
                     } else if (data.message) {
