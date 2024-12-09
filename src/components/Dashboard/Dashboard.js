@@ -3,6 +3,8 @@ import { Route, Switch, Link } from "react-router-dom";
 import DashboardHome from './DashboardPages/DashboardHome/DashboardHome';
 import AllApplicant from './AllApplicant/AllApplicant';
 import govt_logo from '../../assets/images/govt_logo.png';
+import DateWiseApplicant from './DateWiseApplicant/DateWiseApplicant';
+import AllApplicantPaid from './AllApplicantPaid/AllApplicantPaid';
 
 
 
@@ -14,8 +16,8 @@ const Dashboard = () => {
             <header className="bg-slate-100 shadow-md w-full p-1  flex justify-between items-center  px-10">
                 {/* Left side: Logo */}
                 <div className="w-20 h-20">
-                    <img  src={govt_logo} alt="Logo" className='w-20 h-20' />
-                  
+                    <img src={govt_logo} alt="Logo" className='w-20 h-20' />
+
                 </div>
 
                 {/* Right side: Two lines */}
@@ -37,7 +39,15 @@ const Dashboard = () => {
                                     to="/dashboard/admin"
                                     className="block p-1 pl-4 text-start bg-pink-200 text-gray-900 rounded-md hover:bg-pink-300 transition-colors"
                                 >
-                                    Dashboard 
+                                    Dashboard
+                                </Link>
+                            </li>
+                            <li>
+                                <Link
+                                    to="/dashboard/admin/dateApplicant"
+                                    className="block p-1 pl-4 text-start bg-pink-200 text-gray-900 rounded-md hover:bg-pink-300 transition-colors"
+                                >
+                                    Date Wise Applicant
                                 </Link>
                             </li>
                             <li>
@@ -46,6 +56,14 @@ const Dashboard = () => {
                                     className="block p-1 pl-4 text-start bg-pink-200 text-gray-900 rounded-md hover:bg-pink-300 transition-colors"
                                 >
                                     All Applicant
+                                </Link>
+                            </li>
+                            <li>
+                                <Link
+                                    to="/dashboard/admin/applicantPaid"
+                                    className="block p-1 pl-4 text-start bg-pink-200 text-gray-900 rounded-md hover:bg-pink-300 transition-colors"
+                                >
+                                    All Applicant (Paid)
                                 </Link>
                             </li>
                         </ul>
@@ -57,6 +75,8 @@ const Dashboard = () => {
                     <Switch>
                         <Route exact path="/dashboard/admin" component={DashboardHome} />
                         <Route path="/dashboard/admin/applicant" component={AllApplicant} />
+                        <Route path="/dashboard/admin/dateApplicant" component={DateWiseApplicant} />
+                        <Route path="/dashboard/admin/applicantPaid" component={AllApplicantPaid} />
                     </Switch>
                 </div>
             </div>
