@@ -1,14 +1,17 @@
-import React, {useState } from 'react';
+import React, { useContext, useState } from 'react';
 import Swal from 'sweetalert2';
 import useAxiosPublic from '../../hooks/useAxiosPublic';
 import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
 import { GoEye, GoEyeClosed } from 'react-icons/go';
+import { AdminContext } from '../../contexts/AdminProvider/AdminProvider';
 
 const AdminLogin = () => {
 
     const axiosPublic = useAxiosPublic();
     const history = useHistory();
-    const [passwordVisible, setPasswordVisible] = useState(false); // State to toggle password visibility
+    const [passwordVisible, setPasswordVisible] = useState(false);
+    // State to toggle password visibility
+    const { setAdminEmail } = useContext(AdminContext);
 
     const loginStyle = {
         backgroundColor: '#ddd',
@@ -28,7 +31,7 @@ const AdminLogin = () => {
         const form = e.target;
         const adminEmail = form.adminEmail.value;
         const password = form.password.value;
-        const adminInfo = { adminEmail, password};
+        const adminInfo = { adminEmail, password };
         // console.log(adminInfo);
 
         try {
@@ -36,14 +39,15 @@ const AdminLogin = () => {
             console.log(res.data)
 
             if (res.data.success) {
+                setAdminEmail(adminEmail);
                 Swal.fire({
                     title: 'Success!',
                     text: res.data.message,
                     icon: 'success',
                     confirmButtonText: 'Cool',
                 }).then(() => {
-                  
-                    history.push('/dashboard/admin'); 
+
+                    history.push('/dashboard/admin');
 
                 });
             } else {
@@ -73,40 +77,40 @@ const AdminLogin = () => {
     };
     return (
         <div style={loginStyle}>
-        <h2 style={{ color: '#025c3b' }}>Login</h2>
-        <form onSubmit={handleLogin2}>
-            <input style={fieldStyle} type="email" name='adminEmail' placeholder='Enter admin email'  required/> <br />
+            <h2 style={{ color: '#025c3b' }}>Login</h2>
+            <form onSubmit={handleLogin2}>
+                <input style={fieldStyle} type="email" name='adminEmail' placeholder='Enter admin email' required /> <br />
 
-            <div style={{
-                position:'relative'
-            }}>
-                <input
-                    style={fieldStyle}
-                    type={passwordVisible ? 'text' : 'password'}
-                    name='password'
-                    placeholder='Enter admin password'
-                    required
-                    
-                />
-                <span
-                    onClick={togglePassword}
-                    style={{
-                        position: 'absolute',
-                        top: '50%',
-                        right: '10px',
-                        transform: 'translate(-1170%,-45%)',
-                        cursor: 'pointer',
-                        fontSize: '20px',
-                    }}
-                >
-                    {passwordVisible ? <GoEye /> : <GoEyeClosed />}
-                </span>
-            </div>
-            
-            <input style={fieldStyle} type="submit" value="Submit" />
-        </form>
-    
-    </div>
+                <div style={{
+                    position: 'relative'
+                }}>
+                    <input
+                        style={fieldStyle}
+                        type={passwordVisible ? 'text' : 'password'}
+                        name='password'
+                        placeholder='Enter admin password'
+                        required
+
+                    />
+                    <span
+                        onClick={togglePassword}
+                        style={{
+                            position: 'absolute',
+                            top: '50%',
+                            right: '10px',
+                            transform: 'translate(-1170%,-45%)',
+                            cursor: 'pointer',
+                            fontSize: '20px',
+                        }}
+                    >
+                        {passwordVisible ? <GoEye /> : <GoEyeClosed />}
+                    </span>
+                </div>
+
+                <input style={fieldStyle} type="submit" value="Submit" />
+            </form>
+
+        </div>
     );
 };
 

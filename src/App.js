@@ -25,6 +25,7 @@ import { Toaster } from "react-hot-toast";
 import CheckTailwind from "./components/CheckTailwind/CheckTailwind";
 import Dashboard from "./components/Dashboard/Dashboard";
 import AdminLogin from "./components/AdminLogin/AdminLogin";
+import AdminProvider from "./contexts/AdminProvider/AdminProvider";
 
 // Component to check if it's a dashboard route
 const AppContent = withRouter(({ location }) => {
@@ -112,11 +113,13 @@ function App() {
   return (
     <div className="App">
       <AuthProvider>
-        <UserProvider>
-          <Router>
-            <AppContent />
-          </Router>
-        </UserProvider>
+        <AdminProvider>
+          <UserProvider>
+            <Router>
+              <AppContent />
+            </Router>
+          </UserProvider>
+        </AdminProvider>
       </AuthProvider>
       <Toaster />
     </div>
