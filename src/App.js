@@ -26,6 +26,7 @@ import CheckTailwind from "./components/CheckTailwind/CheckTailwind";
 import Dashboard from "./components/Dashboard/Dashboard";
 import AdminLogin from "./components/AdminLogin/AdminLogin";
 import AdminProvider from "./contexts/AdminProvider/AdminProvider";
+import AdminProtectedRoute from "./components/AdminProtectedRoute/AdminProtectedRoute ";
 
 // Component to check if it's a dashboard route
 const AppContent = withRouter(({ location }) => {
@@ -44,7 +45,11 @@ const AppContent = withRouter(({ location }) => {
         <Route path="/home">
           <Home></Home>
         </Route>
-        <Route path="/dashboard/admin" component={Dashboard} />
+        {/* <Route path="/dashboard/admin" component={Dashboard} /> */}
+
+
+
+
         <Route path="/adevertisement">
           <Advertisement></Advertisement>
         </Route>
@@ -104,6 +109,16 @@ const AppContent = withRouter(({ location }) => {
         <Route path="/applicant">
           <Applicant></Applicant>
         </Route>
+
+        {/* Admin Protected Route */}
+        <Route
+          path="/dashboard/admin"
+          render={() => (
+            <AdminProtectedRoute>
+              <Dashboard />
+            </AdminProtectedRoute>
+          )}
+        />
       </Switch>
     </div>
   );

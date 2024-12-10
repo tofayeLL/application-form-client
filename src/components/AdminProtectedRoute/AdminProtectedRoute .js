@@ -1,11 +1,11 @@
 import React, { useContext, useEffect, useState } from "react";
-import { Redirect } from "react-router-dom/cjs/react-router-dom.min";
+import { Redirect, Route } from "react-router-dom";
 import { AdminContext } from "../../contexts/AdminProvider/AdminProvider";
 import { InfinitySpin } from "react-loader-spinner"; // Optional loader
 import "../Spinner/LoadingSpinner.css"; // Include your spinner styling
 
 const AdminProtectedRoute = ({ children, ...rest }) => {
-    const { adminEmail } = useContext(AdminContext); // Retrieve admin email from AdminContext
+    const { adminEmail } = useContext(AdminContext); 
     const [loading, setLoading] = useState(true); // Track loading state
 
     useEffect(() => {
@@ -28,20 +28,26 @@ const AdminProtectedRoute = ({ children, ...rest }) => {
         );
     }
 
-    // If admin is authenticated, render the children components
-    if (adminEmail) {
-        return children;
-    }
-
-    // Redirect to admin login if not authenticated
+    // Handle the conditional rendering logic
     return (
-        <Redirect
-            to={{
-                pathname: "/login/admin", // Path to admin login page
-                state: { from: rest.location }, // Optional: Store the current location for redirecting back
-            }}
+        <Route
+            {...rest}
+            render={({ location }) =>
+                adminEmail ? (
+                    // If admin is authenticated, render the children components
+                    children
+                ) : (
+                    // Redirect to admin login if not authenticated
+                    <Redirect
+                        to={{
+                            pathname: "/login/admin", // Path to admin login page
+                            state: { from: location }, // Optional: Store the current location for redirecting back
+                        }}
+                    />
+                )
+            }
         />
     );
 };
 
-export default AdminProtectedRoute ;
+export default AdminProtectedRoute;

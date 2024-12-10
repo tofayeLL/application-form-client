@@ -77,7 +77,7 @@ const AdminLogin = () => {
     };
     return (
         <div style={loginStyle}>
-            <h2 style={{ color: '#025c3b' }}>Login</h2>
+            <h2 style={{ color: '#025c3b' }}>Admin Login</h2>
             <form onSubmit={handleLogin2}>
                 <input style={fieldStyle} type="email" name='adminEmail' placeholder='Enter admin email' required /> <br />
 
