@@ -5,6 +5,7 @@ import AllApplicant from './AllApplicant/AllApplicant';
 import govt_logo from '../../assets/images/govt_logo.png';
 import DateWiseApplicant from './DateWiseApplicant/DateWiseApplicant';
 import AllApplicantPaid from './AllApplicantPaid/AllApplicantPaid';
+import ApplicantNursing from './ApplicantNursing/ApplicantNursing';
 
 
 
@@ -30,7 +31,7 @@ const Dashboard = () => {
             {/* Flex container for Sidebar and Main Content */}
             <div className="flex flex-1">
                 {/* Sidebar */}
-                <div className="bg-[#a8d5ba] p-6 w-56 h-full shadow-md">
+                <div className="bg-[#a8d5ba] py-6 px-3 w-56 h-full shadow-md">
                     {/* <h2 className="text-xl font-semibold text-gray-800">Dashboard</h2> */}
                     <nav>
                         <ul className="space-y-2 ">
@@ -66,6 +67,14 @@ const Dashboard = () => {
                                     All Applicant (Paid)
                                 </Link>
                             </li>
+                            <li>
+                                <Link
+                                    to="/dashboard/admin/applicantNursing"
+                                    className="block p-1 pl-4 text-start bg-[#e0f0d9] text-gray-900 rounded-md hover:bg-[#c9e9c9] transition-colors"
+                                >
+                                    All Applicant (Nursing)
+                                </Link>
+                            </li>
                         </ul>
                     </nav>
                 </div>
@@ -74,9 +83,10 @@ const Dashboard = () => {
                 <div className="flex-1 p-6 bg-white">
                     <Switch>
                         <Route exact path="/dashboard/admin" component={DashboardHome} />
-                        <Route path="/dashboard/admin/applicant" component={AllApplicant} />
                         <Route path="/dashboard/admin/dateApplicant" component={DateWiseApplicant} />
+                        <Route path="/dashboard/admin/applicant" component={AllApplicant} />
                         <Route path="/dashboard/admin/applicantPaid" component={AllApplicantPaid} />
+                        <Route path="/dashboard/admin/applicantNursing" component={ApplicantNursing} />
                     </Switch>
                 </div>
             </div>
