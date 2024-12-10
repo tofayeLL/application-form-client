@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Route, Switch, Link } from "react-router-dom";
 import DashboardHome from './DashboardPages/DashboardHome/DashboardHome';
 import AllApplicant from './AllApplicant/AllApplicant';
@@ -6,10 +6,24 @@ import govt_logo from '../../assets/images/govt_logo.png';
 import DateWiseApplicant from './DateWiseApplicant/DateWiseApplicant';
 import AllApplicantPaid from './AllApplicantPaid/AllApplicantPaid';
 import ApplicantNursing from './ApplicantNursing/ApplicantNursing';
+import { AdminContext } from '../../contexts/AdminProvider/AdminProvider';
+import toast from 'react-hot-toast';
+import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
 
 
 
 const Dashboard = () => {
+
+    const { adminEmail, setAdminEmail } = useContext(AdminContext);
+    const history = useHistory();
+
+    const handleLogout = () => {
+        setAdminEmail(null); // Clears user email from context and localStorage
+        // console.log("User logged out successfully");
+        toast.success("User logged out successfully");
+        history.push("/login/admin"); // Redirect to the login page
+
+    }
     return (
         <div className="flex h-screen flex-col">
 
@@ -74,6 +88,18 @@ const Dashboard = () => {
                                 >
                                     All Applicant (Nursing)
                                 </Link>
+                            </li>
+
+
+                            <li>
+                                {adminEmail && <button
+                                    className="block px-4 text-start bg-[#e0f0d9] text-gray-900 rounded-md hover:bg-[#c9e9c9] transition-colors cursor-pointer"
+                                    onClick={handleLogout}
+                                   
+                                >
+                                    Logout
+                                </button>}
+
                             </li>
                         </ul>
                     </nav>
