@@ -1,6 +1,44 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import useAxiosPublic from '../../../../hooks/useAxiosPublic';
+
 
 const DashboardHome = () => {
+
+    const axiosPublic = useAxiosPublic();
+    const [applicantsData, setApplicantsData] = useState([]);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
+
+
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const res = await axiosPublic.get("/applicants");
+                setApplicantsData(res.data);
+            } catch (err) {
+                setError(err.message);
+            } finally {
+                setLoading(false);
+            }
+        };
+
+        fetchData();
+    }, [axiosPublic]);
+
+    if (loading) return <p>Loading...</p>;
+    if (error) return <p>Error: {error}</p>;
+
+
+    console.log("allapplicants data", applicantsData);
+
+
+
+
+
+
+
+
+
     return (
         <section className='px-4'>
             <div className='border-blue-500 border-2 '>
@@ -20,7 +58,7 @@ const DashboardHome = () => {
                     {/* Card 1 */}
                     <div className='bg-white shadow-md rounded-lg p-3 border border-gray-200'>
                         <h2 className='text-lg font-semibold text-gray-700'>Total Application</h2>
-                        <p className='text-2xl font-bold text-blue-500 mt-2'>1139</p>
+                        <p className='text-2xl font-bold text-blue-500 mt-2'>{applicantsData.length}</p>
 
                     </div>
 

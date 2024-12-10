@@ -23,7 +23,7 @@ const AdminProtectedRoute = ({ children, ...rest }) => {
     if (loading) {
         return (
             <div className="flex justify-center items-center min-h-screen">
-                <InfinitySpin width="200" color="#025c3b" />
+                <InfinitySpin width="400" height="400" color="#025c3b" />
             </div>
         );
     }

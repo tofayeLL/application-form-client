@@ -28,6 +28,14 @@ import AdminLogin from "./components/AdminLogin/AdminLogin";
 import AdminProvider from "./contexts/AdminProvider/AdminProvider";
 import AdminProtectedRoute from "./components/AdminProtectedRoute/AdminProtectedRoute ";
 
+
+
+
+
+
+
+
+
 // Component to check if it's a dashboard route
 const AppContent = withRouter(({ location }) => {
   // Check if the current route is a dashboard route
@@ -130,9 +138,11 @@ function App() {
       <AuthProvider>
         <AdminProvider>
           <UserProvider>
+
             <Router>
               <AppContent />
             </Router>
+
           </UserProvider>
         </AdminProvider>
       </AuthProvider>
