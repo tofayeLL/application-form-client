@@ -25,7 +25,11 @@ const DashboardHome = () => {
         fetchData();
     }, [axiosPublic]);
 
-    if (loading) return <p>Loading...</p>;
+    if (loading) return <div className="flex flex-col justify-center min-h-screen items-center spinner-container ">
+        <div className="spinner">
+            {/* loading spinner */}
+        </div>
+    </div>
     if (error) return <p>Error: {error}</p>;
 
 

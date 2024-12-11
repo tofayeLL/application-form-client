@@ -93,7 +93,7 @@ const Dashboard = () => {
 
                             <li>
                                 {adminEmail && <button
-                                    className="block px-4 text-start bg-[#e0f0d9] text-gray-900 rounded-md hover:bg-[#c9e9c9] transition-colors cursor-pointer"
+                                  className="block p-1 pl-4 text-start bg-[#e0f0d9] text-gray-900 rounded-md hover:bg-[#c9e9c9] transition-colors w-full"
                                     onClick={handleLogout}
                                    
                                 >
