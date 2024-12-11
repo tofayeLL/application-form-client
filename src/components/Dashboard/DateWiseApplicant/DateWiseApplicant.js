@@ -26,6 +26,9 @@ const DateWiseApplicant = () => {
     if (error) return <p>Error: {error}</p>;
     console.log(applicantsData)
 
+    // Calculate total dateCount
+    const totalDateCount = applicantsData.reduce((total, item) => total + item.dateCount, 0);
+
     return (
         <section className="p-6 bg-gray-50 min-h-screen">
             <h1 className="text-2xl font-semibold mb-6 text-gray-800">Date-wise Applicant Summary</h1>
@@ -66,7 +69,7 @@ const DateWiseApplicant = () => {
                         <tr className="bg-gray-300">
                             <td colSpan="2" className="px-6 py-4 text-left font-semibold text-gray-800 border border-gray-300">Total</td>
                             <td colSpan="1" className="px-6 py-4 text-center font-semibold text-gray-800 border border-gray-300">
-                                {/* Add logic for total count if needed */}
+                                {totalDateCount}
                             </td>
                             <td colSpan="1" className="px-6 py-4 text-center font-semibold text-gray-800 border border-gray-300">
                                 {/* Add logic for total paid if needed */}
