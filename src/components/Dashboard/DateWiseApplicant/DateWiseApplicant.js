@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import useAxiosPublic from '../../../hooks/useAxiosPublic';
+import * as XLSX from 'xlsx';
 
 
 const DateWiseApplicant = () => {
@@ -7,6 +8,7 @@ const DateWiseApplicant = () => {
     const [applicantsData, setApplicantsData] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
+
 
     useEffect(() => {
         const fetchData = async () => {
@@ -22,6 +24,32 @@ const DateWiseApplicant = () => {
 
         fetchData();
     }, [axiosPublic]);
+
+
+
+
+    const downloadExcel = () => {
+        // Format data for Excel
+        const data = applicantsData.map((item, index) => ({
+            SL: index + 1,
+            Date: item._id,
+            Total: item.dateCount || 'N/A',
+            TotalPaid: 'Total paid', // Replace with actual data if available
+            Amount: 'Amount', // Replace with actual data if available
+        }));
+
+        // Create a worksheet and workbook
+        const worksheet = XLSX.utils.json_to_sheet(data);
+        const workbook = XLSX.utils.book_new();
+        XLSX.utils.book_append_sheet(workbook, worksheet, "Applicants");
+
+        // Trigger download
+        XLSX.writeFile(workbook, "DateWiseApplicants.xlsx");
+    };
+
+
+
+
 
 
     if (loading) return <div className="flex flex-col justify-center min-h-screen items-center spinner-container ">
@@ -40,6 +68,18 @@ const DateWiseApplicant = () => {
     return (
         <section className="px-6 bg-gray-50 min-h-screen">
             {/* <h1 className="text-2xl font-semibold mb-6 text-gray-800">Date-wise Applicant Summary</h1> */}
+
+            <div className="flex justify-between items-center mb-4">
+                <h1 className="text-2xl font-semibold text-gray-800">Date-wise Applicant Summary</h1>
+                <button
+                    onClick={downloadExcel}
+                    className="px-4 py-2 bg-blue-500 text-white rounded-lg shadow hover:bg-blue-600"
+                >
+                    Download Excel
+                </button>
+            </div>
+
+
 
             <div className="overflow-x-auto border border-gray-300 rounded-lg bg-white shadow-md">
                 <table className="table-auto w-full text-sm text-gray-600 border-collapse">
@@ -83,7 +123,7 @@ const DateWiseApplicant = () => {
                                 7896
                             </td>
                             <td colSpan="1" className="px-6 py-4 text-right font-semibold text-gray-800 border border-gray-300">
-                               6876
+                                6876
                             </td>
                         </tr>
                     </tfoot>
