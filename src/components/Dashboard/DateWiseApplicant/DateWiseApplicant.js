@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import useAxiosPublic from '../../../hooks/useAxiosPublic';
+import { InfinitySpin } from 'react-loader-spinner';
 
 const DateWiseApplicant = () => {
     const axiosPublic = useAxiosPublic();
@@ -22,7 +23,11 @@ const DateWiseApplicant = () => {
         fetchData();
     }, [axiosPublic]);
 
-    if (loading) return <p>Loading...</p>;
+    if (loading) return <div className="flex flex-col justify-center min-h-screen items-center spinner-container ">
+        <div className="spinner">
+            {/* loading spinner */}
+        </div>
+    </div>
     if (error) return <p>Error: {error}</p>;
     console.log(applicantsData)
 
@@ -47,7 +52,7 @@ const DateWiseApplicant = () => {
                         <tr className=" text-gray-800 text-left">
                             <th className="px-6 py-3 text-center border border-gray-300">#</th>
                             <th className="px-6 py-3 text-center border border-gray-300">Date</th>
-                            <th className="px-6 py-3 text-center border border-gray-300">DateCount</th>
+                            <th className="px-6 py-3 text-center border border-gray-300">Total</th>
                             <th className="px-6 py-3 text-center border border-gray-300">Total (Paid)</th>
                             <th className="px-6 py-3 text-right border border-gray-300">Amount</th>
                         </tr>

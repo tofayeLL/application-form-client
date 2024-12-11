@@ -5,7 +5,7 @@ import { InfinitySpin } from "react-loader-spinner"; // Optional loader
 import "../Spinner/LoadingSpinner.css"; // Include your spinner styling
 
 const AdminProtectedRoute = ({ children, ...rest }) => {
-    const { adminEmail } = useContext(AdminContext); 
+    const { adminEmail } = useContext(AdminContext);
     const [loading, setLoading] = useState(true); // Track loading state
 
     useEffect(() => {
@@ -22,8 +22,10 @@ const AdminProtectedRoute = ({ children, ...rest }) => {
     // Show loading spinner during the authentication check
     if (loading) {
         return (
-            <div className="flex justify-center items-center min-h-screen">
-                <InfinitySpin width="400" height="400" color="#025c3b" />
+            <div className="flex flex-col justify-center min-h-screen items-center spinner-container ">
+                <div className="spinner">
+                    {/* loading spinner */}
+                </div>
             </div>
         );
     }
