@@ -29,10 +29,7 @@ const DashboardHome = () => {
     if (error) return <p>Error: {error}</p>;
 
 
-    console.log("allapplicants data", applicantsData);
-
-
-
+    // console.log("allapplicants data", applicantsData);
 
 
 

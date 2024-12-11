@@ -64,9 +64,7 @@ const AppContent = withRouter(({ location }) => {
         <Route path="/signature">
           <SignatureValidator></SignatureValidator>
         </Route>
-        {/*    <PrivateRoute path="/adminRoute">
-                <AdminRoute></AdminRoute>
-              </PrivateRoute> */}
+
 
         <ProtectedRoute path="/payment">
           <PaymentStatus></PaymentStatus>
@@ -107,9 +105,12 @@ const AppContent = withRouter(({ location }) => {
           <CheckTailwind></CheckTailwind>
         </Route>
 
-        <Route path="/userDashboard">
+        {/* user dashboard */}
+        <ProtectedRoute path="/userDashboard">
           <UserDashboard></UserDashboard>
-        </Route>
+        </ProtectedRoute >
+
+
 
         <Route path="/adminRoute">
           <AdminRoute></AdminRoute>
