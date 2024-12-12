@@ -36,10 +36,61 @@ const AllApplicant = () => {
     console.log("allapplicants data", applicantsData);
 
     return (
-        <div>
+        <section>
             <h1>applicants data in database Total {applicantsData.length}</h1>
 
-        </div>
+            <div className="overflow-x-auto border border-gray-300 rounded-lg bg-white shadow-md">
+                <table className="table-auto w-full text-sm text-gray-600 border-collapse">
+                    <thead>
+                        <tr className="bg-gray-200">
+                            <td colSpan="6" className="px-6 py-2 text-lg text-left font-semibold text-gray-800 border border-gray-300">
+                                All Applicant (Paid or unpaid)
+                            </td>
+                        </tr>
+                    </thead>
+
+                    <thead>
+                        <tr className=" text-gray-800 text-left">
+                            <th className="px-6 py-3 text-center border border-gray-300">SL</th>
+                            <th className="px-6 py-3 text-center border border-gray-300">Applicant Id</th>
+                            <th className="px-6 py-3 text-center border border-gray-300">Name</th>
+                            <th className="px-6 py-3 text-center border border-gray-300">Fathers Name</th>
+                            <th className="px-6 py-3 text-center border border-gray-300">Mobile</th>
+                            <th className="px-6 py-3 text-right border border-gray-300">P.status</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        {applicantsData.map((item, index) => (
+                            <tr key={item._id} className={`${index % 2 === 0 ? 'bg-gray-50' : 'bg-white'}`}>
+                                <td className="px-6 py-4 font-medium text-gray-800 border border-gray-300">{index + 1}</td>
+                                <td className="px-6 py-4 border border-gray-300">{item?.app_id}</td> {/* Display date */}
+                                <td className="px-6 py-4 text-center border border-gray-300">{item?.applicantName || 'N/A'}</td> {/* Display date count */}
+                                <td className="px-6 py-4 text-center border border-gray-300">{item?.fname}</td>
+                                <td className="px-6 py-4 text-center border border-gray-300">{item?.p_number || "not avai;able"}</td>
+                                <td className="px-6 py-4 text-right border border-gray-300">{item?.status || "not Available"}</td>
+                            </tr>
+                        ))}
+                    </tbody>
+
+                    <tfoot>
+                        <tr className="bg-gray-200">
+                            <td colSpan="3" className="px-6 py-2 text-left font-semibold text-gray-800 border border-gray-300 text-lg">Total</td>
+                            <td colSpan="1" className="px-6 py-4 text-center font-semibold text-gray-800 border border-gray-300">
+                              not available
+                            </td>
+                            <td colSpan="1" className="px-6 py-4 text-center font-semibold text-gray-800 border border-gray-300">
+                              not available
+                            </td>
+                            <td colSpan="1" className="px-6 py-4 text-right font-semibold text-gray-800 border border-gray-300">
+                              not available
+                            </td>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+
+        </section>
     );
 };
 
