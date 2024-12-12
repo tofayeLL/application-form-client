@@ -42,9 +42,9 @@ const DashboardHome = () => {
 
     return (
         <section className='px-4'>
-            <div className='border-blue-500 border-2 '>
+            <div className='border-[#025c3b] border-2 '>
                 {/* Header Section */}
-                <h1 className='bg-blue-500 text-gray-200 p-1 text-start text-lg font-semibold'>
+                <h1 className='bg-[#206b50] text-gray-200 p-1 text-start text-lg font-semibold'>
                     Merchant Real-Time Portal (MRP) Dashboard
                 </h1>
 
