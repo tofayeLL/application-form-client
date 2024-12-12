@@ -45,14 +45,14 @@ const Dashboard = () => {
             {/* Flex container for Sidebar and Main Content */}
             <div className="flex flex-1">
                 {/* Sidebar */}
-                <div className="bg-[#a8d5ba] py-6 px-3 w-56 h-full shadow-md">
+                <div className="bg-[#2a6b53] py-6 px-3 w-56 h-full shadow-md">
                     {/* <h2 className="text-xl font-semibold text-gray-800">Dashboard</h2> */}
                     <nav>
                         <ul className="space-y-2 ">
                             <li>
                                 <Link
                                     to="/dashboard/admin"
-                                    className="block p-1 pl-4 text-start bg-[#e0f0d9] text-gray-900 rounded-md hover:bg-[#c9e9c9] transition-colors"
+                                    className="block p-1 pl-4 text-start bg-[#e0f0d9] text-gray-900 rounded-md hover:bg-[#73dfb7]  transition-colors"
                                 >
                                     Dashboard
                                 </Link>
@@ -60,7 +60,7 @@ const Dashboard = () => {
                             <li>
                                 <Link
                                     to="/dashboard/admin/dateApplicant"
-                                    className="block p-1 pl-4 text-start bg-[#e0f0d9] text-gray-900 rounded-md hover:bg-[#c9e9c9] transition-colors"
+                                    className="block p-1 pl-4 text-start bg-[#e0f0d9] text-gray-900 rounded-md hover:bg-[#73dfb7]  transition-colors"
                                 >
                                     Date Wise Applicant
                                 </Link>
@@ -68,7 +68,7 @@ const Dashboard = () => {
                             <li>
                                 <Link
                                     to="/dashboard/admin/applicant"
-                                    className="block p-1 pl-4 text-start bg-[#e0f0d9] text-gray-900 rounded-md hover:bg-[#c9e9c9] transition-colors"
+                                    className="block p-1 pl-4 text-start bg-[#e0f0d9] text-gray-900 rounded-md hover:bg-[#73dfb7]  transition-colors"
                                 >
                                     All Applicant
                                 </Link>
@@ -76,7 +76,7 @@ const Dashboard = () => {
                             <li>
                                 <Link
                                     to="/dashboard/admin/applicantPaid"
-                                    className="block p-1 pl-4 text-start bg-[#e0f0d9] text-gray-900 rounded-md hover:bg-[#c9e9c9] transition-colors"
+                                    className="block p-1 pl-4 text-start bg-[#e0f0d9] text-gray-900 rounded-md hover:bg-[#73dfb7]  transition-colors"
                                 >
                                     All Applicant (Paid)
                                 </Link>
@@ -84,7 +84,7 @@ const Dashboard = () => {
                             <li>
                                 <Link
                                     to="/dashboard/admin/applicantNursing"
-                                    className="block p-1 pl-4 text-start bg-[#e0f0d9] text-gray-900 rounded-md hover:bg-[#c9e9c9] transition-colors"
+                                    className="block p-1 pl-4 text-start bg-[#e0f0d9] text-gray-900 rounded-md hover:bg-[#73dfb7]  transition-colors"
                                 >
                                     All Applicant (Nursing)
                                 </Link>
@@ -93,7 +93,7 @@ const Dashboard = () => {
 
                             <li>
                                 {adminEmail && <button
-                                  className="block p-1 pl-4 text-start bg-[#e0f0d9] text-gray-900 rounded-md hover:bg-[#c9e9c9] transition-colors w-full"
+                                  className="block p-1 pl-4 text-start bg-[#e0f0d9] text-gray-900 rounded-md hover:bg-[#73dfb7]  transition-colors w-full"
                                     onClick={handleLogout}
                                    
                                 >

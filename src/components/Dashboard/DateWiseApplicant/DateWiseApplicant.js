@@ -70,12 +70,12 @@ const DateWiseApplicant = () => {
             {/* <h1 className="text-2xl font-semibold mb-6 text-gray-800">Date-wise Applicant Summary</h1> */}
 
             <div className="flex justify-between items-center mb-4">
-                <h1 className="text-2xl font-semibold text-gray-800">Date-wise Applicant Summary</h1>
+              {/*   <h1 className="text-2xl font-semibold text-gray-800">Date-wise Applicant Summary</h1> */}
                 <button
                     onClick={downloadExcel}
-                    className="px-4 py-2 bg-blue-500 text-white rounded-lg shadow hover:bg-blue-600"
+                    className="px-4 py-2 bg-[#088658] text-white rounded-lg shadow hover:bg-[#025c3b]"
                 >
-                    Download Excel
+                    Download Excel Data
                 </button>
             </div>
 
