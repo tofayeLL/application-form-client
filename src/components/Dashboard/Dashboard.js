@@ -9,6 +9,9 @@ import ApplicantNursing from './ApplicantNursing/ApplicantNursing';
 import { AdminContext } from '../../contexts/AdminProvider/AdminProvider';
 import toast from 'react-hot-toast';
 import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
+import ApplicantUnpaid from './ApplicantUnpaid/ApplicantUnpaid';
+import ApplicantMidwifery from './ApplicantMidwifery/ApplicantMidwifery';
+import IdTracking from './IdTracking/IdTracking';
 
 
 
@@ -48,7 +51,7 @@ const Dashboard = () => {
                 <div className="bg-[#2a6b53] py-6 px-3 w-56 h-full shadow-md">
                     {/* <h2 className="text-xl font-semibold text-gray-800">Dashboard</h2> */}
                     <nav>
-                        <ul className="space-y-2 ">
+                        <ul className="space-y-3 ">
                             <li>
                                 <Link
                                     to="/dashboard/admin"
@@ -89,6 +92,30 @@ const Dashboard = () => {
                                     All Applicant (Nursing)
                                 </Link>
                             </li>
+                            <li>
+                                <Link
+                                    to="/dashboard/admin/applicantMidwifery"
+                                    className="block p-1 pl-4 text-start bg-[#e0f0d9] text-gray-900 rounded-md hover:bg-[#73dfb7]  transition-colors"
+                                >
+                                    All Applicant (Midwifery)
+                                </Link>
+                            </li>
+                            <li>
+                                <Link
+                                    to="/dashboard/admin/applicantUnpaid"
+                                    className="block p-1 pl-4 text-start bg-[#e0f0d9] text-gray-900 rounded-md hover:bg-[#73dfb7]  transition-colors"
+                                >
+                                    All Applicant (Unpaid)
+                                </Link>
+                            </li>
+                            <li>
+                                <Link
+                                    to="/dashboard/admin/IdTracking"
+                                    className="block p-1 pl-4 text-start bg-[#e0f0d9] text-gray-900 rounded-md hover:bg-[#73dfb7]  transition-colors"
+                                >
+                                   ID Tracking
+                                </Link>
+                            </li>
 
 
                             <li>
@@ -113,6 +140,9 @@ const Dashboard = () => {
                         <Route path="/dashboard/admin/applicant" component={AllApplicant} />
                         <Route path="/dashboard/admin/applicantPaid" component={AllApplicantPaid} />
                         <Route path="/dashboard/admin/applicantNursing" component={ApplicantNursing} />
+                        <Route path="/dashboard/admin/applicantUnpaid" component={ApplicantUnpaid} />
+                        <Route path="/dashboard/admin/applicantMidwifery" component={ApplicantMidwifery} />
+                        <Route path="/dashboard/admin/IdTracking" component={IdTracking} />
                     </Switch>
                 </div>
             </div>
