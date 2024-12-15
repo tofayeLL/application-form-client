@@ -55,7 +55,7 @@ const Dashboard = () => {
                             <li>
                                 <Link
                                     to="/dashboard/admin"
-                                    className="block p-1 pl-4 text-start bg-[#e0f0d9] text-gray-900 rounded-md hover:bg-[#73dfb7]  transition-colors"
+                                    className="block p-1 pl-4 text-start bg-[#e0f0d9] text-gray-900 rounded-md hover:bg-[#a2d4b6]  transition-colors"
                                 >
                                     Dashboard
                                 </Link>

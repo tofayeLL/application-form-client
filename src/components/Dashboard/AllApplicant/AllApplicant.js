@@ -75,15 +75,15 @@ const AllApplicant = () => {
 
                     <tfoot>
                         <tr className="bg-gray-200">
-                            <td colSpan="3" className="px-6 py-2 text-left font-semibold text-gray-800 border border-gray-300 text-lg">Total</td>
+                            <td colSpan="3" className="px-6 py-2 text-left font-semibold text-gray-800 border border-gray-300 text-lg"></td>
                             <td colSpan="1" className="px-6 py-4 text-center font-semibold text-gray-800 border border-gray-300">
-                              not available
+                             
                             </td>
                             <td colSpan="1" className="px-6 py-4 text-center font-semibold text-gray-800 border border-gray-300">
-                              not available
+                            
                             </td>
                             <td colSpan="1" className="px-6 py-4 text-right font-semibold text-gray-800 border border-gray-300">
-                              not available
+                            
                             </td>
                         </tr>
                     </tfoot>
