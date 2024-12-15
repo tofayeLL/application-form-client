@@ -41,7 +41,8 @@ const IdTracking = () => {
 
     const handleUpdate = (id) => {
         // Redirect to the update page and pass the applicant's _id
-        history.push(`/updateApplicant/${id}`);
+        history.push(`/dashboard/admin/editApplicant/${id}`);
+
     };
 
 
@@ -90,7 +91,7 @@ const IdTracking = () => {
                                 <h2 className="text-lg font-medium text-gray-700">Search Result:</h2>
                                 {/* update button */}
                                 <button
-                                    onClick={() => handleUpdate(result._id)}  
+                                    onClick={() => handleUpdate(result._id)}
                                     className="bg-[#36916f] text-white px-4 py-2 rounded-md hover:bg-[#236950]"
                                 >
                                     Update
@@ -124,7 +125,7 @@ const IdTracking = () => {
                                         <td className="p-2 font-medium">Applicant ID</td>
                                         <td className="p-2">{result.app_id}</td>
                                     </tr>
-                                   {/*  <tr>
+                                    {/*  <tr>
                                         <td colSpan="2" className="p-2 text-center">
                                             <button
                                                 onClick={() => handleUpdate(result._id)}  // Pass the _id to the update handler

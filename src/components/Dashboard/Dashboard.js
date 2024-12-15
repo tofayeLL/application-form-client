@@ -12,6 +12,7 @@ import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
 import ApplicantUnpaid from './ApplicantUnpaid/ApplicantUnpaid';
 import ApplicantMidwifery from './ApplicantMidwifery/ApplicantMidwifery';
 import IdTracking from './IdTracking/IdTracking';
+import EditApplicantInfo from './IdTracking/EditApplicantInfo/EditApplicantInfo';
 
 
 
@@ -143,6 +144,7 @@ const Dashboard = () => {
                         <Route path="/dashboard/admin/applicantUnpaid" component={ApplicantUnpaid} />
                         <Route path="/dashboard/admin/applicantMidwifery" component={ApplicantMidwifery} />
                         <Route path="/dashboard/admin/IdTracking" component={IdTracking} />
+                        <Route path="/dashboard/admin/editApplicant/:id" component={EditApplicantInfo} />
                     </Switch>
                 </div>
             </div>
