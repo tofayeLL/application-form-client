@@ -13,6 +13,9 @@ import ApplicantUnpaid from './ApplicantUnpaid/ApplicantUnpaid';
 import ApplicantMidwifery from './ApplicantMidwifery/ApplicantMidwifery';
 import IdTracking from './IdTracking/IdTracking';
 import EditApplicantInfo from './IdTracking/EditApplicantInfo/EditApplicantInfo';
+import SearchTransaction from './SearchTransaction/SearchTransaction';
+import SearchPayment from './SearchPayment/SearchPayment';
+import AttendanceSheet from './AttendanceSheet/AttendanceSheet';
 
 
 
@@ -49,7 +52,7 @@ const Dashboard = () => {
             {/* Flex container for Sidebar and Main Content */}
             <div className="flex flex-1">
                 {/* Sidebar */}
-                <div className="bg-[#2a6b53] py-6 px-3 w-56 h-full shadow-md">
+                <div className="bg-[#2a6b53] py-5 px-3 w-56 h-full shadow-md">
                     {/* <h2 className="text-xl font-semibold text-gray-800">Dashboard</h2> */}
                     <nav>
                         <ul className="space-y-3 ">
@@ -117,6 +120,30 @@ const Dashboard = () => {
                                    ID Tracking
                                 </Link>
                             </li>
+                            <li>
+                                <Link
+                                    to="/dashboard/admin/searchTransaction"
+                                    className="block p-1 pl-4 text-start bg-[#e0f0d9] text-gray-900 rounded-md hover:bg-[#73dfb7]  transition-colors"
+                                >
+                                   Search Transaction
+                                </Link>
+                            </li>
+                            <li>
+                                <Link
+                                    to="/dashboard/admin/searchPayment"
+                                    className="block p-1 pl-4 text-start bg-[#e0f0d9] text-gray-900 rounded-md hover:bg-[#73dfb7]  transition-colors"
+                                >
+                                   Search Payment
+                                </Link>
+                            </li>
+                            <li>
+                                <Link
+                                    to="/dashboard/admin/attendanceSheet"
+                                    className="block p-1 pl-4 text-start bg-[#e0f0d9] text-gray-900 rounded-md hover:bg-[#73dfb7]  transition-colors"
+                                >
+                                   Attendance Sheet
+                                </Link>
+                            </li>
 
 
                             <li>
@@ -134,7 +161,7 @@ const Dashboard = () => {
                 </div>
 
                 {/* Main Content */}
-                <div className="flex-1 p-6 bg-white">
+                <div className="flex-1 p-5 bg-white">
                     <Switch>
                         <Route exact path="/dashboard/admin" component={DashboardHome} />
                         <Route path="/dashboard/admin/dateApplicant" component={DateWiseApplicant} />
@@ -143,8 +170,14 @@ const Dashboard = () => {
                         <Route path="/dashboard/admin/applicantNursing" component={ApplicantNursing} />
                         <Route path="/dashboard/admin/applicantUnpaid" component={ApplicantUnpaid} />
                         <Route path="/dashboard/admin/applicantMidwifery" component={ApplicantMidwifery} />
+
                         <Route path="/dashboard/admin/IdTracking" component={IdTracking} />
+                        {/* for edit applicant info */}
                         <Route path="/dashboard/admin/editApplicant/:id" component={EditApplicantInfo} />
+
+                        <Route path="/dashboard/admin/searchTransaction" component={SearchTransaction} />
+                        <Route path="/dashboard/admin/searchPayment" component={SearchPayment} />
+                        <Route path="/dashboard/admin/attendanceSheet" component={AttendanceSheet} />
                     </Switch>
                 </div>
             </div>
