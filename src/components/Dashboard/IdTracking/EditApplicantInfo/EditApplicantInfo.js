@@ -11,8 +11,55 @@ const EditApplicantInfo = () => {
     // console.log(applicantData);
 
 
+
+    const calculateAge = (year, month, day) => {
+        if (!year || !month || !day) {
+            return "Invalid date";
+        }
+
+        // Convert month name to numeric value
+        const monthNames = {
+            January: 1, February: 2, March: 3, April: 4, May: 5, June: 6,
+            July: 7, August: 8, September: 9, October: 10, November: 11, December: 12
+        };
+
+        // Convert to numbers
+        const monthNumeric = monthNames[month];
+
+        // If month name is invalid
+        if (!monthNumeric) {
+            return "Invalid month name";
+        }
+
+        const today = new Date();
+        const birthDate = new Date(year, monthNumeric - 1, day); // Month is 0-indexed
+
+        let ageYears = today.getFullYear() - birthDate.getFullYear();
+        let ageMonths = today.getMonth() - birthDate.getMonth();
+        let ageDays = today.getDate() - birthDate.getDate();
+
+        if (ageDays < 0) {
+            ageMonths--;
+            ageDays += new Date(today.getFullYear(), today.getMonth(), 0).getDate(); // Get the number of days in the previous month
+        }
+
+        if (ageMonths < 0) {
+            ageYears--;
+            ageMonths += 12; // Add 12 months if months go negative
+        }
+
+        return {
+            years: ageYears,
+            months: ageMonths,
+            days: ageDays
+        };
+    };
+
+
+
+
     return (
-        <section className='border border-gray-300' >
+        <section className='border border-gray-300 rounded' >
             <h1>I am from editApplicant info</h1>
 
             {/* container applicant info header */}
@@ -84,15 +131,15 @@ const EditApplicantInfo = () => {
                             <tbody className='font-medium text-start '>
                                 {/* <!-- Row 1 --> */}
                                 <tr class="hover:bg-gray-100 "  >
-                                    <td class="border border-gray-300 px-4 py-2" >Name</td>
-                                    <td class="border border-gray-300 px-4 py-2" colspan="3">Tofayel</td>
+                                    <td class="border border-gray-300 px-4 py-2" >Applicant Name</td>
+                                    <td class="border border-gray-300 px-4 py-2" colspan="3">{applicantData?.applicantName}</td>
 
 
                                 </tr>
                                 {/* <!-- Repeat Rows --> */}
                                 <tr class="hover:bg-gray-100">
                                     <td class="border border-gray-300 px-4 py-2">Applicant Id</td>
-                                    <td class="border border-gray-300 px-4 py-2">24000000</td>
+                                    <td class="border border-gray-300 px-4 py-2">{applicantData?.app_id}</td>
 
                                     <td class="border border-gray-300 px-4 py-2">Password</td>
                                     <td class="border border-gray-300 px-4 py-2">76796890708</td>
@@ -100,11 +147,27 @@ const EditApplicantInfo = () => {
 
                                 <tr class="hover:bg-gray-100">
                                     <td class="border border-gray-300 px-4 py-2">Mobile Number</td>
-                                    <td class="border border-gray-300 px-4 py-2">01795627288</td>
+                                    <td class="border border-gray-300 px-4 py-2">{applicantData?.cp_number}</td>
 
                                     <td class="border border-gray-300 px-4 py-2">Date of birth</td>
-                                    <td class="border border-gray-300 px-4 py-2">1998-01-01
-                                        <br></br> 25 years
+                                    <td className="border border-gray-300 px-4 py-2">
+                                        {applicantData?.b_year && applicantData?.b_month && applicantData?.b_day ? (
+                                            <>
+                                                {applicantData?.b_year}-{applicantData?.b_month}-{applicantData?.b_day}
+                                                <br />
+                                                Age:{" "}
+                                                {(() => {
+                                                    const { years, months, days } = calculateAge(
+                                                        parseInt(applicantData?.b_year),
+                                                        applicantData?.b_month,
+                                                        parseInt(applicantData?.b_day)
+                                                    );
+                                                    return `${years} years, ${months} months, ${days} days`;
+                                                })()}
+                                            </>
+                                        ) : (
+                                            <span>Birthdate not available</span>
+                                        )}
                                     </td>
                                 </tr>
 
@@ -122,7 +185,7 @@ const EditApplicantInfo = () => {
                                     </button></td>
 
                                     <td class="border border-gray-300 px-4 py-2">Application Date</td>
-                                    <td class="border border-gray-300 px-4 py-2">2024-12-12</td>
+                                    <td class="border border-gray-300 px-4 py-2">{applicantData?.date.slice(0, 10)}</td>
                                 </tr>
 
                             </tbody>
