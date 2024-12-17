@@ -39,9 +39,15 @@ const IdTracking = () => {
 
 
 
-    const handleUpdate = (id) => {
-        // Redirect to the update page and pass the applicant's _id
-        history.push(`/dashboard/admin/editApplicant/${id}`);
+    const handleUpdate = (result) => {
+        ///* for send id use like this */
+        // history.push(`/dashboard/admin/editApplicant/${id}`);
+
+        /* for pass result object then use like this */
+        history.push({
+            pathname: `/dashboard/admin/editApplicant/${result._id}`, // assuming result._id is the unique ID
+            state: { applicantData: result } // Pass result as state
+        });
 
     };
 
@@ -91,7 +97,7 @@ const IdTracking = () => {
                                 <h2 className="text-lg font-medium text-gray-700">Search Result:</h2>
                                 {/* update button */}
                                 <button
-                                    onClick={() => handleUpdate(result._id)}
+                                    onClick={() => handleUpdate(result)}
                                     className="bg-[#36916f] text-white px-4 py-2 rounded-md hover:bg-[#236950]"
                                 >
                                     Update
