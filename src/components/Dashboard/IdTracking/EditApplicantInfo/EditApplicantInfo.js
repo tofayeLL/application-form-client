@@ -12,12 +12,12 @@ const EditApplicantInfo = () => {
 
 
     return (
-        <section >
+        <section className='border border-gray-300' >
             <h1>I am from editApplicant info</h1>
 
             {/* container applicant info header */}
             <div className='container px-14'>
-
+                {/* Table 1 */}
 
                 {
                     applicantData && <div className="overflow-auto p-4  ">
@@ -130,7 +130,98 @@ const EditApplicantInfo = () => {
                     </div>
 
                 }
+
+
+
+                {/* Table 2 */}
+
+                <div className='container px-4 mt-5'>
+                    <table className="table-auto border-collapse border border-gray-300 shadow-lg w-full  ">
+
+                        {/* <!-- Table Body --> */}
+                        <tbody className='font-medium text-start '>
+                            {/* <!-- Row 1 --> */}
+                            <tr class="hover:bg-gray-100 "  >
+
+                                <td class="border border-gray-300 px-4 py-2" colspan="4">Payment Summery</td>
+
+
+                            </tr>
+                            {/* <!-- Repeat Rows --> */}
+                            <tr class="hover:bg-gray-100">
+                                <td class="border border-gray-300 px-4 py-2">Payment Id</td>
+                                <td class="border border-gray-300 px-4 py-2">jhkhgsDTYEHQ</td>
+
+                                <td class="border border-gray-300 px-4 py-2">Trx ID</td>
+                                <td class="border border-gray-300 px-4 py-2">BESFDHFJK (bekash) </td>
+                            </tr>
+
+                            <tr class="hover:bg-gray-100">
+                                <td class="border border-gray-300 px-4 py-2">Amount</td>
+                                <td class="border border-gray-300 px-4 py-2">500</td>
+
+                                <td class="border border-gray-300 px-4 py-2">Payment Date</td>
+                                <td class="border border-gray-300 px-4 py-2">2024-12-09T10:38:04.306Z
+                                </td>
+                            </tr>
+
+
+
+                        </tbody>
+                    </table>
+                </div>
+
+
+
+                {/* Table 3 */}
+
+                <div className='container px-4 mt-8 mb-6'>
+                    <table className="table-auto border-collapse border border-gray-300 shadow-lg w-full  ">
+
+                        {/* <!-- Table Body --> */}
+                        <tbody className='font-medium text-start '>
+                            {/* <!-- Row 1 --> */}
+                            <tr class="hover:bg-gray-100 "  >
+
+                                <td class="border border-gray-300 px-4 py-2" colspan="4">Payment Attempt Summery</td>
+
+
+                            </tr>
+                            {/* <!-- Repeat Rows --> */}
+                            <tr class="hover:bg-gray-100">
+                                <td class="border border-gray-300 px-4 py-2">Payment Id</td>
+                                <td class="border border-gray-300 px-4 py-2">Trx ID</td>
+
+                                <td class="border border-gray-300 px-4 py-2">Amount</td>
+                                <td class="border border-gray-300 px-4 py-2">Payment Date </td>
+                            </tr>
+
+                            <tr class="hover:bg-gray-100">
+                                <td class="border border-gray-300 px-4 py-2">jgksGDKGsfkjSGF0987CCC</td>
+                                <td class="border border-gray-300 px-4 py-2">DFDHGJKKKFHJHHK</td>
+
+                                <td class="border border-gray-300 px-4 py-2">500</td>
+                                <td class="border border-gray-300 px-4 py-2">2024-12-09T10:38:04.306Z
+                                </td>
+                            </tr>
+
+
+
+                        </tbody>
+                    </table>
+                </div>
+
+
+
+
+
+
+
             </div>
+
+
+
+
 
         </section >
     );
