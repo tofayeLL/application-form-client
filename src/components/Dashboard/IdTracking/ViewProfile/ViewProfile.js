@@ -5,7 +5,7 @@ const ViewProfile = () => {
     const { id } = useParams();
     const location = useLocation();
     const applicantData = location?.state?.applicantData;
-    console.log("from view profile page", id, applicantData);
+    // console.log("from view profile page", id, applicantData);
 
     if (!applicantData) {
         return <div className="text-center text-red-500 py-10">Applicant data not available</div>;

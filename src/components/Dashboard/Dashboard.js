@@ -18,6 +18,9 @@ import SearchPayment from './SearchPayment/SearchPayment';
 import AttendanceSheet from './AttendanceSheet/AttendanceSheet';
 import ViewProfile from './IdTracking/ViewProfile/ViewProfile';
 import EditFullProfile from './IdTracking/EditFullProfile/EditFullProfile';
+import EditPicture from './IdTracking/EditPicture/EditPicture';
+import EditSignature from './IdTracking/EditSignature/EditSignature';
+import AdmitCard from './IdTracking/AdmitCard/AdmitCard';
 
 
 
@@ -178,6 +181,9 @@ const Dashboard = () => {
                         <Route path="/dashboard/admin/editApplicant/:id" component={EditApplicantInfo} />
                         <Route path="/dashboard/admin/viewProfile/:id" component={ViewProfile} />
                         <Route path="/dashboard/admin/editProfile/:id" component={EditFullProfile} />
+                        <Route path="/dashboard/admin/editPicture/:id" component={EditPicture} />
+                        <Route path="/dashboard/admin/editSignature/:id" component={EditSignature} />
+                        <Route path="/dashboard/admin/admitCard/:id" component={AdmitCard} />
 
                         <Route path="/dashboard/admin/searchTransaction" component={SearchTransaction} />
                         <Route path="/dashboard/admin/searchPayment" component={SearchPayment} />

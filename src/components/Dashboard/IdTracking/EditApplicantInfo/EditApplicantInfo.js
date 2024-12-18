@@ -67,11 +67,39 @@ const EditApplicantInfo = () => {
             alert("Applicant ID is missing.");
         }
     };
+
     // handle Edit profile
     const handleEditFullProfile = () => {
-        // console.log("view profile",applicantData?._id, applicantData)
         if (applicantData?._id) {
             history.push(`/dashboard/admin/editProfile/${applicantData?._id}`, { applicantData });
+        } else {
+            alert("Applicant ID is missing.");
+        }
+    };
+
+    // handle Edit picture
+    const handleEditPicture = () => {
+        if (applicantData?._id) {
+            history.push(`/dashboard/admin/editPicture/${applicantData?._id}`, { applicantData });
+        } else {
+            alert("Applicant ID is missing.");
+        }
+    };
+
+
+    // handle Edit signature
+    const handleEditSignature = () => {
+        if (applicantData?._id) {
+            history.push(`/dashboard/admin/editSignature/${applicantData?._id}`, { applicantData });
+        } else {
+            alert("Applicant ID is missing.");
+        }
+    };
+
+    // handle Admit Card
+    const handleAdmitCard = () => {
+        if (applicantData?._id) {
+            history.push(`/dashboard/admin/admitCard/${applicantData?._id}`, { applicantData });
         } else {
             alert("Applicant ID is missing.");
         }
@@ -108,16 +136,16 @@ const EditApplicantInfo = () => {
                                             Edit Full Profile
                                         </button>
                                         {/* button 1 */}
-                                        <button className="block w-40 py-1  font-normal text-white text-center bg-blue-500 rounded-md hover:bg-[#42a581] transition-colors ">
+                                        <button className="block w-40 py-1  font-normal text-white text-center bg-blue-500 rounded-md hover:bg-[#42a581] transition-colors "  onClick={handleEditPicture}>
                                             Edit Picture
                                         </button>
                                         {/* button 1 */}
-                                        <button className="block w-40 py-1  font-normal text-white text-center bg-green-500 rounded-md hover:bg-[#42a581] transition-colors ">
+                                        <button className="block w-40 py-1  font-normal text-white text-center bg-green-500 rounded-md hover:bg-[#42a581] transition-colors "  onClick={handleEditSignature}>
                                             Edit Signature
                                         </button>
                                         {/* button 1 */}
-                                        <button className="block w-40 py-1  font-normal text-white text-center bg-orange-500 rounded-md hover:bg-[#42a581] transition-colors ">
-                                            Admit Cart
+                                        <button className="block w-40 py-1  font-normal text-white text-center bg-orange-500 rounded-md hover:bg-[#42a581] transition-colors " onClick={handleAdmitCard}>
+                                            Admit Card
                                         </button>
 
 
