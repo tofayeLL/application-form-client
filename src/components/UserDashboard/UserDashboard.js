@@ -25,12 +25,12 @@ const UserDashboard = () => {
      }, [axiosPublic, userEmail]); */ // Re-run effect if userEmail changes
 
 
-     console.log(userEmail);
+    console.log(userEmail);
 
     const { userData } = useIndividualUserData();
     console.log(userData);
 
-    const { app_id, _id,  email, cp_number, password, images, applicantName , NID} = userData || {};
+    const { app_id, _id, email, cp_number, password, images, applicantName, NID } = userData || {};
 
     return (
         <div className="dashboard-container">
@@ -38,17 +38,26 @@ const UserDashboard = () => {
                 {/* Profile Section */}
                 <div className="profile-section ">
                     {images ? (
-                        <div className="flex justify-center items-center">
-                            <img
-                                src={images.image1}
-                                alt="User Profile"
-                                className="profile-image-large object-center object-cover"
-                            />
-                            <img
-                                src={images.image2}
-                                alt="User Profile"
-                                className="profile-image-large object-center object-cover"
-                            />
+                        <div class="flex flex-col items-center space-y-4 p-4">
+                            {/* <!-- CV Picture --> */}
+                            <div class=" w-40 h-40 overflow-hidden rounded-md shadow-md ">
+                                <img
+                                    src={images?.image1}
+                                    alt="coming soon.."
+                                    class="w-full h-full object-contain  object-center "
+                                />
+                                 
+                            </div>
+
+                            {/* <!-- Signature Picture --> */}
+                            <div class="w-32 h-16 overflow-hidden border-t border-gray-400">
+                               
+                                <img
+                                    src={images?.image2}
+                                    alt="signature coming soon.."
+                                    class="w-full h-full object-contain object-center "
+                                />
+                            </div>
                         </div>
                     ) : (
                         <div className="placeholder-large">No Image</div>
@@ -59,7 +68,7 @@ const UserDashboard = () => {
                 {/* User Information */}
                 {userData ? (
                     <div className="user-details">
-                        <h3 className="details-title">User Information</h3>
+                        {/* <h3 className="details-title">User Information</h3> */}
                         <div className="detail">
                             <span className="label">User ID:</span>
                             <span className="value">{app_id}</span>
@@ -80,7 +89,7 @@ const UserDashboard = () => {
                             <span className="label">NID:</span>
                             <span className="value">{NID}</span>
                         </div>
-                       
+
                     </div>
                 ) : (
                     <p className="loading-text">Loading user data...</p>
