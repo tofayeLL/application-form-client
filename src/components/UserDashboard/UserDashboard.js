@@ -24,9 +24,13 @@ const UserDashboard = () => {
          fetchUserData();
      }, [axiosPublic, userEmail]); */ // Re-run effect if userEmail changes
 
-    const { userData } = useIndividualUserData();
 
-    const { app_id, _id, userEmail: email, number, password, images } = userData || {};
+     console.log(userEmail);
+
+    const { userData } = useIndividualUserData();
+    console.log(userData);
+
+    const { app_id, _id,  email, cp_number, password, images, applicantName , NID} = userData || {};
 
     return (
         <div className="dashboard-container">
@@ -49,7 +53,7 @@ const UserDashboard = () => {
                     ) : (
                         <div className="placeholder-large">No Image</div>
                     )}
-                    <h2 className="dashboard-title">Welcome, {userEmail}</h2>
+                    <h2 className="dashboard-title">Welcome, {applicantName}</h2>
                 </div>
 
                 {/* User Information */}
@@ -66,12 +70,17 @@ const UserDashboard = () => {
                         </div>
                         <div className="detail">
                             <span className="label">Number:</span>
-                            <span className="value">{number}</span>
+                            <span className="value">{cp_number}</span>
                         </div>
                         <div className="detail">
                             <span className="label">Password:</span>
                             <span className="value">{password}</span>
                         </div>
+                        <div className="detail">
+                            <span className="label">NID:</span>
+                            <span className="value">{NID}</span>
+                        </div>
+                       
                     </div>
                 ) : (
                     <p className="loading-text">Loading user data...</p>

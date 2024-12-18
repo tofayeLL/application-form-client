@@ -6,6 +6,8 @@ import { UserContext } from "../contexts/UserProvider/UserProvider";
 const useIndividualUserData = () => {
     const {userEmail} = useContext(UserContext);
 
+    console.log("from hook", userEmail)
+
     const [userData, setUserData] = useState(null); // To store user data
     const [loading, setLoading] = useState(true);  // To manage loading state
     const [error, setError] = useState(null);      // To handle errors

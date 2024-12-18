@@ -10,7 +10,7 @@ import { GoEye, GoEyeClosed } from 'react-icons/go';
 const Login3 = () => {
     const axiosPublic = useAxiosPublic();
     const history = useHistory();
-    const {setUserEmail} = useContext(UserContext);
+    const { setUserEmail } = useContext(UserContext);
     const [passwordVisible, setPasswordVisible] = useState(false); // State to toggle password visibility
 
     const loginStyle = {
@@ -29,24 +29,24 @@ const Login3 = () => {
         e.preventDefault();
 
         const form = e.target;
-        const userEmail = form.userEmail.value;
+        const email = form.email.value;
         const password = form.password.value;
-        const number = form.number.value;
-        const userInfo = { userEmail, password, number };
+        const cp_number = form.cp_number.value;
+        const userInfo = { email, password, cp_number };
 
         try {
             const res = await axiosPublic.post('/loginUser', userInfo);
 
             if (res.data.success) {
-                setUserEmail(userEmail)
+                setUserEmail(email)
                 Swal.fire({
                     title: 'Success!',
                     text: res.data.message,
                     icon: 'success',
                     confirmButtonText: 'Cool',
                 }).then(() => {
-                  
-                    history.push('/userDashboard'); 
+
+                    history.push('/userDashboard');
 
                 });
             } else {
@@ -79,17 +79,17 @@ const Login3 = () => {
         <div style={loginStyle}>
             <h2 style={{ color: '#025c3b' }}>Login</h2>
             <form onSubmit={handleLogin2}>
-                <input style={fieldStyle} type="email" name='userEmail' placeholder='Enter your email' /> <br />
+                <input style={fieldStyle} type="email" name='email' placeholder='Enter your email' /> <br />
 
                 <div style={{
-                    position:'relative'
+                    position: 'relative'
                 }}>
                     <input
                         style={fieldStyle}
                         type={passwordVisible ? 'text' : 'password'}
                         name='password'
                         placeholder='Enter your password'
-                        
+
                     />
                     <span
                         onClick={togglePassword}
@@ -105,12 +105,12 @@ const Login3 = () => {
                         {passwordVisible ? <GoEye /> : <GoEyeClosed />}
                     </span>
                 </div>
-                
-          
-                <input style={fieldStyle} type="number" name='number' placeholder='Enter your number' /> <br />
+
+
+                <input style={fieldStyle} type="number" name='cp_number' placeholder='Enter your number' /> <br />
                 <input style={fieldStyle} type="submit" value="Submit" />
             </form>
-        
+
         </div>
     );
 };

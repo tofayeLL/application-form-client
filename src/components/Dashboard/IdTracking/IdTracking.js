@@ -63,19 +63,19 @@ const IdTracking = () => {
                     <h1 className="text-xl font-semibold text-gray-800 mb-6">Applicant ID Tracking</h1>
 
                     <p className="mb-3 text-base font-normal">Search by Applicant ID or Phone Number:</p>
-                    <div className="flex justify-start items-center mb-4">
+                    <div className="flex justify-start items-center mb-2">
                         <input
                             type="text"
                             value={query}
                             onChange={(e) => setQuery(e.target.value)}
-                            className="w-2/3 p-2  border-[1px] border-[#206b50] rounded-md mb-4"
+                            className="w-2/3 p-2  border-[1px] border-[#206b50] rounded-md mb-2"
                             placeholder="Enter Application ID or Phone Number"
                             required
                         />
                     </div>
 
                     {/* Search Button */}
-                    <div className="flex justify-start">
+                    <div className="flex justify-start pb-2">
                         <button
                             type="submit"
                             className="bg-[#278a66] text-white px-4 py-2 rounded-md shadow hover:bg-[#23684f] focus:outline-none focus:ring-2 focus:ring-[#206b50]"
