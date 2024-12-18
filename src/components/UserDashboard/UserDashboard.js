@@ -2,6 +2,7 @@ import { useContext } from "react";
 import { UserContext } from "../../contexts/UserProvider/UserProvider";
 import "./UserDashboard.css"; // Import custom CSS file
 import useIndividualUserData from "../../hooks/useIndividualUserData";
+import { Link } from "react-router-dom/cjs/react-router-dom.min";
 
 const UserDashboard = () => {
     const { userEmail } = useContext(UserContext); // Retrieve userEmail from context
@@ -46,12 +47,12 @@ const UserDashboard = () => {
                                     alt="coming soon.."
                                     class="w-full h-full object-contain  object-center "
                                 />
-                                 
+
                             </div>
 
                             {/* <!-- Signature Picture --> */}
                             <div class="w-32 h-16 overflow-hidden border-t border-gray-400">
-                               
+
                                 <img
                                     src={images?.image2}
                                     alt="signature coming soon.."
@@ -90,7 +91,14 @@ const UserDashboard = () => {
                             <span className="value">{NID}</span>
                         </div>
 
+                        <div className="detail">
+                            <span className="label">Applicant Form</span>
+                            <span className="value"><Link to={`/admitCard/${_id}`} className="underline text-green-800 font-semibold">Print Application</Link></span>
+                        </div>
+
                     </div>
+
+
                 ) : (
                     <p className="loading-text">Loading user data...</p>
                 )}

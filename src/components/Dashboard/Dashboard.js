@@ -16,6 +16,7 @@ import EditApplicantInfo from './IdTracking/EditApplicantInfo/EditApplicantInfo'
 import SearchTransaction from './SearchTransaction/SearchTransaction';
 import SearchPayment from './SearchPayment/SearchPayment';
 import AttendanceSheet from './AttendanceSheet/AttendanceSheet';
+import ViewProfile from './IdTracking/ViewProfile/ViewProfile';
 
 
 
@@ -174,6 +175,7 @@ const Dashboard = () => {
                         <Route path="/dashboard/admin/IdTracking" component={IdTracking} />
                         {/* for edit applicant info */}
                         <Route path="/dashboard/admin/editApplicant/:id" component={EditApplicantInfo} />
+                        <Route path="/dashboard/admin/viewProfile/:id" component={ViewProfile} />
 
                         <Route path="/dashboard/admin/searchTransaction" component={SearchTransaction} />
                         <Route path="/dashboard/admin/searchPayment" component={SearchPayment} />

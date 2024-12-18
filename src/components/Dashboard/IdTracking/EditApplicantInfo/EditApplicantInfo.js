@@ -1,17 +1,18 @@
 import React from 'react';
-import { useLocation, useParams } from 'react-router-dom/cjs/react-router-dom.min';
+import { useHistory, useLocation, useParams } from 'react-router-dom/cjs/react-router-dom.min';
 
 const EditApplicantInfo = () => {
     /* for get id then use like this
      const { id } = useParams();
      console.log(id); */
-
+   
     const location = useLocation();
     const applicantData = location.state?.applicantData;
     // console.log(applicantData);
+     const history = useHistory();
 
 
-/* calculate age depends on birthdate to age with month and days also */
+    /* calculate age depends on birthdate to age with month and days also */
     const calculateAge = (year, month, day) => {
         if (!year || !month || !day) {
             return "Invalid date";
@@ -57,6 +58,21 @@ const EditApplicantInfo = () => {
 
 
 
+    // handle view profile
+    const handleViewFullProfile = () => {
+        // console.log("view profile",applicantData?._id, applicantData)
+        if (applicantData?._id) {
+            history.push(`/dashboard/admin/viewProfile/${applicantData?._id}`, { applicantData });
+        } else {
+            alert("Applicant ID is missing.");
+        }
+    };
+
+
+    
+
+
+
 
     return (
         <section className='border border-gray-300 rounded' >
@@ -75,7 +91,7 @@ const EditApplicantInfo = () => {
                                     <th class="border  border-gray-300 px-6 py-2  text-left space-y-4" colspan="2">
 
                                         {/* button 1 */}
-                                        <button className="block w-40 py-1  font-normal text-white text-center bg-red-500 rounded-md hover:bg-[#42a581] transition-colors ">
+                                        <button className="block w-40 py-1  font-normal text-white text-center bg-red-500 rounded-md hover:bg-[#42a581] transition-colors " onClick={handleViewFullProfile}>
                                             View Full Profile
                                         </button>
                                         {/* button 1 */}
@@ -115,7 +131,7 @@ const EditApplicantInfo = () => {
                                             {/* <!-- Signature Picture --> */}
                                             <div class="w-32 h-16 overflow-hidden border-t border-gray-400">
                                                 <img
-                                                    src="https://i.ibb.co.com/KGXzMjJ/img.png"
+                                                    src={applicantData?.images?.image2}
                                                     alt="signature coming soon.."
                                                     class="w-full h-full object-contain"
                                                 />
@@ -132,22 +148,22 @@ const EditApplicantInfo = () => {
                                 {/* <!-- Row 1 --> */}
                                 <tr class="hover:bg-gray-100 "  >
                                     <td class="border border-gray-300 px-4 py-2" >Applicant Name</td>
-                                    <td class="border border-gray-300 px-4 py-2" colspan="3">{applicantData?.applicantName}</td>
+                                    <td class="border border-gray-300 px-4 py-2" colspan="3">{applicantData?.applicantName || "N/A"}</td>
 
 
                                 </tr>
                                 {/* <!-- Repeat Rows --> */}
                                 <tr class="hover:bg-gray-100">
                                     <td class="border border-gray-300 px-4 py-2">Applicant Id</td>
-                                    <td class="border border-gray-300 px-4 py-2">{applicantData?.app_id}</td>
+                                    <td class="border border-gray-300 px-4 py-2">{applicantData?.app_id || "N/A"}</td>
 
                                     <td class="border border-gray-300 px-4 py-2">Password</td>
-                                    <td class="border border-gray-300 px-4 py-2">76796890708</td>
+                                    <td class="border border-gray-300 px-4 py-2">{applicantData?.password || "N/A"}</td>
                                 </tr>
 
                                 <tr class="hover:bg-gray-100">
                                     <td class="border border-gray-300 px-4 py-2">Mobile Number</td>
-                                    <td class="border border-gray-300 px-4 py-2">{applicantData?.cp_number}</td>
+                                    <td class="border border-gray-300 px-4 py-2">{applicantData?.cp_number || "N/A"}</td>
 
                                     <td class="border border-gray-300 px-4 py-2">Date of birth</td>
                                     <td className="border border-gray-300 px-4 py-2">
@@ -185,7 +201,7 @@ const EditApplicantInfo = () => {
                                     </button></td>
 
                                     <td class="border border-gray-300 px-4 py-2">Application Date</td>
-                                    <td class="border border-gray-300 px-4 py-2">{applicantData?.date.slice(0, 10)}</td>
+                                    <td class="border border-gray-300 px-4 py-2">{applicantData?.date.slice(0, 10) || "N/A"}</td>
                                 </tr>
 
                             </tbody>
