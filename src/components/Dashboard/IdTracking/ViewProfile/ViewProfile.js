@@ -26,7 +26,7 @@ const ViewProfile = () => {
                 <div className="flex flex-col items-center mb-8">
                     {applicantData.images?.image1 ? (
                         <img
-                            src={applicantData?.images?.image1}
+                            src={applicantData?.images?.image1 || "N/A"}
                             alt="Profile"
                             className="w-32 h-32 rounded-full shadow-lg object-cover"
                         />
@@ -122,24 +122,24 @@ const ViewProfile = () => {
                         <tbody>
                             <tr>
                                 <td className="py-2 px-4">SSC</td>
-                                <td className="py-2 px-4">{applicantData?.board1}</td>
-                                <td className="py-2 px-4">{applicantData?.roll1}</td>
-                                <td className="py-2 px-4">{applicantData?.result1}</td>
-                                <td className="py-2 px-4">{applicantData?.year1}</td>
+                                <td className="py-2 px-4">{applicantData?.board1 || "N/A"}</td>
+                                <td className="py-2 px-4">{applicantData?.roll1 || "N/A"}</td>
+                                <td className="py-2 px-4">{applicantData?.result1 || "N/A"}</td>
+                                <td className="py-2 px-4">{applicantData?.year1 || "N/A"}</td>
                             </tr>
                             <tr>
                                 <td className="py-2 px-4">HSC</td>
-                                <td className="py-2 px-4">{applicantData?.hsc_board}</td>
-                                <td className="py-2 px-4">{applicantData?.hsc_roll}</td>
-                                <td className="py-2 px-4">{applicantData?.hsc_result}</td>
-                                <td className="py-2 px-4">{applicantData?.hsc_pass}</td>
+                                <td className="py-2 px-4">{applicantData?.hsc_board || "N/A"}</td>
+                                <td className="py-2 px-4">{applicantData?.hsc_roll || "N/A"}</td>
+                                <td className="py-2 px-4">{applicantData?.hsc_result || "N/A"}</td>
+                                <td className="py-2 px-4">{applicantData?.hsc_pass || "N/A"}</td>
                             </tr>
                             <tr>
                                 <td className="py-2 px-4">BSC</td>
-                                <td className="py-2 px-4">{applicantData?.university}</td>
+                                <td className="py-2 px-4">{applicantData?.university || "N/A"}</td>
                                 <td className="py-2 px-4">N/A</td>
-                                <td className="py-2 px-4">{applicantData?.exam3_result}</td>
-                                <td className="py-2 px-4">{applicantData?.exam3_passyr}</td>
+                                <td className="py-2 px-4">{applicantData?.exam3_result || "N/A"}</td>
+                                <td className="py-2 px-4">{applicantData?.exam3_passyr || "N/A"}</td>
                             </tr>
                         </tbody>
                     </table>

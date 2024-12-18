@@ -67,6 +67,15 @@ const EditApplicantInfo = () => {
             alert("Applicant ID is missing.");
         }
     };
+    // handle Edit profile
+    const handleEditFullProfile = () => {
+        // console.log("view profile",applicantData?._id, applicantData)
+        if (applicantData?._id) {
+            history.push(`/dashboard/admin/editProfile/${applicantData?._id}`, { applicantData });
+        } else {
+            alert("Applicant ID is missing.");
+        }
+    };
 
 
     
@@ -95,7 +104,7 @@ const EditApplicantInfo = () => {
                                             View Full Profile
                                         </button>
                                         {/* button 1 */}
-                                        <button className="block w-40 py-1  font-normal text-white text-center bg-yellow-500 rounded-md hover:bg-[#42a581] transition-colors ">
+                                        <button className="block w-40 py-1  font-normal text-white text-center bg-yellow-500 rounded-md hover:bg-[#42a581] transition-colors "  onClick={handleEditFullProfile}>
                                             Edit Full Profile
                                         </button>
                                         {/* button 1 */}
