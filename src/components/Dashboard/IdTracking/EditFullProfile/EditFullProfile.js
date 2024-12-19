@@ -10,10 +10,30 @@ import useAuth from '../../../../hooks/useAuth';
 
 
 const EditFullProfile = () => {
-    // const { id } = useParams();
-    const location = useLocation();
-    const applicantData = location?.state?.applicantData;
-    console.log("from edit profile page", applicantData);
+    // Destructuring with a custom name
+    const { id: applicantId } = useParams();
+    const axiosPublic = useAxiosPublic();
+
+    console.log("from edit full profil applicant page",applicantId )
+
+
+
+    const [applicantData, setApplicantData] = useState(null);
+
+    // Fetch applicant data when component mounts or on id change
+    useEffect(() => {
+        const fetchApplicantData = async () => {
+            try {
+                // Replace with the correct API endpoint
+                const response = await axiosPublic.get(`/singleApplicant/${applicantId}`);
+                setApplicantData(response.data);  // Set fetched data
+            } catch (error) {
+                console.error("Error fetching applicant data:", error);
+            }
+        };
+
+        fetchApplicantData();
+    }, [applicantId, axiosPublic]); // Re-fetch data when id changes
 
     const [applicant, setApplicant] = useState({});
     let [id, setId] = useState('');
@@ -903,7 +923,7 @@ const EditFullProfile = () => {
     console.log("before update", applicant)
 
 
-    const axiosPublic = useAxiosPublic();
+
     const imgbbAPIKey = process.env.REACT_APP_IMAGE_HOSTING_API_KEY; // Replace with your ImageBB API key
     const imgbbURL = `https://api.imgbb.com/1/upload?key=${imgbbAPIKey}`;
     // console.log(imgbbAPIKey);
@@ -1033,7 +1053,7 @@ const EditFullProfile = () => {
 
 
 
-            const updatedFields  = {
+            const updatedFields = {
                 ...applicant,
                 images: { image1: image1Url, image2: image2Url },
                 date: currentDate, // Include the current date
@@ -1045,7 +1065,7 @@ const EditFullProfile = () => {
 
 
             // Make PATCH request to update the applicant data
-            const res = await axiosPublic.patch(`/updateApplicant/${applicantData?._id}`, updatedFields );
+            const res = await axiosPublic.patch(`/updateApplicant/${applicantData?._id}`, updatedFields);
 
             if (res.data.message === 'Update successful') {
                 Swal.fire({
@@ -1716,7 +1736,7 @@ const EditFullProfile = () => {
                                                                                     />{' '}
 
                                                                                     {previews.image2 && <div style={{ width: '300px', marginTop: '10px' }}>
-                                                                                        <img id="preview2" src={previews.image2 || ''} alt="coming.." width="120" height="80" defaultValue={previews.image2 || ''}/>
+                                                                                        <img id="preview2" src={previews.image2 || ''} alt="coming.." width="120" height="80" defaultValue={previews.image2 || ''} />
                                                                                     </div>
                                                                                     }
                                                                                 </td>
