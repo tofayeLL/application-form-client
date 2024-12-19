@@ -830,10 +830,15 @@ const EditFullProfile = () => {
 
 
     useEffect(() => {
-        fetch('./dist.json')
+        fetch('/dist.json')
             .then(res => res.json())
-            .then(data => setDistrictObject(data))
+            .then(data => setDistrictObject(data)
+            )
+
+
     }, []);
+
+    console.log("from district", districtObject)
 
     for (let d in districtObject) {
         m_dist.push(d);
@@ -893,6 +898,9 @@ const EditFullProfile = () => {
 
     // const axiosPublic = useAxiosPublic();
 
+
+
+    console.log("before update", applicant)
 
 
     const axiosPublic = useAxiosPublic();
@@ -960,28 +968,28 @@ const EditFullProfile = () => {
 
     // Submit Form
 
-    const handleAddUser = async (e) => {
+    const handleUpdateUser = async (e) => {
         e.preventDefault();
 
-        if (applicant.postName <= 0) {
-            Swal.fire({
-                title: 'Warning!',
-                text: 'Please select a post.',
-                icon: 'warning',
-                confirmButtonText: 'OK',
-            });
-            return false;
-        }
-
-        if (applicant.applicantName.length < 3) {
-            Swal.fire({
-                title: 'Warning!',
-                text: 'Please enter a valid name.',
-                icon: 'warning',
-                confirmButtonText: 'OK',
-            });
-            return false;
-        }
+        /*    if (applicant.postName <= 0) {
+               Swal.fire({
+                   title: 'Warning!',
+                   text: 'Please select a post.',
+                   icon: 'warning',
+                   confirmButtonText: 'OK',
+               });
+               return false;
+           }
+   
+           if (applicant.applicantName.length < 3) {
+               Swal.fire({
+                   title: 'Warning!',
+                   text: 'Please enter a valid name.',
+                   icon: 'warning',
+                   confirmButtonText: 'OK',
+               });
+               return false;
+           } */
 
 
         // Validation to check both images
@@ -1025,66 +1033,46 @@ const EditFullProfile = () => {
 
 
 
-            const updateApplicant = {
+            const updatedFields  = {
                 ...applicant,
                 images: { image1: image1Url, image2: image2Url },
                 date: currentDate, // Include the current date
             }
 
 
+            // console.log("before update", updatedFields )
 
 
 
-            fetch('http://localhost:5000/applicantCollection', {
-                method: 'POST',
-                headers: {
-                    'content-type': 'application/json',
-                },
-                body: JSON.stringify(updateApplicant),
-            })
-                .then((res) => res.json())
-                .then((data) => {
-                    if (data.insertedId) {
-                        Swal.fire({
-                            title: 'Success!',
-                            text: 'Your application was successfully submitted.',
-                            icon: 'success',
-                            confirmButtonText: 'OK',
-                        });
-                        setId(data.insertedId);
-                        // Reset the form and images state after submission
-                        setImages({ image1: null, image2: null });
-                        setPreviews({ image1: null, image2: null });
-                        e.target.reset(); // Reset form fields
+            // Make PATCH request to update the applicant data
+            const res = await axiosPublic.patch(`/updateApplicant/${applicantData?._id}`, updatedFields );
 
-                    } else if (data.message) {
-                        Swal.fire({
-                            title: 'Warning!',
-                            text: data.message,
-                            icon: 'warning',
-                            confirmButtonText: 'OK',
-                        });
-                    }
-                }).catch((error) => {
-                    Swal.fire({
-                        title: 'Error!',
-                        text: 'Something went wrong. Please try again.',
-                        icon: 'error',
-                        confirmButtonText: 'OK',
-                    });
-                    console.error('Error:', error);
+            if (res.data.message === 'Update successful') {
+                Swal.fire({
+                    title: 'Success!',
+                    text: 'Your application was successfully updated.',
+                    icon: 'success',
+                    confirmButtonText: 'OK',
                 });
+            } else {
+                Swal.fire({
+                    title: 'Warning!',
+                    text: res.data.message,
+                    icon: 'warning',
+                    confirmButtonText: 'OK',
+                });
+            }
         } catch (error) {
-            // Catch errors during the image upload or `fetch` preparation
             Swal.fire({
                 title: 'Error!',
                 text: 'An unexpected error occurred. Please try again.',
                 icon: 'error',
                 confirmButtonText: 'OK',
             });
-            console.error('Error in try block:', error);
+            console.error('Error:', error);
         }
     };
+
 
 
 
@@ -1104,7 +1092,7 @@ const EditFullProfile = () => {
 
 
             <div className='formWrapper px-[1px]'>
-                <form onSubmit={handleAddUser}>
+                <form onSubmit={handleUpdateUser}>
 
                     <table cellSpacing="0" cellPadding="5" >
                         <tbody>
@@ -1131,18 +1119,18 @@ const EditFullProfile = () => {
                             <tr>
                                 <td>Father's Name <small style={{ color: 'red' }}>*</small></td>
                                 <td>:</td>
-                                <td><input className='inputField' type="text" placeholder=" " name="fname" id="fname" onBlur={handleOnblur} defaultValue={applicantData?.fname}/></td>
+                                <td><input className='inputField' type="text" placeholder=" " name="fname" id="fname" onBlur={handleOnblur} defaultValue={applicantData?.fname} /></td>
                             </tr>
                             <tr>
                                 <td>Mother's Name <small style={{ color: 'red' }}>*</small></td>
                                 <td>:</td>
-                                <td><input className='inputField' type="text" placeholder=" " name="mname" id="mname" onBlur={handleOnblur} defaultValue={applicantData?.mname}/></td>
+                                <td><input className='inputField' type="text" placeholder=" " name="mname" id="mname" onBlur={handleOnblur} defaultValue={applicantData?.mname} /></td>
                             </tr>
                             <tr>
                                 <td>Gender <small style={{ color: 'red' }}>*</small></td>
                                 <td>:</td>
                                 <td>
-                                    <select style={{ padding: '3px', width: '150px' }} name="gender" id="gender" onBlur={handleOnblur}  defaultValue={applicantData?.gender}>
+                                    <select style={{ padding: '3px', width: '150px' }} name="gender" id="gender" onBlur={handleOnblur} defaultValue={applicantData?.gender}>
                                         <option value='0'>Select Gender</option>
                                         <option value='Male'>Male</option>
                                         <option value='Female'>Female</option>
@@ -1196,7 +1184,7 @@ const EditFullProfile = () => {
                                         <option>Foreiner</option>
                                     </select>
                                     <label htmlFor='religion' style={{ marginLeft: '200px' }}> Religion </label>
-                                    <select id='religion' style={{ height: '25px', width: '120px', float: 'right' }} name="religion" onBlur={handleOnblur}>
+                                    <select id='religion' style={{ height: '25px', width: '120px', float: 'right' }} name="religion" onBlur={handleOnblur} defaultValue={applicantData?.religion}>
                                         <option>Select Religion</option>
                                         <option value="Buddhism">Buddhism</option>
                                         <option value="Christianity">Christianity</option>
@@ -1210,12 +1198,12 @@ const EditFullProfile = () => {
                             <tr>
                                 <td>National ID <small style={{ color: 'red' }}>*</small></td>
                                 <td>:</td>
-                                <td><input className='inputField' type="number" placeholder=" " name="NID" id="NID" onBlur={handleOnblur} defaultValue={applicantData?.NID}/></td>
+                                <td><input className='inputField' type="number" placeholder=" " name="NID" id="NID" onBlur={handleOnblur} defaultValue={applicantData?.NID} /></td>
                             </tr>
                             <tr>
                                 <td>Birth Registration No</td>
                                 <td>:</td>
-                                <td><input className='inputField' type="number" placeholder=" " name="b_reg" id="b_reg" onBlur={handleOnblur} defaultValue={applicantData?.b_reg}/></td>
+                                <td><input className='inputField' type="number" placeholder=" " name="b_reg" id="b_reg" onBlur={handleOnblur} defaultValue={applicantData?.b_reg} /></td>
                             </tr>
                             <tr>
                                 <td>Merital Status</td>
@@ -1267,12 +1255,12 @@ const EditFullProfile = () => {
                                                             </tr>
                                                             <tr>
                                                                 <td>Village/Town/Road</td>
-                                                                <td><input type="textarea" name="M_Village" id="M_Village" onBlur={handleOnblur} onChange={e => setVillage(e.target.value)} defaultValue={applicantData?.M_Village}/></td>
+                                                                <td><input type="textarea" name="M_Village" id="M_Village" onBlur={handleOnblur} onChange={e => setVillage(e.target.value)} defaultValue={applicantData?.M_Village} /></td>
                                                             </tr>
                                                             <tr>
                                                                 <td>District</td>
                                                                 <td>
-                                                                    <select style={{ width: '100%' }} name="M_District" id="M_District" onBlur={handleOnblur} onChange={e => setDist(e.target.value)}  defaultValue={applicantData?.M_District}>
+                                                                    <select style={{ width: '100%' }} name="M_District" id="M_District" onBlur={handleOnblur} onChange={e => setDist(e.target.value)}  >
                                                                         <option value="0" >Select District</option>
                                                                         {
                                                                             m_dist.map(d => <option key={d} value={d} >{d}</option>)
@@ -1283,7 +1271,7 @@ const EditFullProfile = () => {
                                                             <tr>
                                                                 <td>Upzilla</td>
                                                                 <td>
-                                                                    <select style={{ width: '100%' }} name="M_Upzilla" id="M_Upzilla" onBlur={handleOnblur} onChange={e => setMupzilla(e.target.value)}  defaultValue={applicantData?.M_Upzilla}>
+                                                                    <select style={{ width: '100%' }} name="M_Upzilla" id="M_Upzilla" onBlur={handleOnblur} onChange={e => setMupzilla(e.target.value)} defaultValue={applicantData?.M_Upzilla}>
                                                                         <option value="0">Select Upzilla</option>
                                                                         {
                                                                             m_upzilla.map(u => <option key={u} value={u}>{u}</option>)
@@ -1293,11 +1281,11 @@ const EditFullProfile = () => {
                                                             </tr>
                                                             <tr>
                                                                 <td>Post Office</td>
-                                                                <td><input type="text" name="M_POffice" id="M_POffice" onBlur={handleOnblur} defaultValue={applicantData?.M_POffice}/></td>
+                                                                <td><input type="text" name="M_POffice" id="M_POffice" onBlur={handleOnblur} defaultValue={applicantData?.M_POffice} /></td>
                                                             </tr>
                                                             <tr>
                                                                 <td>Post Code</td>
-                                                                <td><input type="number" name="M_PCode" id="M_PCode" onBlur={handleOnblur} defaultValue={applicantData?.M_PCode}/></td>
+                                                                <td><input type="number" name="M_PCode" id="M_PCode" onBlur={handleOnblur} defaultValue={applicantData?.M_PCode} /></td>
                                                             </tr>
                                                         </tbody>
                                                     </table>
@@ -1316,11 +1304,11 @@ const EditFullProfile = () => {
                                                             </tr>
                                                             <tr>
                                                                 <td>Care of</td>
-                                                                <td><input type="text" name="P_CareOf" id="P_CareOf" onBlur={handleOnblur} defaultValue={applicantData?.P_CareOf}/></td>
+                                                                <td><input type="text" name="P_CareOf" id="P_CareOf" onBlur={handleOnblur} defaultValue={applicantData?.P_CareOf} /></td>
                                                             </tr>
                                                             <tr>
                                                                 <td>Village/Town/Road</td>
-                                                                <td><input type="text" name="P_Village" id="P_Village" onBlur={handleOnblur} defaultValue={applicantData?.P_Village}/></td>
+                                                                <td><input type="text" name="P_Village" id="P_Village" onBlur={handleOnblur} defaultValue={applicantData?.P_Village} /></td>
                                                             </tr>
                                                             <tr>
                                                                 <td>District</td>
@@ -1346,11 +1334,11 @@ const EditFullProfile = () => {
                                                             </tr>
                                                             <tr>
                                                                 <td>Post Office</td>
-                                                                <td><input type="text" name="P_POffice" id="P_POffice" onBlur={handleOnblur}  defaultValue={applicantData?.P_POffice}/></td>
+                                                                <td><input type="text" name="P_POffice" id="P_POffice" onBlur={handleOnblur} defaultValue={applicantData?.P_POffice} /></td>
                                                             </tr>
                                                             <tr>
                                                                 <td>Post Code</td>
-                                                                <td><input type="number" name="P_PCode" id="P_PCode" onBlur={handleOnblur}  defaultValue={applicantData?.P_PCode} /></td>
+                                                                <td><input type="number" name="P_PCode" id="P_PCode" onBlur={handleOnblur} defaultValue={applicantData?.P_PCode} /></td>
                                                             </tr>
                                                         </tbody>
                                                     </table>
@@ -1374,12 +1362,12 @@ const EditFullProfile = () => {
                             <tr>
                                 <td>Email Address <small style={{ color: 'red' }}>*</small></td>
                                 <td>:</td>
-                                <td><input type='email' className='inputField' name="email" id="email" onBlur={handleOnblur} defaultValue={applicantData?.email}/></td>
+                                <td><input type='email' className='inputField' name="email" id="email" onBlur={handleOnblur} defaultValue={applicantData?.email} /></td>
                             </tr>
                             <tr>
                                 <td>Password <small style={{ color: 'red' }}>*</small></td>
                                 <td>:</td>
-                                <td><input type='password' className='inputField' name="password" id="password" onBlur={handleOnblur} defaultValue={applicantData?.password}/></td>
+                                <td><input type='password' className='inputField' name="password" id="password" onBlur={handleOnblur} defaultValue={applicantData?.password} /></td>
                             </tr>
                             {/* academic qualification  */}
                             <tr>
@@ -1399,7 +1387,7 @@ const EditFullProfile = () => {
                                                             <tr>
                                                                 <td>Examination</td>
                                                                 <td>
-                                                                    <select style={{ width: '100%' }} name="exam1" id="exam1" onBlur={handleOnblur} onChange={e => setExam1(e.target.value)}>
+                                                                    <select style={{ width: '100%' }} name="exam1" id="exam1" onBlur={handleOnblur} onChange={e => setExam1(e.target.value)} defaultValue={applicantData?.exam1}>
                                                                         <option value="0" >Select One</option>
                                                                         <option value="SSC">S.S.C</option>
                                                                         <option value="Dakhil">Dakhil</option>
@@ -1413,7 +1401,7 @@ const EditFullProfile = () => {
                                                             <tr>
                                                                 <td>Board</td>
                                                                 <td>
-                                                                    <select style={{ width: '100%' }} name="board1" id="board1" onBlur={handleOnblur}>
+                                                                    <select style={{ width: '100%' }} name="board1" id="board1" onBlur={handleOnblur} defaultValue={applicantData?.board1}>
                                                                         <option value="0">Select One</option>
                                                                         {
                                                                             ssc_board.map(board => <option key={board} value={board}>{board}</option>)
@@ -1423,12 +1411,12 @@ const EditFullProfile = () => {
                                                             </tr>
                                                             <tr>
                                                                 <td>Roll No</td>
-                                                                <td><input type="text" name="roll1" id="roll1" onBlur={handleOnblur} /></td>
+                                                                <td><input type="text" name="roll1" id="roll1" onBlur={handleOnblur} defaultValue={applicantData?.roll1} /></td>
                                                             </tr>
                                                             <tr>
                                                                 <td>Result</td>
                                                                 <td>
-                                                                    <select style={{ width: '100%' }} name="result1" id="result1" onBlur={handleOnblur} onChange={e => setSsc_gpa(e.target.value)}>
+                                                                    <select style={{ width: '100%' }} name="result1" id="result1" onBlur={handleOnblur} onChange={e => setSsc_gpa(e.target.value)} defaultValue={applicantData?.result1}>
                                                                         <option value="0" >Select One</option>
                                                                         <option value="1st Division">1st Division</option>
                                                                         <option value="2nd Division">2nd Division</option>
@@ -1443,7 +1431,7 @@ const EditFullProfile = () => {
                                                             <tr>
                                                                 <td>Group/Subject</td>
                                                                 <td>
-                                                                    <select style={{ width: '100%' }} name="subject1" id="subject1" onBlur={handleOnblur}>
+                                                                    <select style={{ width: '100%' }} name="subject1" id="subject1" onBlur={handleOnblur} defaultValue={applicantData?.subject1}>
                                                                         <option value="0">Select Subject</option>
                                                                         {
                                                                             ssc1.map(s => <option key={s} value={s}>{s}</option>)
@@ -1454,7 +1442,7 @@ const EditFullProfile = () => {
                                                             <tr>
                                                                 <td>Passing Year</td>
                                                                 <td>
-                                                                    <select style={{ width: '100%' }} name="year1" id="year1" onBlur={handleOnblur}>
+                                                                    <select style={{ width: '100%' }} name="year1" id="year1" onBlur={handleOnblur} defaultValue={applicantData?.year1}>
                                                                         <option value="0" >Select One</option>
                                                                         {
                                                                             pass_year.map(y => <option key={y} value={y}>{y}</option>)
@@ -1478,7 +1466,7 @@ const EditFullProfile = () => {
                                                             <tr>
                                                                 <td>Examination</td>
                                                                 <td>
-                                                                    <select style={{ width: '100%' }} name="exam2" id="exam2" onBlur={handleOnblur} onChange={e => setExam2(e.target.value)}>
+                                                                    <select style={{ width: '100%' }} name="exam2" id="exam2" onBlur={handleOnblur} onChange={e => setExam2(e.target.value)} defaultValue={applicantData?.exam2}>
                                                                         <option value="0" >Select One</option>
                                                                         <option value="HSC">H.S.C</option>
                                                                         <option value="Alim">Alim</option>
@@ -1495,7 +1483,7 @@ const EditFullProfile = () => {
                                                             <tr>
                                                                 <td>Board</td>
                                                                 <td>
-                                                                    <select style={{ width: '100%' }} onBlur={handleOnblur} name="hsc_board" id="hsc_board">
+                                                                    <select style={{ width: '100%' }} onBlur={handleOnblur} name="hsc_board" id="hsc_board" defaultValue={applicantData?.hsc_board}>
                                                                         <option value="0">Select One</option>
                                                                         {
                                                                             ssc_board.map(board => <option key={board} value={board}>{board}</option>)
@@ -1505,12 +1493,12 @@ const EditFullProfile = () => {
                                                             </tr>
                                                             <tr>
                                                                 <td>Roll No</td>
-                                                                <td><input type="text" name="hsc_roll" id="hsc_roll" onBlur={handleOnblur} /></td>
+                                                                <td><input type="text" name="hsc_roll" id="hsc_roll" onBlur={handleOnblur} defaultValue={applicantData?.hsc_roll} /></td>
                                                             </tr>
                                                             <tr>
                                                                 <td>Result</td>
                                                                 <td>
-                                                                    <select style={{ width: '100%' }} name="hsc_result" id="hsc_result" onBlur={handleOnblur} onChange={e => setHsc_gpa(e.target.value)}>
+                                                                    <select style={{ width: '100%' }} name="hsc_result" id="hsc_result" onBlur={handleOnblur} onChange={e => setHsc_gpa(e.target.value)} defaultValue={applicantData?.hsc_result}>
                                                                         <option value="0" >Select One</option>
                                                                         <option value="1st Division">1st Division</option>
                                                                         <option value="2nd Division">2nd Division</option>
@@ -1525,7 +1513,7 @@ const EditFullProfile = () => {
                                                             <tr>
                                                                 <td>Group/Subject</td>
                                                                 <td>
-                                                                    <select style={{ width: '100%' }} name="hsc_subject" id="hsc_subject" onBlur={handleOnblur}>
+                                                                    <select style={{ width: '100%' }} name="hsc_subject" id="hsc_subject" onBlur={handleOnblur} defaultValue={applicantData?.hsc_subject}>
                                                                         <option value="0" >Select One</option>
                                                                         {
                                                                             hsc1.map(h => <option key={h} value={h}>{h}</option>)
@@ -1536,7 +1524,7 @@ const EditFullProfile = () => {
                                                             <tr>
                                                                 <td>Passing Year</td>
                                                                 <td>
-                                                                    <select style={{ width: '100%' }} name="hsc_pass" id="hsc_pass" onBlur={handleOnblur}>
+                                                                    <select style={{ width: '100%' }} name="hsc_pass" id="hsc_pass" onBlur={handleOnblur} defaultValue={applicantData?.hsc_pass}>
                                                                         <option value="0" >Select One</option>
                                                                         {
                                                                             pass_year.map(p => <option key={p} value={p}>{p}</option>)
@@ -1572,7 +1560,7 @@ const EditFullProfile = () => {
                                                             <tr>
                                                                 <td style={{ width: '23%' }}>Examination</td>
                                                                 <td style={{ width: '25%' }}>
-                                                                    <select style={{ width: '100%' }} name="exam3" id="exam3" onBlur={handleOnblur} onChange={e => setExam3(e.target.value)}>
+                                                                    <select style={{ width: '100%' }} name="exam3" id="exam3" onBlur={handleOnblur} onChange={e => setExam3(e.target.value)} defaultValue={applicantData?.exam3}>
                                                                         <option value="0" >Select One</option>
                                                                         <option value="BSC_Engineering">BSC Engineering</option>
                                                                         <option value="BSC_in_Agriculture">BSC In Agriculture</option>
@@ -1589,7 +1577,7 @@ const EditFullProfile = () => {
 
                                                                 <td style={{ width: '23%' }}>Result</td>
                                                                 <td style={{ width: '25%' }}>
-                                                                    <select style={{ width: '100%' }} onBlur={handleOnblur} id="exam3_result1" name="exam3_result" onChange={e => setHnrs_gpa(e.target.value)}>
+                                                                    <select style={{ width: '100%' }} onBlur={handleOnblur} id="exam3_result1" name="exam3_result" onChange={e => setHnrs_gpa(e.target.value)} >
                                                                         <option value="0" >Select One</option>
                                                                         <option value="1st Class">1st Class</option>
                                                                         <option value="2nd Class">2nd Class</option>
@@ -1605,7 +1593,8 @@ const EditFullProfile = () => {
                                                             <tr>
                                                                 <td style={{ width: '23%' }}>Subject/Degree</td>
                                                                 <td style={{ width: '25%' }}>
-                                                                    <select style={{ width: '100%' }} onBlur={handleOnblur} id="exam3_sub" name="exam3_sub">
+                                                                    <select style={{ width: '100%' }} onBlur={handleOnblur} id="exam3_sub" name="exam3_sub"
+                                                                    >
                                                                         <option value="0">Select One</option>
                                                                         {
                                                                             graduate1.map(g => <option key={g} value={g}>{g}</option>)
@@ -1616,7 +1605,7 @@ const EditFullProfile = () => {
                                                                 <td></td>
                                                                 <td style={{ width: '23%' }}>Passing Year</td>
                                                                 <td style={{ width: '25%' }}>
-                                                                    <select style={{ width: '100%' }} onBlur={handleOnblur} id="exam3_passyr" name="exam3_passyr">
+                                                                    <select style={{ width: '100%' }} onBlur={handleOnblur} id="exam3_passyr" name="exam3_passyr" defaultValue={applicantData?.exam3_passyr}>
                                                                         <option value="0">Select One</option>
                                                                         {
                                                                             pass_year.map(py => <option key={py} value={py}>{py}</option>)
@@ -1628,7 +1617,7 @@ const EditFullProfile = () => {
                                                             <tr>
                                                                 <td>University/Institution</td>
                                                                 <td style={{ width: '25%' }}>
-                                                                    <select style={{ width: '100%' }} name="university" id="university" onBlur={handleOnblur}>
+                                                                    <select style={{ width: '100%' }} name="university" id="university" onBlur={handleOnblur} defaultValue={applicantData?.university}>
                                                                         <option value="0">Select One</option>
                                                                         {
                                                                             university.map(u => <option key={u} value={u}>{u}</option>)
@@ -1640,7 +1629,7 @@ const EditFullProfile = () => {
                                                                 <td style={{ width: '2%' }}></td>
                                                                 <td>Course Duration</td>
                                                                 <td style={{ width: '25%' }}>
-                                                                    <select style={{ width: '100%' }} onBlur={handleOnblur} id="exam3_duration" name="exam3_duration">
+                                                                    <select style={{ width: '100%' }} onBlur={handleOnblur} id="exam3_duration" name="exam3_duration" defaultValue={applicantData?.exam3_duration}>
                                                                         <option value="0">Select One</option>
                                                                         <option value="02 Years">02 Years</option>
                                                                         <option value="03 Years">03 Years</option>
@@ -1693,7 +1682,7 @@ const EditFullProfile = () => {
                                                                                         id="image1"
                                                                                         onChange={handleImageChange}
                                                                                         accept="image/*"
-                                                                                        required
+
                                                                                     />{' '}
 
                                                                                     {previews.image1 && <div style={{ width: '300px', marginTop: '10px' }}>
@@ -1723,11 +1712,11 @@ const EditFullProfile = () => {
                                                                                         id="image2"
                                                                                         onChange={handleImageChange}
                                                                                         accept="image/*"
-                                                                                        required
+
                                                                                     />{' '}
 
                                                                                     {previews.image2 && <div style={{ width: '300px', marginTop: '10px' }}>
-                                                                                        <img id="preview2" src={previews.image2 || ''} alt="coming.." width="120" height="80" />
+                                                                                        <img id="preview2" src={previews.image2 || ''} alt="coming.." width="120" height="80" defaultValue={previews.image2 || ''}/>
                                                                                     </div>
                                                                                     }
                                                                                 </td>
@@ -1751,7 +1740,7 @@ const EditFullProfile = () => {
                     </table>
 
                     <br /><br /><br />
-                    <input type="submit" value="Submit" id="submit_btn" disabled style={{ padding: '10px 20px', marginBottom: '20px' }} /> <br />
+                    <input type="submit" value="update" id="submit_btn" disabled style={{ padding: '10px 20px', marginBottom: '20px' }} /> <br />
 
                     {id ? <Link to={`/admitCard/${id}`} style={{ textDecoration: 'none' }}>Print Application</Link> : <p></p>} <br />
 

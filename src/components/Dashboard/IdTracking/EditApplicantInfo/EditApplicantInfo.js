@@ -1,15 +1,35 @@
-import React from 'react';
-import { useHistory, useLocation, useParams } from 'react-router-dom/cjs/react-router-dom.min';
+import React, { useEffect, useState } from 'react';
+import { useHistory,  useParams } from 'react-router-dom/cjs/react-router-dom.min';
+import useAxiosPublic from '../../../../hooks/useAxiosPublic';
 
 const EditApplicantInfo = () => {
-    /* for get id then use like this
-     const { id } = useParams();
-     console.log(id); */
    
-    const location = useLocation();
-    const applicantData = location.state?.applicantData;
-    // console.log(applicantData);
+   
+
+     const { id } = useParams();
      const history = useHistory();
+     console.log("from edit applicant page",id)
+     const axiosPublic = useAxiosPublic();
+
+
+     const [applicantData, setApplicantData] = useState(null);
+
+     // Fetch applicant data when component mounts or on id change
+     useEffect(() => {
+         const fetchApplicantData = async () => {
+             try {
+                 // Replace with the correct API endpoint
+                 const response = await axiosPublic.get(`/singleApplicant/${id}`);
+                 setApplicantData(response.data);  // Set fetched data
+             } catch (error) {
+                 console.error("Error fetching applicant data:", error);
+             }
+         };
+ 
+         fetchApplicantData();
+     }, [id,axiosPublic]); // Re-fetch data when id changes
+
+
 
 
     /* calculate age depends on birthdate to age with month and days also */
