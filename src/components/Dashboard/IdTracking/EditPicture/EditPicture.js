@@ -81,7 +81,7 @@ const EditPicture = () => {
         e.preventDefault();
 
         // Validation to check if at least one image is selected
-        if (!images.image1 && !images.image2) {
+        if (!images?.image1 && !images?.image2) {
             Swal.fire({
                 title: 'Error!',
                 text: 'Please upload at least one image.',
@@ -124,7 +124,7 @@ const EditPicture = () => {
             const currentDate = new Date().toISOString();
 
             const updatedFields = {
-               
+
                 images: { image1: image1Url, image2: image2Url },
                 date: currentDate, // Include the current date
             };
@@ -133,6 +133,17 @@ const EditPicture = () => {
             const res = await axiosPublic.patch(`/updateApplicantImage/${applicantData?._id}`, updatedFields);
 
             if (res.data.message === 'Update successful') {
+
+                // Update the applicant data in the state to reflect the new image links
+                setApplicantData({
+                    ...applicantData,
+                    images: {
+                        image1: image1Url,
+                        image2: image2Url
+                    }
+                });
+
+
                 Swal.fire({
                     title: 'Success!',
                     text: 'Your application was successfully updated.',
@@ -168,14 +179,34 @@ const EditPicture = () => {
 
 
         <section className="container mx-auto p-6">
+            <h2 className="text-2xl font-semibold text-gray-700 mb-6 text-center">
+                Update Profile Picture and Signature
+            </h2>
+            <div class="flex flex-col items-center space-y-4 p-4">
+                {/* <!-- CV Picture --> */}
+                <div class="w-40 h-40 overflow-hidden rounded-md shadow-md">
+                    <img
+                        src={applicantData?.images?.image1}
+                        alt="coming soon.."
+                        class="w-full h-full object-contain"
+                    />
+                </div>
+
+                {/* <!-- Signature Picture --> */}
+                <div class="w-32 h-16 overflow-hidden border-t border-gray-400">
+                    <img
+                        src={applicantData?.images?.image2}
+                        alt="signature coming soon.."
+                        class="w-full h-full object-contain"
+                    />
+                </div>
+            </div>
             <form onSubmit={handleUpdateUser} className="max-w-4xl mx-auto p-6 bg-white shadow-md rounded-lg">
-                <h2 className="text-2xl font-semibold text-gray-700 mb-6 text-center">
-                    Update Profile Picture and Signature
-                </h2>
+
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                     {/* Profile Picture Upload */}
-                    <div className="flex flex-col items-center border border-gray-300 p-4 rounded-lg">
+                    <div className="flex flex-col items-start border border-gray-300 p-4 rounded-lg">
                         <label className="text-lg font-medium text-gray-700 mb-2">
                             Upload Photo
                             <small className="text-red-500"> *(300 x 300 Pixel JPG/PNG)</small>
@@ -190,8 +221,8 @@ const EditPicture = () => {
                    file:mr-4 file:py-2 file:px-4
                    file:rounded-full file:border-0
                    file:text-sm file:font-semibold
-                   file:bg-blue-50 file:text-blue-700
-                   hover:file:bg-blue-100"
+                   file:bg-[#36916f] file:text-white
+                   hover:file:bg-[#236950]"
                         />
                         {previews.image1 && (
                             <div className="mt-4 w-36 h-36 overflow-hidden border border-gray-300 rounded-full">
@@ -199,14 +230,14 @@ const EditPicture = () => {
                                     id="preview1"
                                     src={previews.image1}
                                     alt="Preview"
-                                    className="w-full h-full object-cover"
+                                    className="w-full h-full object-cover "
                                 />
                             </div>
                         )}
                     </div>
 
                     {/* Signature Upload */}
-                    <div className="flex flex-col items-center border border-gray-300 p-4 rounded-lg">
+                    <div className="flex flex-col items-start border border-gray-300 p-4 rounded-lg">
                         <label className="text-lg font-medium text-gray-700 mb-2">
                             Upload Signature
                             <small className="text-red-500"> *(120 x 80 Pixel JPG/PNG)</small>
@@ -221,8 +252,8 @@ const EditPicture = () => {
                    file:mr-4 file:py-2 file:px-4
                    file:rounded-full file:border-0
                    file:text-sm file:font-semibold
-                   file:bg-blue-50 file:text-blue-700
-                   hover:file:bg-blue-100"
+                   file:bg-[#36916f] file:text-white
+                   hover:file:bg-[#236950]"
                         />
                         {previews.image2 && (
                             <div className="mt-4 w-36 h-24 overflow-hidden border border-gray-300 rounded">
@@ -240,7 +271,7 @@ const EditPicture = () => {
                 <div className="mt-8 flex justify-center">
                     <button
                         type="submit"
-                        className="px-6 py-2 bg-blue-600 text-white font-medium rounded hover:bg-blue-700"
+                        className="bg-[#36916f] text-white px-4 py-2 rounded-md hover:bg-[#236950]"
                     >
                         Save Changes
                     </button>

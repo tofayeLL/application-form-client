@@ -924,45 +924,6 @@ const EditFullProfile = () => {
 
 
 
-    const imgbbAPIKey = process.env.REACT_APP_IMAGE_HOSTING_API_KEY; // Replace with your ImageBB API key
-    const imgbbURL = `https://api.imgbb.com/1/upload?key=${imgbbAPIKey}`;
-    // console.log(imgbbAPIKey);
-    // console.log(imgbbURL);
-
-
-    const [images, setImages] = useState({ image1: null, image2: null });
-    const [previews, setPreviews] = useState({ image1: null, image2: null });
-
-
-    // Handle image change
-    const handleImageChange = (e) => {
-        const { name, files } = e.target;
-        const file = files[0];
-        if (file) {
-            // Update the images state
-            setImages((prevImages) => ({
-                ...prevImages,
-                [name]: file,
-            }));
-
-            // Generate a preview URL
-            const reader = new FileReader();
-            reader.onload = () => {
-                setPreviews((prevPreviews) => ({
-                    ...prevPreviews,
-                    [name]: reader.result, // Update the preview URL
-                }));
-            };
-            reader.readAsDataURL(file);
-        }
-    };
-
-    console.log("get up images", images);
-
-
-
-
-
 
 
 
@@ -990,59 +951,31 @@ const EditFullProfile = () => {
 
     const handleUpdateUser = async (e) => {
         e.preventDefault();
-    
-        // Validation to check if at least one image is selected
-        if (!images.image1 && !images.image2) {
-            Swal.fire({
-                title: 'Error!',
-                text: 'Please upload at least one image.',
-                icon: 'error',
-                confirmButtonText: 'OK',
-            });
-            return;
-        }
-    
+
+      
+
         try {
-            // Helper function to upload a single image
-            const uploadImage = async (imageFile) => {
-                const formData = new FormData();
-                formData.append('image', imageFile);
-    
-                const res = await axiosPublic.post(imgbbURL, formData, {
-                    headers: { 'Content-Type': 'multipart/form-data' },
-                });
-    
-                if (!res.data.success) {
-                    throw new Error('Image upload failed');
-                }
-    
-                return res.data.data.display_url;
-            };
-    
-            // Variables to hold image URLs
-            let image1Url = applicantData?.images.image1;
-            let image2Url = applicantData?.images.image2;
-    
-            // Upload the selected images (if any)
-            if (images.image1) {
-                image1Url = await uploadImage(images.image1);
-            }
-            if (images.image2) {
-                image2Url = await uploadImage(images.image2);
-            }
-    
+           
+
+
             // Add current date
             const currentDate = new Date().toISOString();
-    
+
+
+
             const updatedFields = {
-                ...applicantData,
-                images: { image1: image1Url, image2: image2Url },
+                ...applicant,
                 date: currentDate, // Include the current date
-            };
-    
+            }
+
+
+            // console.log("before update", updatedFields )
+
+
+
             // Make PATCH request to update the applicant data
             const res = await axiosPublic.patch(`/updateApplicant/${applicantData?._id}`, updatedFields);
-    
+
             if (res.data.message === 'Update successful') {
                 Swal.fire({
                     title: 'Success!',
@@ -1068,7 +1001,6 @@ const EditFullProfile = () => {
             console.error('Error:', error);
         }
     };
-    
 
 
 
@@ -1657,75 +1589,7 @@ const EditFullProfile = () => {
                                             </tr>
 
 
-                                            {/* photo and signature */}
-                                            <tr>
-                                                <td colSpan="3">
-                                                    <table style={{ width: '100%' }}>
-                                                        <tbody>
-                                                            <tr style={{ backgroundColor: '#dfdfdf' }}>
-                                                                <td style={{ width: '48%' }}>
-                                                                    <table cellPadding="5" style={{ width: '100%', border: '1px solid #99C1D0' }}>
-                                                                        <tbody>
-                                                                            <tr>
-                                                                                <td colSpan="2">Upload Photo <small style={{ color: 'red' }}>*(300 x 300 Pixel JPG/PNG)</small></td>
-                                                                            </tr>
-
-                                                                            <tr>
-                                                                                <td colSpan='2'>
-                                                                                    <input
-
-                                                                                        type="file"
-                                                                                        name="image1"
-                                                                                        id="image1"
-                                                                                        onChange={handleImageChange}
-                                                                                        accept="image/*"
-
-                                                                                    />{' '}
-
-                                                                                    {previews.image1 && <div style={{ width: '300px', marginTop: '10px' }}>
-                                                                                        <img id="preview1" src={previews.image1 || ''} alt="coming.."
-                                                                                            width="120"
-                                                                                            height="80" />
-                                                                                    </div>}
-                                                                                </td>
-                                                                            </tr>
-                                                                        </tbody>
-                                                                    </table>
-                                                                </td>
-                                                                <td style={{ width: '2%', backgroundColor: '#dfdfdf' }}> </td>
-                                                                {/* HSC or Equivalent */}
-                                                                <td style={{ width: '48%' }}>
-                                                                    <table cellPadding="5" style={{ width: '100%', border: '1px solid #99C1D0' }}>
-                                                                        <tbody>
-                                                                            <tr>
-                                                                                <td colSpan="2">Upload Signature <small style={{ color: 'red' }}>*(120 x 80 Pixel JPG/PNG)</small></td>
-                                                                            </tr>
-
-                                                                            <tr>
-                                                                                <td colSpan='2'>
-                                                                                    <input
-                                                                                        type="file"
-                                                                                        name="image2"
-                                                                                        id="image2"
-                                                                                        onChange={handleImageChange}
-                                                                                        accept="image/*"
-
-                                                                                    />{' '}
-
-                                                                                    {previews.image2 && <div style={{ width: '300px', marginTop: '10px' }}>
-                                                                                        <img id="preview2" src={previews.image2 || ''} alt="coming.." width="120" height="80" defaultValue={previews.image2 || ''} />
-                                                                                    </div>
-                                                                                    }
-                                                                                </td>
-                                                                            </tr>
-                                                                        </tbody>
-                                                                    </table>
-                                                                </td>
-                                                            </tr>
-                                                        </tbody>
-                                                    </table>
-                                                </td>
-                                            </tr>
+                                          
                                             <tr>
                                                 <td style={{ textAlign: 'center', paddingTop: '20px' }}><input type="checkbox" id="declare" value="cheked" onClick={sbBtn} /> <small><i>I declare that the above information is correct and I would like to submit</i></small> </td>
                                             </tr>
