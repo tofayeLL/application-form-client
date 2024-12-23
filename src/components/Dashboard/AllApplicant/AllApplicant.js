@@ -67,8 +67,8 @@ const AllApplicant = () => {
                                 <td className="px-6 py-4 border border-gray-300">{item?.app_id}</td> {/* Display date */}
                                 <td className="px-6 py-4 text-center border border-gray-300">{item?.applicantName || 'N/A'}</td> {/* Display date count */}
                                 <td className="px-6 py-4 text-center border border-gray-300">{item?.fname}</td>
-                                <td className="px-6 py-4 text-center border border-gray-300">{item?.p_number || "not available"}</td>
-                                <td className="px-6 py-4 text-right border border-gray-300">{item?.status || "not Available"}</td>
+                                <td className="px-6 py-4 text-center border border-gray-300">{item?.p_number || "N/A"}</td>
+                                <td className="px-6 py-4 text-right border border-gray-300">{item?.status || "unpaid"}</td>
                             </tr>
                         ))}
                     </tbody>

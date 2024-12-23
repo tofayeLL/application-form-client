@@ -146,7 +146,7 @@ const EditPicture = () => {
 
                 Swal.fire({
                     title: 'Success!',
-                    text: 'Your application was successfully updated.',
+                    text: 'Your application image was successfully updated.',
                     icon: 'success',
                     confirmButtonText: 'OK',
                 });
@@ -209,7 +209,7 @@ const EditPicture = () => {
                     <div className="flex flex-col items-start border border-gray-300 p-4 rounded-lg">
                         <label className="text-lg font-medium text-gray-700 mb-2">
                             Upload Photo
-                            <small className="text-red-500"> *(300 x 300 Pixel JPG/PNG)</small>
+                            <small className="text-red-500"> {/* *(300 x 300 Pixel JPG/PNG) */}</small>
                         </label>
                         <input
                             type="file"
@@ -240,7 +240,7 @@ const EditPicture = () => {
                     <div className="flex flex-col items-start border border-gray-300 p-4 rounded-lg">
                         <label className="text-lg font-medium text-gray-700 mb-2">
                             Upload Signature
-                            <small className="text-red-500"> *(120 x 80 Pixel JPG/PNG)</small>
+                            <small className="text-red-500"> {/* *(120 x 80 Pixel JPG/PNG) */}</small>
                         </label>
                         <input
                             type="file"
