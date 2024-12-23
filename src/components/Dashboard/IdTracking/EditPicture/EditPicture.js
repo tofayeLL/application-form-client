@@ -120,13 +120,12 @@ const EditPicture = () => {
                 image2Url = await uploadImage(images.image2);
             }
 
-            // Add current date
-            const currentDate = new Date().toISOString();
+           
 
             const updatedFields = {
 
                 images: { image1: image1Url, image2: image2Url },
-                date: currentDate, // Include the current date
+               
             };
 
             // Make PATCH request to update the applicant data

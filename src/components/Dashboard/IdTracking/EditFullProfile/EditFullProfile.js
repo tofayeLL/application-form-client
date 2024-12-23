@@ -958,14 +958,8 @@ const EditFullProfile = () => {
            
 
 
-            // Add current date
-            const currentDate = new Date().toISOString();
-
-
-
             const updatedFields = {
-                ...applicant,
-                date: currentDate, // Include the current date
+                ...applicant
             }
 
 
