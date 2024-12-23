@@ -921,6 +921,7 @@ const EditFullProfile = () => {
 
 
     console.log("before update", applicant)
+    console.log("before update applicant", applicantData)
 
 
 
