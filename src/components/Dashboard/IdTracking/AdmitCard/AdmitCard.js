@@ -59,7 +59,7 @@ const AdmitCard = () => {
                             />
 
                             <div className="mx-auto w-full flex flex-col justify-center items-center  ">
-                                <Barcode
+                                <Barcode 
                                     value={data?.app_id} // app_id Number for the Barcode
                                     format="CODE128"
                                     width={2}
@@ -69,7 +69,7 @@ const AdmitCard = () => {
                                     lineColor="#000000"
                                 />
 
-                                <p className="text-sm text-gray-600">Date: {data.date.slice(0, 10)}</p>
+                                <p className="text-sm ">Date: {data.date.slice(0, 10)}</p>
                             </div>
                         </div>
                     </div>
@@ -83,7 +83,7 @@ const AdmitCard = () => {
 
                     {/* Main Content */}
                     <div className="">
-                        <h1 className='font-semibold text-lg'>ADMISSION TEST FOR BSC IN POST BASIC NURSING/ BSC IN POST BASIC PUBLIC HEALTH
+                        <h1 className='font-bold text-lg'>ADMISSION TEST FOR BSC IN POST BASIC NURSING/ BSC IN POST BASIC PUBLIC HEALTH
 
                             NURSING - SESSION: 2024-2025</h1>
                         <p className='text-xl font-semibold py-4'>প্রবেশ পত্র (Admit Card)</p>
