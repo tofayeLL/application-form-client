@@ -20,6 +20,8 @@ const EditFullProfile = () => {
 
     const [applicantData, setApplicantData] = useState(null);
     const [loading, setLoading] = useState(true);
+    const [selectedReligion, setSelectedReligion] = useState("");
+    const [selectedDistrict, setSelectedDistrict] = useState("");
 
     // Fetch applicant data when component mounts or on id change
     useEffect(() => {
@@ -28,6 +30,8 @@ const EditFullProfile = () => {
                 // Replace with the correct API endpoint
                 const response = await axiosPublic.get(`/singleApplicant/${applicantId}`);
                 setApplicantData(response.data);  // Set fetched data
+                setSelectedReligion(response.data?.religion || "");
+                setSelectedDistrict(response.data?.M_District || "");
                 setLoading(false); // Set loading to false after data is fetched
             } catch (error) {
                 console.error("Error fetching applicant data:", error);
@@ -37,6 +41,25 @@ const EditFullProfile = () => {
 
         fetchApplicantData();
     }, [applicantId, axiosPublic]); // Re-fetch data when id changes
+
+    // Handle dropdown change
+    const handleReligionChange = (e) => {
+        setSelectedReligion(e.target.value); // Update local state
+        if (handleOnblur) {
+            handleOnblur(e); // Call the parent-provided onBlur handler if exists
+        }
+    };
+
+    // Handle district dropdown change
+    const handleDistrictChange = (e) => {
+        setSelectedDistrict(e.target.value); // Update local state
+        if (handleOnblur) {
+            handleOnblur(e); // Call the parent-provided onBlur handler if exists
+        }
+    };
+
+    console.log(selectedDistrict);
+    console.log("from edit full profil applicant page", applicantData)
 
 
 
@@ -1020,6 +1043,8 @@ const EditFullProfile = () => {
 
 
 
+
+
     return (
         <section>
 
@@ -1119,16 +1144,25 @@ const EditFullProfile = () => {
                                         <option>Bangladeshi</option>
                                         <option>Foreiner</option>
                                     </select>
-                                    <label htmlFor='religion' style={{ marginLeft: '200px' }}> Religion </label>
-                                    <select id='religion' style={{ height: '25px', width: '120px', float: 'right' }} name="religion" onBlur={handleOnblur} defaultValue={applicantData?.religion}>
-                                        <option>Select Religion</option>
+                                    <label htmlFor="religion" style={{ marginLeft: "200px" }}>
+                                        Religion
+                                    </label>
+                                    <select
+                                        id="religion"
+                                        style={{ height: "25px", width: "120px", float: "right" }}
+                                        name="religion"
+                                        onBlur={handleOnblur}
+                                        onChange={handleReligionChange} // Handle change event
+                                        value={selectedReligion} // Bind to local state
+                                    >
+                                        <option value="">Select Religion</option>
                                         <option value="Buddhism">Buddhism</option>
                                         <option value="Christianity">Christianity</option>
                                         <option value="Hinduism">Hinduism</option>
                                         <option value="Islam">Islam</option>
                                         <option value="Others">Others</option>
-
                                     </select>
+
                                 </td>
                             </tr>
                             <tr>
@@ -1196,7 +1230,15 @@ const EditFullProfile = () => {
                                                             <tr>
                                                                 <td>District</td>
                                                                 <td>
-                                                                    <select style={{ width: '100%' }} name="M_District" id="M_District" onBlur={handleOnblur} onChange={e => setDist(e.target.value)}  >
+                                                                    <select
+                                                                        style={{ width: "100%" }}
+                                                                        name="M_District"
+                                                                        id="M_District"
+                                                                        onBlur={handleOnblur}
+                                                                        onChange={handleDistrictChange} // Handle change event
+
+                                                                        value={selectedDistrict} // Bind to local state
+                                                                    >
                                                                         <option value="0" >Select District</option>
                                                                         {
                                                                             m_dist.map(d => <option key={d} value={d} >{d}</option>)
@@ -1206,14 +1248,17 @@ const EditFullProfile = () => {
                                                             </tr>
                                                             <tr>
                                                                 <td>Upzilla</td>
-                                                                <td>
-                                                                    <select style={{ width: '100%' }} name="M_Upzilla" id="M_Upzilla" onBlur={handleOnblur} onChange={e => setMupzilla(e.target.value)} defaultValue={applicantData?.M_Upzilla}>
+                                                                {/* <td>
+                                                                    <select style={{ width: '100%' }} name="M_Upzilla" id="M_Upzilla" onBlur={handleOnblur} onChange={e => setMupzilla(e.target.value)}>
                                                                         <option value="0">Select Upzilla</option>
                                                                         {
                                                                             m_upzilla.map(u => <option key={u} value={u}>{u}</option>)
                                                                         }
                                                                     </select>
-                                                                </td>
+                                                                </td> */}
+
+
+                                                                <td><input type="text" name="M_Upzilla" id="M_Upzilla" onBlur={handleOnblur} defaultValue={applicantData?.M_Upzilla} /></td>
                                                             </tr>
                                                             <tr>
                                                                 <td>Post Office</td>
@@ -1259,14 +1304,18 @@ const EditFullProfile = () => {
                                                             </tr>
                                                             <tr>
                                                                 <td>Upzilla</td>
-                                                                <td>
-                                                                    <select style={{ width: '100%' }} name="P_Upzilla" id="P_Upz" onBlur={handleOnblur} defaultValue={applicantData?.P_Upzilla}>
+                                                                {/*  <td>
+                                                                      <select style={{ width: '100%' }} name="P_Upzilla" id="P_Upz" onBlur={handleOnblur} defaultValue={applicantData?.P_Upzilla}>
                                                                         <option value="0">Select Upzilla</option>
                                                                         {
                                                                             p_upzilla.map(u => <option key={u} value={u}>{u}</option>)
                                                                         }
                                                                     </select>
-                                                                </td>
+
+
+                                                                </td> */}
+
+                                                                <td><input type="text" name="P_Upzilla" id="P_Upz" onBlur={handleOnblur} defaultValue={applicantData?.P_Upzilla} /></td>
                                                             </tr>
                                                             <tr>
                                                                 <td>Post Office</td>
@@ -1621,7 +1670,7 @@ const EditFullProfile = () => {
 
 
 
-        </section>
+        </section >
     );
 };
 
