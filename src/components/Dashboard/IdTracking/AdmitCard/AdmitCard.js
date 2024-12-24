@@ -48,23 +48,23 @@ const AdmitCard = () => {
                     {/* Left Section: Applicant Image and Barcode */}
                     <div className="w-1/3 text-center">
                         <img
-                            src={data.imageUrl}
+                            src={data?.images?.image1}
                             alt="Applicant"
-                            className="w-32 h-32 rounded-full mx-auto border-[1px] border-gray-400"
+                            className="w-32 h-32 rounded-md mx-auto border-[1px] border-gray-400"
                         />
-                        <div className="mt-4">
-                            <div className="mx-auto w-full">
+                    
+                            <div className="mx-auto w-full flex flex-col justify-center items-center my-2 ">
                                 <Barcode
                                     value={data?.app_id} // app_id Number for the Barcode
                                     format="CODE128"
-                                    width={2}
-                                    height={50}
+                                    width={2.5}
+                                    height={35}
                                     displayValue={false}  // This hides the barcode value text below the barcode
                                     background="#ffffff"
                                     lineColor="#000000"
                                 />
-                            </div>
-                            <p className="mt-2 text-sm text-gray-600">{data.date}</p>
+                          
+                            <p className="mt-2 text-sm text-gray-600">Date: {data.date.slice(0,10)}</p>
                         </div>
                     </div>
 
