@@ -1,33 +1,47 @@
 import React, { useEffect, useState } from 'react';
-import { useHistory,  useParams } from 'react-router-dom/cjs/react-router-dom.min';
+import { useHistory, useParams } from 'react-router-dom/cjs/react-router-dom.min';
 import useAxiosPublic from '../../../../hooks/useAxiosPublic';
 
 const EditApplicantInfo = () => {
-   
-   
-
-     const { id } = useParams();
-     const history = useHistory();
-     console.log("from edit applicant page",id)
-     const axiosPublic = useAxiosPublic();
 
 
-     const [applicantData, setApplicantData] = useState(null);
 
-     // Fetch applicant data when component mounts or on id change
-     useEffect(() => {
-         const fetchApplicantData = async () => {
-             try {
-                 // Replace with the correct API endpoint
-                 const response = await axiosPublic.get(`/singleApplicant/${id}`);
-                 setApplicantData(response.data);  // Set fetched data
-             } catch (error) {
-                 console.error("Error fetching applicant data:", error);
-             }
-         };
- 
-         fetchApplicantData();
-     }, [id,axiosPublic]); // Re-fetch data when id changes
+    const { id } = useParams();
+    const history = useHistory();
+    console.log("from edit applicant page", id)
+    const axiosPublic = useAxiosPublic();
+
+
+    const [applicantData, setApplicantData] = useState(null);
+    const [loading, setLoading] = useState(true);
+
+
+    // Fetch applicant data when component mounts or on id change
+    useEffect(() => {
+        const fetchApplicantData = async () => {
+            try {
+                // Replace with the correct API endpoint
+                const response = await axiosPublic.get(`/singleApplicant/${id}`);
+                setApplicantData(response.data);  // Set fetched data
+                setLoading(false); // Set loading to false after data is fetched
+            } catch (error) {
+                console.error("Error fetching applicant data:", error);
+                setLoading(false); // Ensure loading is set to false even on error
+            }
+        };
+
+        fetchApplicantData();
+    }, [id, axiosPublic]); // Re-fetch data when id changes
+
+    if (loading) return <div className="flex flex-col justify-center min-h-screen items-center spinner-container ">
+        <div className="spinner">
+            {/* loading spinner */}
+        </div>
+    </div>
+
+
+
+    console.log("allapplicant data", applicantData);
 
 
 
@@ -126,7 +140,7 @@ const EditApplicantInfo = () => {
     };
 
 
-    
+
 
 
 
@@ -152,15 +166,15 @@ const EditApplicantInfo = () => {
                                             View Full Profile
                                         </button>
                                         {/* button 1 */}
-                                        <button className="block w-40 py-1  font-normal text-white text-center bg-yellow-500 rounded-md hover:bg-[#42a581] transition-colors "  onClick={handleEditFullProfile}>
+                                        <button className="block w-40 py-1  font-normal text-white text-center bg-yellow-500 rounded-md hover:bg-[#42a581] transition-colors " onClick={handleEditFullProfile}>
                                             Edit Full Profile
                                         </button>
                                         {/* button 1 */}
-                                        <button className="block w-40 py-1  font-normal text-white text-center bg-blue-500 rounded-md hover:bg-[#42a581] transition-colors "  onClick={handleEditPicture}>
+                                        <button className="block w-40 py-1  font-normal text-white text-center bg-blue-500 rounded-md hover:bg-[#42a581] transition-colors " onClick={handleEditPicture}>
                                             Edit Picture
                                         </button>
                                         {/* button 1 */}
-                                        <button className="block w-40 py-1  font-normal text-white text-center bg-green-500 rounded-md hover:bg-[#42a581] transition-colors "  onClick={handleEditSignature}>
+                                        <button className="block w-40 py-1  font-normal text-white text-center bg-green-500 rounded-md hover:bg-[#42a581] transition-colors " onClick={handleEditSignature}>
                                             Edit Signature
                                         </button>
                                         {/* button 1 */}

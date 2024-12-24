@@ -4,12 +4,14 @@ import useAxiosPublic from '../../../../hooks/useAxiosPublic';
 
 const ViewProfile = () => {
     const { id } = useParams();
-    console.log("from view profile",id)
+    console.log("from view profile", id)
     const axiosPublic = useAxiosPublic();
 
 
 
     const [applicantData, setApplicantData] = useState(null);
+    const [loading, setLoading] = useState(true);
+
 
     // Fetch applicant data when component mounts or on id change
     useEffect(() => {
@@ -18,13 +20,25 @@ const ViewProfile = () => {
                 // Replace with the correct API endpoint
                 const response = await axiosPublic.get(`/singleApplicant/${id}`);
                 setApplicantData(response.data);  // Set fetched data
+                setLoading(false); // Set loading to false after data is fetched
             } catch (error) {
                 console.error("Error fetching applicant data:", error);
+                setLoading(false); // Ensure loading is set to false even on error
             }
         };
 
         fetchApplicantData();
-    }, [id,axiosPublic]); // Re-fetch data when id changes
+    }, [id, axiosPublic]); // Re-fetch data when id changes
+
+
+    if (loading) return <div className="flex flex-col justify-center min-h-screen items-center spinner-container ">
+        <div className="spinner">
+            {/* loading spinner */}
+        </div>
+    </div>
+
+
+
 
     if (!applicantData) {
         return <div className="text-center text-red-500 py-10">Applicant data not available</div>;
@@ -43,7 +57,7 @@ const ViewProfile = () => {
 
                 {/* Profile Image Section */}
                 <div className="flex flex-col items-center mb-8">
-                    {applicantData.images?.image1 ? (
+                    {applicantData?.images?.image1 ? (
                         <img
                             src={applicantData?.images?.image1 || "N/A"}
                             alt="Profile"
@@ -54,8 +68,8 @@ const ViewProfile = () => {
                             No Image
                         </div>
                     )}
-                    <h2 className="text-2xl font-bold text-gray-800 mt-4">{applicantData.applicantName}</h2>
-                    <p className="text-gray-500">{applicantData.postName}</p>
+                    <h2 className="text-2xl font-bold text-gray-800 mt-4">{applicantData?.applicantName}</h2>
+                    <p className="text-gray-500">{applicantData?.postName}</p>
                 </div>
 
 

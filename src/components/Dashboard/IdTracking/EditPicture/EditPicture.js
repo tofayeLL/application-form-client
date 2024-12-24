@@ -12,6 +12,7 @@ const EditPicture = () => {
 
 
     const [applicantData, setApplicantData] = useState(null);
+    const [loading, setLoading] = useState(true);
 
     const imgbbAPIKey = process.env.REACT_APP_IMAGE_HOSTING_API_KEY; // Replace with your ImageBB API key
     const imgbbURL = `https://api.imgbb.com/1/upload?key=${imgbbAPIKey}`;
@@ -30,13 +31,23 @@ const EditPicture = () => {
                 // Replace with the correct API endpoint
                 const response = await axiosPublic.get(`/singleApplicant/${id}`);
                 setApplicantData(response.data);  // Set fetched data
+                setLoading(false); // Ensure loading is set to false even on error
             } catch (error) {
                 console.error("Error fetching applicant data:", error);
+                setLoading(false); // Ensure loading is set to false even on error
             }
         };
 
         fetchApplicantData();
     }, [id, axiosPublic]); // Re-fetch data when id changes
+
+
+
+    if (loading) return <div className="flex flex-col justify-center min-h-screen items-center spinner-container ">
+        <div className="spinner">
+            {/* loading spinner */}
+        </div>
+    </div>
 
     if (!applicantData) {
         return <div className="text-center text-red-500 py-10">Applicant data not available</div>;
@@ -120,12 +131,12 @@ const EditPicture = () => {
                 image2Url = await uploadImage(images.image2);
             }
 
-           
+
 
             const updatedFields = {
 
                 images: { image1: image1Url, image2: image2Url },
-               
+
             };
 
             // Make PATCH request to update the applicant data
@@ -167,6 +178,10 @@ const EditPicture = () => {
             console.error('Error:', error);
         }
     };
+
+
+
+
 
 
 

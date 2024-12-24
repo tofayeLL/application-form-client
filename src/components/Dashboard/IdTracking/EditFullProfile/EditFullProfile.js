@@ -14,11 +14,12 @@ const EditFullProfile = () => {
     const { id: applicantId } = useParams();
     const axiosPublic = useAxiosPublic();
 
-    console.log("from edit full profil applicant page",applicantId )
+    console.log("from edit full profil applicant page", applicantId)
 
 
 
     const [applicantData, setApplicantData] = useState(null);
+    const [loading, setLoading] = useState(true);
 
     // Fetch applicant data when component mounts or on id change
     useEffect(() => {
@@ -27,13 +28,18 @@ const EditFullProfile = () => {
                 // Replace with the correct API endpoint
                 const response = await axiosPublic.get(`/singleApplicant/${applicantId}`);
                 setApplicantData(response.data);  // Set fetched data
+                setLoading(false); // Set loading to false after data is fetched
             } catch (error) {
                 console.error("Error fetching applicant data:", error);
+                setLoading(false); // Ensure loading is set to false even on error
             }
         };
 
         fetchApplicantData();
     }, [applicantId, axiosPublic]); // Re-fetch data when id changes
+
+
+
 
     const [applicant, setApplicant] = useState({});
     let [id, setId] = useState('');
@@ -952,10 +958,10 @@ const EditFullProfile = () => {
     const handleUpdateUser = async (e) => {
         e.preventDefault();
 
-      
+
 
         try {
-           
+
 
 
             const updatedFields = {
@@ -996,6 +1002,13 @@ const EditFullProfile = () => {
         }
     };
 
+
+
+    if (loading) return <div className="flex flex-col justify-center min-h-screen items-center spinner-container ">
+        <div className="spinner">
+            {/* loading spinner */}
+        </div>
+    </div>
 
 
 
@@ -1583,7 +1596,7 @@ const EditFullProfile = () => {
                                             </tr>
 
 
-                                          
+
                                             <tr>
                                                 <td style={{ textAlign: 'center', paddingTop: '20px' }}><input type="checkbox" id="declare" value="cheked" onClick={sbBtn} /> <small><i>I declare that the above information is correct and I would like to submit</i></small> </td>
                                             </tr>
