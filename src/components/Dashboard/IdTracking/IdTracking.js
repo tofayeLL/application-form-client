@@ -20,7 +20,7 @@ const IdTracking = () => {
         }
 
 
-        try {
+        try { 
             setError('');
             setResult(null);
 
