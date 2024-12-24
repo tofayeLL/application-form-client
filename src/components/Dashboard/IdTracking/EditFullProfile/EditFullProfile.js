@@ -1400,7 +1400,7 @@ const EditFullProfile = () => {
                                                             </tr>
                                                             <tr>
                                                                 <td>Result</td>
-                                                                <td>
+                                                                {/* <td>
                                                                     <select style={{ width: '100%' }} name="result1" id="result1" onBlur={handleOnblur} onChange={e => setSsc_gpa(e.target.value)} defaultValue={applicantData?.result1}>
                                                                         <option value="0" >Select One</option>
                                                                         <option value="1st Division">1st Division</option>
@@ -1411,18 +1411,27 @@ const EditFullProfile = () => {
                                                                     </select>
                                                                     <input type="text" id="ssc_4" name="result1" placeholder='GPA (out of 4)' onBlur={handleOnblur} style={{ display: ssc4_display, marginTop: '5px' }} />
                                                                     <input type="text" id="ssc_5" name="result1" onBlur={handleOnblur} style={{ display: ssc5_display, marginTop: '5px' }} placeholder='GPA (out of 5)' />
-                                                                </td>
+                                                                </td> */}
+
+                                                                <td><input type="number" name="result1" id="result1" onBlur={handleOnblur} defaultValue={applicantData?.result1} /></td>
                                                             </tr>
                                                             <tr>
                                                                 <td>Group/Subject</td>
-                                                                <td>
+                                                                {/* <td>
                                                                     <select style={{ width: '100%' }} name="subject1" id="subject1" onBlur={handleOnblur} defaultValue={applicantData?.subject1}>
                                                                         <option value="0">Select Subject</option>
                                                                         {
                                                                             ssc1.map(s => <option key={s} value={s}>{s}</option>)
                                                                         }
                                                                     </select>
-                                                                </td>
+                                                                </td> */}
+
+
+                                                                <td><input type="text" name="subject1" id="subject1" onBlur={handleOnblur} defaultValue={applicantData?.subject1} /></td>
+
+
+
+
                                                             </tr>
                                                             <tr>
                                                                 <td>Passing Year</td>
@@ -1482,7 +1491,7 @@ const EditFullProfile = () => {
                                                             </tr>
                                                             <tr>
                                                                 <td>Result</td>
-                                                                <td>
+                                                                {/*  <td>
                                                                     <select style={{ width: '100%' }} name="hsc_result" id="hsc_result" onBlur={handleOnblur} onChange={e => setHsc_gpa(e.target.value)} defaultValue={applicantData?.hsc_result}>
                                                                         <option value="0" >Select One</option>
                                                                         <option value="1st Division">1st Division</option>
@@ -1493,18 +1502,24 @@ const EditFullProfile = () => {
                                                                     </select>
                                                                     <input type="text" id="hsc_4" name="hsc_result" placeholder='GPA (out of 4)' onBlur={handleOnblur} style={{ display: hsc4_display, marginTop: '5px' }} />
                                                                     <input type="text" id="hsc_5" name="hsc_result" onBlur={handleOnblur} style={{ display: hsc5_display, marginTop: '5px' }} placeholder='GPA (out of 5)' />
-                                                                </td>
+                                                                </td> */}
+                                                                <td><input type="number" name="hsc_result" id="hsc_result" onBlur={handleOnblur} defaultValue={applicantData?.hsc_result} /></td>
                                                             </tr>
                                                             <tr>
                                                                 <td>Group/Subject</td>
-                                                                <td>
+                                                                {/*  <td>
                                                                     <select style={{ width: '100%' }} name="hsc_subject" id="hsc_subject" onBlur={handleOnblur} defaultValue={applicantData?.hsc_subject}>
                                                                         <option value="0" >Select One</option>
                                                                         {
                                                                             hsc1.map(h => <option key={h} value={h}>{h}</option>)
                                                                         }
                                                                     </select>
-                                                                </td>
+                                                                </td> */}
+
+                                                                <td><input type="text" name="hsc_subject" id="hsc_subject" onBlur={handleOnblur} defaultValue={applicantData?.hsc_subject} /></td>
+
+
+
                                                             </tr>
                                                             <tr>
                                                                 <td>Passing Year</td>
@@ -1561,7 +1576,7 @@ const EditFullProfile = () => {
                                                                 <td></td>
 
                                                                 <td style={{ width: '23%' }}>Result</td>
-                                                                <td style={{ width: '25%' }}>
+                                                                {/*  <td style={{ width: '25%' }}>
                                                                     <select style={{ width: '100%' }} onBlur={handleOnblur} id="exam3_result1" name="exam3_result" onChange={e => setHnrs_gpa(e.target.value)} >
                                                                         <option value="0" >Select One</option>
                                                                         <option value="1st Class">1st Class</option>
@@ -1573,20 +1588,24 @@ const EditFullProfile = () => {
                                                                     </select>
                                                                     <input type="text" id="exam3_result2" name="exam3_result" placeholder='GPA (out of 4)' onBlur={handleOnblur} style={{ display: hnrs4_display, marginTop: '5px' }} />
                                                                     <input type="text" id="exam3_result3" name="exam3_result" onBlur={handleOnblur} style={{ display: hnrs5_display, marginTop: '5px' }} placeholder='GPA (out of 5)' />
-                                                                </td>
+                                                                </td> */}
+                                                                <td><input type="number" onBlur={handleOnblur} id="exam3_result1" name="exam3_result" defaultValue={applicantData?.exam3_result} /></td>
                                                             </tr>
                                                             <tr>
                                                                 <td style={{ width: '23%' }}>Subject/Degree</td>
-                                                                <td style={{ width: '25%' }}>
+                                                                {/*  <td style={{ width: '25%' }}>
                                                                     <select style={{ width: '100%' }} onBlur={handleOnblur} id="exam3_sub" name="exam3_sub"
-                                                                    >
+                                                                    defaultValue={applicantData?.exam3_sub}>
                                                                         <option value="0">Select One</option>
                                                                         {
                                                                             graduate1.map(g => <option key={g} value={g}>{g}</option>)
                                                                         }
 
                                                                     </select>
-                                                                </td>
+                                                                </td> */}
+
+                                                                <td style={{ width: '25%' }} ><input className='w-[100%] pl-[5px]' type="text" onBlur={handleOnblur} id="exam3_sub" name="exam3_sub"
+                                                                    defaultValue={applicantData?.exam3_sub} /></td>
                                                                 <td></td>
                                                                 <td style={{ width: '23%' }}>Passing Year</td>
                                                                 <td style={{ width: '25%' }}>
