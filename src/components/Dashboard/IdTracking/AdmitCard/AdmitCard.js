@@ -91,7 +91,7 @@ const AdmitCard = () => {
                             <h1 className='font-bold text-lg'>ADMISSION TEST FOR BSC IN POST BASIC NURSING/ BSC IN POST BASIC PUBLIC HEALTH
 
                                 NURSING - SESSION: 2024-2025</h1>
-                            <p className='text-xl font-semibold py-4'>প্রবেশ পত্র (Admit Card)</p>
+                            <p className='text-2xl font-semibold pt-7 pb-5'>প্রবেশ পত্র (Admit Card)</p>
 
 
                             {/* Right Section: Applicant Info Table */}
@@ -110,22 +110,22 @@ const AdmitCard = () => {
                                             <td className="px-2 py-1 border border-black" >Roll</td>
                                             <td className="px-2 py-1 border border-black">10037</td>
                                             <td className="px-2 py-1 border border-black">Applicant ID </td>
-                                            <td className="px-2 py-1 border border-black">2324000101</td>
+                                            <td className="px-2 py-1 border border-black">{data?.app_id}</td>
                                         </tr>
                                         <tr className="border-b">
-                                            <td className="px-2 py-1 border border-black" colSpan="2" >Name of Applicant</td>
-                                            <td className="px-2 py-1 border border-black" colSpan="2">EITI AKTER</td>
+                                            <td className="px-2 py-1 border border-black" colSpan="1" >Applicant Name</td>
+                                            <td className="px-2 py-1 border border-black" colSpan="3">{data?.applicantName}</td>
 
                                         </tr>
                                         <tr className="border-b">
                                             <td className="px-2 py-1 border border-black">Father’s Name</td>
-                                            <td className="px-2 py-1 border border-black" colSpan="3">MD. HASAN SIKDER</td>
+                                            <td className="px-2 py-1 border border-black" colSpan="3">{data?.fname}</td>
 
 
                                         </tr>
                                         <tr className="border-b">
                                             <td className="px-2 py-1 border border-black">Mother’s Name</td>
-                                            <td className="px-2 py-1 border border-black" colSpan="3">RAFEZA BEGUM</td>
+                                            <td className="px-2 py-1 border border-black" colSpan="3">{data?.mname}</td>
 
 
                                         </tr>
@@ -166,6 +166,35 @@ const AdmitCard = () => {
                                 <li>পরীক্ষা শেষে পরীক্ষার্থীগণ প্রশ্নপত্র ও উত্তরপত্র একসঙ্গে জমা দিবেন।</li>
                                 <li>পরীক্ষায় কোন প্রকার অসদুপায় অবলম্বন করলে পরীক্ষা বাতিল বলে গণ্য হবে।</li>
                             </ul>
+                        </div>
+
+
+
+                        {/* Signature Section */}
+                        <div className="flex justify-between items-center mt-10 px-6">
+                            {/* Left: Applicant's Signature */}
+                            <div className="flex flex-col justify-center items-center">
+                                <img
+                                    src={data?.images?.image2 || "https://via.placeholder.com/150"} // Replace with applicant signature image URL
+                                    alt="Applicant's Signature"
+                                    className="w-64 h-28 object-contain"
+                                />
+                                <p className="text-base font-medium mt-2 mb-2">(Signature of Applicant)</p>
+                                <p className="font-semibold">Print Date: {data?.date.slice(0, 10)}</p>
+                            </div>
+
+                            {/* Right: Chairman's Signature */}
+                            <div className="flex flex-col justify-center items-center">
+                                <img
+                                    src={data?.images?.image2 || "https://via.placeholder.com/150"} // Replace with chairman signature image URL
+                                    alt="Chairman's Signature"
+                                    className="w-64 h-28 object-contain"
+                                />
+                                <p className="text-base font-medium mt-2">
+                                    মহাপরিচালক <br />
+                                    নার্সিং ও মিডওয়াইফারি অধিদপ্তর
+                                </p>
+                            </div>
                         </div>
 
 
