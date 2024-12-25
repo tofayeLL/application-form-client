@@ -86,7 +86,7 @@ const AdmitCard = () => {
 
 
 
-                        {/* Main Content */}
+                        {/* Main Content table */}
                         <div className="">
                             <h1 className='font-bold text-lg'>ADMISSION TEST FOR BSC IN POST BASIC NURSING/ BSC IN POST BASIC PUBLIC HEALTH
 
@@ -95,37 +95,60 @@ const AdmitCard = () => {
 
 
                             {/* Right Section: Applicant Info Table */}
-                            <div >
-                                <table className="w-full border-collapse text-start">
-                                    <tbody>
-                                        <tr>
-                                            <td className="p-2 font-medium border border-black">Applicant Name:</td>
-                                            <td className="p-2 border border-black">{data.applicantName}</td>
+                            <div className="overflow-x-auto">
+                                <table className="w-full border border-black text-sm bg-white text-left">
+                                    {/*   <thead>
+                <tr className=" border-b">
+                    <th className="p-2 font-medium border border-black">Field 1</th>
+                    <th className="p-2 font-medium border border-black">Field 2</th>
+                    <th className="p-2 font-medium border border-black">Field 3</th>
+                    <th className="p-2 font-medium border border-black">Field 4</th>
+                </tr>
+            </thead> */}
+                                    <tbody className='font-semibold text-base'>
+                                        <tr className="border-b">
+                                            <td className="px-2 py-1 border border-black" >Roll</td>
+                                            <td className="px-2 py-1 border border-black">10037</td>
+                                            <td className="px-2 py-1 border border-black">Applicant ID </td>
+                                            <td className="px-2 py-1 border border-black">2324000101</td>
+                                        </tr>
+                                        <tr className="border-b">
+                                            <td className="px-2 py-1 border border-black" colSpan="2" >Name of Applicant</td>
+                                            <td className="px-2 py-1 border border-black" colSpan="2">EITI AKTER</td>
+
+                                        </tr>
+                                        <tr className="border-b">
+                                            <td className="px-2 py-1 border border-black">Father’s Name</td>
+                                            <td className="px-2 py-1 border border-black" colSpan="3">MD. HASAN SIKDER</td>
+
+
+                                        </tr>
+                                        <tr className="border-b">
+                                            <td className="px-2 py-1 border border-black">Mother’s Name</td>
+                                            <td className="px-2 py-1 border border-black" colSpan="3">RAFEZA BEGUM</td>
+
+
+                                        </tr>
+                                        <tr className="border-b">
+
+                                            <td className="px-2 py-1 border border-black">Exam Centre</td>
+                                            <td className="px-2 py-1 border border-black" colSpan="3">
+                                                Government Titumir College, Mohakhali, Dhaka
+                                            </td>
                                         </tr>
                                         <tr>
-                                            <td className="p-2 font-medium border border-black">Roll:</td>
-                                            <td className="p-2 border border-black">{data.roll}</td>
-                                        </tr>
-                                        <tr>
-                                            <td className="p-2 font-medium border border-black">Post Name:</td>
-                                            <td className="p-2 border border-black">{data.postName}</td>
-                                        </tr>
-                                        <tr>
-                                            <td className="p-2 font-medium border border-black">Email:</td>
-                                            <td className="p-2 border border-black">{data.email}</td>
-                                        </tr>
-                                        <tr>
-                                            <td className="p-2 font-medium border border-black">Phone Number:</td>
-                                            <td className="p-2 border border-black">{data.cp_number}</td>
-                                        </tr>
-                                        <tr>
-                                            <td className="p-2 font-medium border border-black">Applicant ID:</td>
-                                            <td className="p-2 border border-black">{data.app_id}</td>
+                                            <td className="px-2 py-1 border border-black">Course Name</td>
+                                            <td className="px-2 py-1 border border-black" colSpan="3">
+                                                BSC IN POST BASIC NURSING / BSC IN POST BASIC PUBLIC HEALTH NURSING
+                                            </td>
                                         </tr>
                                     </tbody>
                                 </table>
                             </div>
                         </div>
+
+
+                        <p className='text-xl font-bold pb-6 pt-6'>পরীক্ষার তারিখ ও সময়: ২৪মে ২০২৪, সকাল ১০.০০-১১:০০ ঘটিকা পর্যন্তর্য ।</p>
 
 
                         {/* Rules and Regulations */}

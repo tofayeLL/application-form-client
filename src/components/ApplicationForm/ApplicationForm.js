@@ -1640,9 +1640,12 @@ const ApplicationForm = () => {
                                                     <tbody>
                                                         <tr style={{ backgroundColor: '#bfdfbf' }}>
                                                             <td colSpan="5">Departmental Candidate Status
-                                                                <select style={{ marginLeft: '80px', width: '200px' }}>
-                                                                    <option>Select One</option>
-                                                                </select>
+                                                            <select  style={{ marginLeft: '80px', width: '200px' }} name="d_candidate" id="d_candidate" onBlur={handleOnblur} >
+                                                                        <option value='0'>Select One</option>
+                                                                        <option value='yes'>yes</option>
+                                                                        <option value='no'>no</option>
+                                                                     
+                                                                    </select>
                                                             </td>
                                                         </tr>
                                                     </tbody>
