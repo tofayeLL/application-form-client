@@ -1015,12 +1015,15 @@ const ApplicationForm = () => {
             // Add current date
             const currentDate = new Date().toISOString();
 
+            const status = "Unpaid"
+
 
 
             const updateApplicant = {
                 ...applicant,
                 images: { image1: image1Url, image2: image2Url },
                 date: currentDate, // Include the current date
+                status
             }
 
 
