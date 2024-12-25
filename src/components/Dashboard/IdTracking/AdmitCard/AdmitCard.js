@@ -1,14 +1,51 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Barcode from 'react-barcode';
-import { useLocation, useParams } from 'react-router-dom/cjs/react-router-dom.min';
+import { useParams } from 'react-router-dom/cjs/react-router-dom.min';
 import govt_logo from '../../../../assets/images/govt_logo.png'
+import useAxiosPublic from '../../../../hooks/useAxiosPublic';
 
 const AdmitCard = () => {
 
     const { id } = useParams();
-    const location = useLocation();
-    const applicantData = location?.state?.applicantData;
-    console.log("from Admit Card", id, applicantData);
+    console.log("from view profile", id)
+    const axiosPublic = useAxiosPublic();
+
+
+
+    const [applicantData, setApplicantData] = useState(null);
+    const [loading, setLoading] = useState(true);
+
+
+    // Fetch applicant data when component mounts or on id change
+    useEffect(() => {
+        const fetchApplicantData = async () => {
+            try {
+                // Replace with the correct API endpoint
+                const response = await axiosPublic.get(`/singleApplicant/${id}`);
+                setApplicantData(response.data);  // Set fetched data
+                setLoading(false); // Set loading to false after data is fetched
+            } catch (error) {
+                console.error("Error fetching applicant data:", error);
+                setLoading(false); // Ensure loading is set to false even on error
+            }
+        };
+
+        fetchApplicantData();
+    }, [id, axiosPublic]); // Re-fetch data when id changes
+
+
+    if (loading) return <div className="flex flex-col justify-center min-h-screen items-center spinner-container ">
+        <div className="spinner">
+            {/* loading spinner */}
+        </div>
+    </div>
+
+
+
+
+    if (!applicantData) {
+        return <div className="text-center text-red-500 py-10">Applicant data not available</div>;
+    }
 
     // Placeholder data if no applicant data is passed
     const placeholderData = {
@@ -52,7 +89,16 @@ const AdmitCard = () => {
                                     <h2 className="text-xl font-bold mt-4">গণপ্রজাতন্ত্রী বাংলাদেশ সরকার</h2>
                                     <h3 className="text-xl font-semibold">নার্সিং ও মিডওয়াইফারি অধিদপ্তর</h3>
                                     <p className="font-semibold">মহাখালী, ঢাকা</p>
-                                    <p className="">www.dgnm.gov.bd</p>
+                                    <p>
+                                        <a
+                                            href="http://www.dgnm.gov.bd"
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            className="cursor-pointer font-semibold"
+                                        >
+                                            www.dgnm.gov.bd
+                                        </a>
+                                    </p>
                                 </div>
 
                                 {/* Applicant Image Section and barcode */}
