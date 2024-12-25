@@ -1651,10 +1651,20 @@ const EditFullProfile = () => {
                                                 <td>
                                                     <table cellPadding="5">
                                                         <tbody>
-                                                            <tr style={{ backgroundColor: '#bfdfbf' }}>
+                                                            {/*  <tr style={{ backgroundColor: '#bfdfbf' }}>
                                                                 <td colSpan="5">Departmental Candidate Status
                                                                     <select style={{ marginLeft: '80px', width: '200px' }}>
                                                                         <option>Select One</option>
+                                                                    </select>
+                                                                </td>
+                                                            </tr> */}
+                                                            <tr style={{ backgroundColor: '#bfdfbf' }}>
+                                                                <td colSpan="5">Departmental Candidate Status
+                                                                    <select style={{ marginLeft: '80px', width: '200px' }} name="d_candidate" id="d_candidate" onBlur={handleOnblur}  defaultValue={applicantData?.d_candidate}>
+                                                                        <option value='0'>Select One</option>
+                                                                        <option value='yes'>yes</option>
+                                                                        <option value='no'>no</option>
+
                                                                     </select>
                                                                 </td>
                                                             </tr>
