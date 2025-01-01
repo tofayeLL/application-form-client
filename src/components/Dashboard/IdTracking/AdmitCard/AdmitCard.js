@@ -35,7 +35,7 @@ const AdmitCard = () => {
         const element = document.getElementById('admit-card');
     
         const opt = {
-            margin: [10, 10],  // Adjust margins to fit the content
+            margin: [10, 10, 10 , 10],  // Adjust margins to fit the content
             filename: 'admit_card.pdf',
             image: { type: 'jpeg', quality: 0.98 },
             html2canvas: {
