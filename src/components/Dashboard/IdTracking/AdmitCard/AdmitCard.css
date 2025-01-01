@@ -1,0 +1,25 @@
+#admit-card {
+    width: 100%; /* Make the content stretch to full width */
+    max-width: 210mm; /* Set the max width for A4 size */
+    height: auto;
+    page-break-before: auto;
+    page-break-after: auto;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+}
+
+
+
+table {
+    width: 100%; /* Ensure table takes up full width */
+    border-collapse: collapse;
+}
+
+td, th {
+    padding: 8px;
+    text-align: left;
+    border: 1px solid #000;
+}
