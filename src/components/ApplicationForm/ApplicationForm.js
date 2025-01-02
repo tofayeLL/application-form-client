@@ -27,6 +27,7 @@ const ApplicationForm = () => {
     const [canImg, setCanImg] = useState(null);
     const [canSign, setCanSign] = useState(null);
 
+
     // const [isDisable, setIsDisable] = ('');
     // const [isDisabled] = ([]);
 
@@ -898,6 +899,40 @@ const ApplicationForm = () => {
     const [previews, setPreviews] = useState({ image1: null, image2: null });
 
 
+
+    /* select your colleges choices code */
+    const [selectedColleges, setSelectedColleges] = useState({
+        firstChoice: null,
+        secondChoice: null,
+        thirdChoice: null,
+    });
+
+    // Dummy college list (you can replace this with an actual list from an API or data source)
+    const collegeList = [
+        "Harvard University",
+        "Stanford University",
+        "MIT",
+        "Yale University",
+        "Princeton University",
+        "University of California, Berkeley",
+    ];
+
+    // Handle changing a selection
+    const handleCollegeSelect = (choice, college) => {
+        setSelectedColleges({
+            ...selectedColleges,
+            [choice]: college,
+        });
+    };
+
+    // Now you have the object with the 3 colleges
+    console.log("Selected Colleges: ", selectedColleges);
+
+
+
+
+
+
     // Handle image change
     const handleImageChange = (e) => {
         const { name, files } = e.target;
@@ -1640,12 +1675,12 @@ const ApplicationForm = () => {
                                                     <tbody>
                                                         <tr style={{ backgroundColor: '#bfdfbf' }}>
                                                             <td colSpan="5">Departmental Candidate Status
-                                                            <select  style={{ marginLeft: '80px', width: '200px' }} name="d_candidate" id="d_candidate" onBlur={handleOnblur} >
-                                                                        <option value='0'>Select One</option>
-                                                                        <option value='yes'>yes</option>
-                                                                        <option value='no'>no</option>
-                                                                     
-                                                                    </select>
+                                                                <select style={{ marginLeft: '80px', width: '200px' }} name="d_candidate" id="d_candidate" onBlur={handleOnblur} >
+                                                                    <option value='0'>Select One</option>
+                                                                    <option value='yes'>yes</option>
+                                                                    <option value='no'>no</option>
+
+                                                                </select>
                                                             </td>
                                                         </tr>
                                                     </tbody>
@@ -1727,11 +1762,138 @@ const ApplicationForm = () => {
                                             <td style={{ textAlign: 'center', paddingTop: '20px' }}><input type="checkbox" id="declare" value="cheked" onClick={sbBtn} /> <small><i>I declare that the above information is correct and I would like to submit</i></small> </td>
                                         </tr>
                                     </tbody>
+
+
+
+
+
+
+                                    {/* college choices  */}
+
+                                    <div className="bg-gray-100 p-4 rounded-lg w-1/3 ">
+                                        <h3 className="text-2xl font-semibold text-blue-600 mb-4">Selected Colleges:</h3>
+                                        <ul className="space-y-4">
+                                            {selectedColleges.firstChoice && (
+                                                <li className="flex items-center space-x-2">
+                                                    <span className="w-6 h-6 bg-blue-500 text-white rounded-full flex items-center justify-center font-bold">1</span>
+                                                    <span className="text-lg">{selectedColleges.firstChoice}</span>
+                                                </li>
+                                            )}
+                                            {selectedColleges.secondChoice && (
+                                                <li className="flex items-center space-x-2">
+                                                    <span className="w-6 h-6 bg-green-500 text-white rounded-full flex items-center justify-center font-bold">2</span>
+                                                    <span className="text-lg">{selectedColleges.secondChoice}</span>
+                                                </li>
+                                            )}
+                                            {selectedColleges.thirdChoice && (
+                                                <li className="flex items-center space-x-2">
+                                                    <span className="w-6 h-6 bg-yellow-500 text-white rounded-full flex items-center justify-center font-bold">3</span>
+                                                    <span className="text-lg">{selectedColleges.thirdChoice}</span>
+                                                </li>
+                                            )}
+                                        </ul>
+                                    </div>
+
+
+                                    <div className="space-y-6 my-4">
+                                        <h3 className="text-xl font-semibold">Select Your Colleges (Up to 3):</h3>
+
+                                        {/* First Choice Dropdown */}
+                                        <div>
+                                            <label htmlFor="firstChoice" className="block text-lg font-medium">1st Choice:</label>
+                                            <select
+                                                id="firstChoice"
+                                                onChange={(e) => handleCollegeSelect('firstChoice', e.target.value)}
+                                                value={selectedColleges.firstChoice || ""}
+                                                className="w-1/3  mt-2 p-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500"
+                                            >
+                                                <option value="">Select a college</option>
+                                                {collegeList
+                                                    .filter(college => college !== selectedColleges.secondChoice && college !== selectedColleges.thirdChoice)
+                                                    .map((college, index) => (
+                                                        <option key={index} value={college}>
+                                                            {college}
+                                                        </option>
+                                                    ))}
+                                            </select>
+                                        </div>
+
+                                        {/* Second Choice Dropdown */}
+                                        <div>
+                                            <label htmlFor="secondChoice" className="block text-lg font-medium">2nd Choice:</label>
+                                            <select
+                                                id="secondChoice"
+                                                onChange={(e) => handleCollegeSelect('secondChoice', e.target.value)}
+                                                value={selectedColleges.secondChoice || ""}
+                                                className="w-1/3  mt-2 p-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500"
+                                            >
+                                                <option value="">Select a college</option>
+                                                {collegeList
+                                                    .filter(college => college !== selectedColleges.firstChoice && college !== selectedColleges.thirdChoice)
+                                                    .map((college, index) => (
+                                                        <option key={index} value={college}>
+                                                            {college}
+                                                        </option>
+                                                    ))}
+                                            </select>
+                                        </div>
+
+                                        {/* Third Choice Dropdown */}
+                                        <div>
+                                            <label htmlFor="thirdChoice" className="block text-lg font-medium">3rd Choice:</label>
+                                            <select
+                                                id="thirdChoice"
+                                                onChange={(e) => handleCollegeSelect('thirdChoice', e.target.value)}
+                                                value={selectedColleges.thirdChoice || ""}
+                                                className="w-1/3 mt-2 p-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500"
+                                            >
+                                                <option value="">Select a college</option>
+                                                {collegeList
+                                                    .filter(college => college !== selectedColleges.firstChoice && college !== selectedColleges.secondChoice)
+                                                    .map((college, index) => (
+                                                        <option key={index} value={college}>
+                                                            {college}
+                                                        </option>
+                                                    ))}
+                                            </select>
+                                        </div>
+                                    </div>
+
+
+
+
+
+
+
+
+
+
+
+
                                 </table>
                             </td>
                         </tr>
                     </tbody>
                 </table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
                 <br /><br /><br />
                 <input type="submit" value="Submit" id="submit_btn" disabled style={{ padding: '10px 20px', marginBottom: '20px' }} /> <br />
