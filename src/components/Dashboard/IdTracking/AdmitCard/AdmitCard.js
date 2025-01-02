@@ -13,7 +13,7 @@ const AdmitCard = () => {
     const [applicantData, setApplicantData] = useState(null);
     const [loading, setLoading] = useState(true);
 
-    const [isPdfGenerated, setIsPdfGenerated] = useState(false);
+    // const [isPdfGenerated, setIsPdfGenerated] = useState(false);
 
     // Fetch applicant data when component mounts or on id change
     useEffect(() => {
@@ -61,7 +61,7 @@ const AdmitCard = () => {
 
         // Trigger the PDF download
         html2pdf().from(element).set(opt).save();
-        setIsPdfGenerated(true);
+        // setIsPdfGenerated(true);
     };
 
 
@@ -89,16 +89,21 @@ const AdmitCard = () => {
     return (
         <section>
             <h1>Admit Card page</h1>
-            {!isPdfGenerated && (
-                <button
-                    className="bg-blue-500 text-white py-2 px-4  rounded"
-                    onClick={generatePDF}
-                >
-                    Download Admit Card as PDF
-                </button>
+            {/* !isPdfGenerated && */ (
+                <div className=''>
+                    <button
+                        className="bg-blue-500 text-white py-2 px-4  rounded "
+                        onClick={generatePDF}
+                    >
+                        Download Admit Card
+                    </button>
+                </div>
             )}
 
+
             <section className="min-h-screen flex justify-center items-center bg-gray-100" >
+
+
                 {/* container */}
                 <div className="bg-white shadow-lg w-[800px] border-[1px] border-gray-100" id="admit-card">
                     {/* content container */}
@@ -155,7 +160,7 @@ const AdmitCard = () => {
                         {/* Right Section: Applicant Info Table */}
                         <div className="overflow-x-auto">
                             <table className="w-full border border-black text-sm bg-white text-left">
-  
+
                                 <tbody className='font-semibold text-base '>
                                     <tr className="border-b">
                                         <td className="px-2 py-1 border border-black" >Roll</td>
