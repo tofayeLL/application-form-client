@@ -4,7 +4,7 @@ import { useParams } from 'react-router-dom/cjs/react-router-dom.min';
 import govt_logo from '../../../../assets/images/govt_logo.png';
 import useAxiosPublic from '../../../../hooks/useAxiosPublic';
 import html2pdf from 'html2pdf.js';
-import "./AdmitCard"
+import "./AdmitCard.css"
 
 const AdmitCard = () => {
     const { id } = useParams();
@@ -33,9 +33,9 @@ const AdmitCard = () => {
 
     const generatePDF = () => {
         const element = document.getElementById('admit-card');
-    
+
         const opt = {
-            margin: [10, 10, 10 , 10],  // Adjust margins to fit the content
+            margin: 0,  // Adjust margins to fit the content
             filename: 'admit_card.pdf',
             image: { type: 'jpeg', quality: 0.98 },
             html2canvas: {
@@ -58,14 +58,14 @@ const AdmitCard = () => {
                 auto: true, // Ensures content scales to fit the page
             },
         };
-    
+
         // Trigger the PDF download
         html2pdf().from(element).set(opt).save();
         setIsPdfGenerated(true);
     };
-    
-     
-    
+
+
+
 
     if (loading) return <div className="flex flex-col justify-center min-h-screen items-center spinner-container "><div className="spinner"></div></div>;
 
@@ -150,20 +150,13 @@ const AdmitCard = () => {
 
                         {/* Main Content table */}
                         <h1 className='font-bold text-lg text-center'>ADMISSION TEST FOR BSC IN POST BASIC NURSING</h1>
-                        <p className='text-2xl font-semibold  pb-3 text-center'>প্রবেশ পত্র (Admit Card)</p>
+                        <p className='text-2xl font-semibold pt-1  pb-3 text-center'>প্রবেশ পত্র (Admit Card)</p>
 
                         {/* Right Section: Applicant Info Table */}
                         <div className="overflow-x-auto">
                             <table className="w-full border border-black text-sm bg-white text-left">
-                                {/*   <thead>
-                <tr className=" border-b">
-                    <th className="p-2 font-medium border border-black">Field 1</th>
-                    <th className="p-2 font-medium border border-black">Field 2</th>
-                    <th className="p-2 font-medium border border-black">Field 3</th>
-                    <th className="p-2 font-medium border border-black">Field 4</th>
-                </tr>
-            </thead> */}
-                                <tbody className='font-semibold text-base'>
+  
+                                <tbody className='font-semibold text-base '>
                                     <tr className="border-b">
                                         <td className="px-2 py-1 border border-black" >Roll</td>
                                         <td className="px-2 py-1 border border-black">10037</td>
@@ -203,52 +196,52 @@ const AdmitCard = () => {
                                 </tbody>
                             </table>
                         </div>
-                 
-                    <p className='text-xl font-bold pb-2 pt-4'>পরীক্ষার তারিখ ও সময়: ২৪মে ২০২৪, সকাল ১০.০০-১১:০০ ঘটিকা পর্যন্ত</p>
 
-                    {/* Rules and Regulations */}
-                    <h3 className="text-lg font-semibold mb-3 text-center underline mt-4 mr-32">পরীক্ষার্থীদের জন্য আবশ্যকীয় শর্তাবলী এবং নির্দেশাবলী:</h3>
-                    <div className="mt-4 flex flex-col justify-center items-center">
-                        <ul className="list-disc pl-6 text-sm  space-y-2 text-start">
-                            <li>পরীক্ষার্থীদের উত্তরপত্র পূরণের জন্য কালোকালির বলপয়েন্ট কলম ব্যবহার করতে হবে।</li>
-                            <li>পরীক্ষার্থীদের অবশ্যই পরীক্ষা কেন্দ্রের সকল নিয়ম মেনে চলতে হবে।</li>
-                            <li>পরীক্ষার হলে মোবাইল ফোন, ক্যালকুলেটর, ঘড়ি এবং কোন ধরণের ইলেকট্রনিক্স ডিভাইস আনা যাবে না।</li>
-                            <li>পরীক্ষা শুরু হবার কমপক্ষে ৩০ মিনিট আগে পরীক্ষা কেন্দ্রে উপস্থিত হতে হবে।</li>
-                            <li>পরীক্ষা শুরু হবার পরে কোন পরীক্ষার্থীকে হলে বা কক্ষে প্রবেশ করতে দেয়া হবে না।</li>
-                            <li>পরীক্ষা শেষ না হওয়া পর্যন্ত কোন পরীক্ষার্থী হল বা কক্ষ ত্যাগ করতে পারবে না।</li>
-                            <li>উত্তরপত্র কাঁটা কাঁ ছেড়া, ঘষামাজা ও ভাঁজভাঁ করা যাবে না।</li>
-                            <li>পরীক্ষা শেষে পরীক্ষার্থীগণ প্রশ্নপত্র ও উত্তরপত্র একসঙ্গে জমা দিবেন।</li>
-                            <li>পরীক্ষায় কোন প্রকার অসদুপায় অবলম্বন করলে পরীক্ষা বাতিল বলে গণ্য হবে।</li>
-                        </ul>
+                        <p className='text-xl font-bold  pt-2'>পরীক্ষার তারিখ ও সময়: ২৪মে ২০২৪, সকাল ১০.০০-১১:০০ ঘটিকা পর্যন্ত</p>
+
+                        {/* Rules and Regulations */}
+                        <h3 className="text-lg font-semibold mb-2 text-center underline mt-2 mr-32">পরীক্ষার্থীদের জন্য আবশ্যকীয় শর্তাবলী এবং নির্দেশাবলী:</h3>
+                        <div className="mt-3 mb-2 flex flex-col justify-center items-center">
+                            <ul className="list-disc pl-6 text-sm  space-y-2 text-start">
+                                <li>পরীক্ষার্থীদের উত্তরপত্র পূরণের জন্য কালোকালির বলপয়েন্ট কলম ব্যবহার করতে হবে।</li>
+                                <li>পরীক্ষার্থীদের অবশ্যই পরীক্ষা কেন্দ্রের সকল নিয়ম মেনে চলতে হবে।</li>
+                                <li>পরীক্ষার হলে মোবাইল ফোন, ক্যালকুলেটর, ঘড়ি এবং কোন ধরণের ইলেকট্রনিক্স ডিভাইস আনা যাবে না।</li>
+                                <li>পরীক্ষা শুরু হবার কমপক্ষে ৩০ মিনিট আগে পরীক্ষা কেন্দ্রে উপস্থিত হতে হবে।</li>
+                                <li>পরীক্ষা শুরু হবার পরে কোন পরীক্ষার্থীকে হলে বা কক্ষে প্রবেশ করতে দেয়া হবে না।</li>
+                                <li>পরীক্ষা শেষ না হওয়া পর্যন্ত কোন পরীক্ষার্থী হল বা কক্ষ ত্যাগ করতে পারবে না।</li>
+                                <li>উত্তরপত্র কাঁটা কাঁ ছেড়া, ঘষামাজা ও ভাঁজভাঁ করা যাবে না।</li>
+                                <li>পরীক্ষা শেষে পরীক্ষার্থীগণ প্রশ্নপত্র ও উত্তরপত্র একসঙ্গে জমা দিবেন।</li>
+                                <li>পরীক্ষায় কোন প্রকার অসদুপায় অবলম্বন করলে পরীক্ষা বাতিল বলে গণ্য হবে।</li>
+                            </ul>
+                        </div>
+
+                        {/* Signature Section */}
+                        <div className="flex justify-between items-center  px-6">
+                            <div className="flex flex-col justify-center items-center">
+                                <img
+                                    src={data?.images?.image2 || "https://via.placeholder.com/150"}
+                                    alt="Applicant's Signature"
+                                    className="w-64 h-20 object-contain"
+                                />
+                                <p className="text-base font-medium mt-2 mb-2">(Signature of Applicant)</p>
+                                <p className="font-semibold">Print Date: {data?.date.slice(0, 10)}</p>
+                            </div>
+                            <div className="flex flex-col justify-center items-center">
+                                <img
+                                    src={data?.images?.image2 || "https://via.placeholder.com/150"}
+                                    alt="Chairman's Signature"
+                                    className="w-64 h-20 object-contain"
+                                />
+                                <p className="text-base font-medium mt-2">
+                                    মহাপরিচালক <br />
+                                    নার্সিং ও মিডওয়াইফারি অধিদপ্তর
+                                </p>
+                            </div>
+                        </div>
                     </div>
 
-                    {/* Signature Section */}
-                    <div className="flex justify-between items-center mt-2 px-6">
-                        <div className="flex flex-col justify-center items-center">
-                            <img
-                                src={data?.images?.image2 || "https://via.placeholder.com/150"}
-                                alt="Applicant's Signature"
-                                className="w-64 h-28 object-contain"
-                            />
-                            <p className="text-base font-medium mt-2 mb-2">(Signature of Applicant)</p>
-                            <p className="font-semibold">Print Date: {data?.date.slice(0, 10)}</p>
-                        </div>
-                        <div className="flex flex-col justify-center items-center">
-                            <img
-                                src={data?.images?.image2 || "https://via.placeholder.com/150"}
-                                alt="Chairman's Signature"
-                                className="w-64 h-28 object-contain"
-                            />
-                            <p className="text-base font-medium mt-2">
-                                মহাপরিচালক <br />
-                                নার্সিং ও মিডওয়াইফারি অধিদপ্তর
-                            </p>
-                        </div>
-                    </div>
                 </div>
-
-            </div>
-        </section>
+            </section>
         </section >
     );
 };

@@ -1,25 +1,18 @@
 #admit-card {
-    width: 100%; /* Make the content stretch to full width */
-    max-width: 210mm; /* Set the max width for A4 size */
-    height: auto;
-    page-break-before: auto;
-    page-break-after: auto;
-}
-
-body {
-    margin: 0;
-    padding: 0;
-}
-
-
-
-table {
-    width: 100%; /* Ensure table takes up full width */
     border-collapse: collapse;
+    border-spacing: 0;
 }
 
-td, th {
+
+
+
+#admit-card {
+    transform: none !important;
+    zoom: 1 !important;
+}
+
+#admit-card {
+ 
+    margin: 0 auto; /* Center align */
     padding: 8px;
-    text-align: left;
-    border: 1px solid #000;
 }
