@@ -228,23 +228,23 @@ const AdmitCard = () => {
                             </div>
 
                             {/* Signature Section */}
-                            <div className="flex justify-between items-center  px-6">
+                            <div className="flex justify-between items-end  px-6">
                                 <div className="flex flex-col justify-center items-center">
                                     <img
                                         src={data?.images?.image2 || "https://via.placeholder.com/150"}
                                         alt="Applicant's Signature"
-                                        className="w-64 h-20 object-contain"
+                                        className="w-64 h-24 object-contain"
                                     />
-                                    <p className="text-base font-medium mt-2 mb-2">(Signature of Applicant)</p>
+                                    <p className="text-base font-medium ">(Signature of Applicant)</p>
                                     <p className="font-semibold">Print Date: {data?.date.slice(0, 10)}</p>
                                 </div>
                                 <div className="flex flex-col justify-center items-center">
                                     <img
                                         src={data?.images?.image2 || "https://via.placeholder.com/150"}
                                         alt="Chairman's Signature"
-                                        className="w-64 h-20 object-contain"
+                                        className="w-64 h-24 object-contain"
                                     />
-                                    <p className="text-base font-medium mt-2">
+                                    <p className="text-base font-medium ">
                                         মহাপরিচালক <br />
                                         নার্সিং ও মিডওয়াইফারি অধিদপ্তর
                                     </p>
