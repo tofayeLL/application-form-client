@@ -1058,7 +1058,8 @@ const ApplicationForm = () => {
                 ...applicant,
                 images: { image1: image1Url, image2: image2Url },
                 date: currentDate, // Include the current date
-                status
+                status,
+                selectedColleges
             }
 
 
@@ -1896,7 +1897,7 @@ const ApplicationForm = () => {
 
 
                 <br /><br /><br />
-                <input type="submit" value="Submit" id="submit_btn" disabled style={{ padding: '10px 20px', marginBottom: '20px' }} /> <br />
+                <input type="submit" value="Submit" id="submit_btn"  disabled={!selectedColleges.firstChoice} style={{ padding: '10px 20px', marginBottom: '20px' }} /> <br />
 
                 {id ? <Link to={`/admitCard/${id}`} style={{ textDecoration: 'none' }}>Print Application</Link> : <p></p>} <br />
 
