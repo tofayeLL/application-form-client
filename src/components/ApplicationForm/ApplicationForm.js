@@ -1045,7 +1045,7 @@ const ApplicationForm = () => {
             return false;
         }
 
-        if (applicant.applicantName.length < 3) {
+        if (applicant.applicantName.length < 1) {
             Swal.fire({
                 title: 'Warning!',
                 text: 'Please enter a valid name.',
@@ -1804,17 +1804,11 @@ const ApplicationForm = () => {
                                                 </table>
                                             </td>
                                         </tr>
+
                                         <tr>
-                                            <td style={{ textAlign: 'center', paddingTop: '20px' }}><input type="checkbox" id="declare" value="cheked" onClick={sbBtn} /> <small><i>I declare that the above information is correct and I would like to submit</i></small> </td>
-                                        </tr>
-                                    </tbody>
-
-
-
-
-
-                                    <div className="bg-gray-100 p-4 rounded-lg w-3/6">
-                                        <h3 className="text-2xl font-semibold text-blue-600 mb-4">Selected Colleges:</h3>
+                                            
+                                    <div className="bg-gray-100 p-4 rounded-lg w-3/6 my-6">
+                                        <h3 className="text-2xl font-semibold text-[#206b50] mb-4">Selected Colleges:</h3>
                                         <ul className="space-y-4">
                                             {selectedColleges.map((college, index) => (
                                                 <li key={index} className="flex items-center justify-between">
@@ -1865,6 +1859,24 @@ const ApplicationForm = () => {
                                         </div>
                                     </div>
 
+                                        </tr>
+
+
+
+
+
+
+
+
+                                        <tr>
+                                            <td style={{ textAlign: 'center', paddingTop: '20px' }}><input type="checkbox" id="declare" value="cheked" onClick={sbBtn} /> <small><i>I declare that the above information is correct and I would like to submit</i></small> </td>
+                                        </tr>
+                                    </tbody>
+
+
+
+
+
 
 
 
@@ -1902,7 +1914,7 @@ const ApplicationForm = () => {
 
 
                 <br /><br /><br />
-                <input type="submit" value="Submit" id="submit_btn" disabled={!selectedColleges.firstChoice} style={{ padding: '10px 20px', marginBottom: '20px' }} /> <br />
+                <input type="submit" value="Submit" id="submit_btn" disabled={selectedColleges.length < 1} style={{ padding: '10px 20px', marginBottom: '20px' }} /> <br />
 
                 {id ? <Link to={`/admitCard/${id}`} style={{ textDecoration: 'none' }}>Print Application</Link> : <p></p>} <br />
 
