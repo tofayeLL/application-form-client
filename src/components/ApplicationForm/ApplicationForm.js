@@ -945,7 +945,7 @@ const ApplicationForm = () => {
         "bg-orange-500",
         "bg-indigo-500",
         "bg-gray-500",
-       
+
     ];
 
 
@@ -1131,6 +1131,7 @@ const ApplicationForm = () => {
                         // Reset the form and images state after submission
                         setImages({ image1: null, image2: null });
                         setPreviews({ image1: null, image2: null });
+                        setSelectedColleges([]); 
                         e.target.reset(); // Reset form fields
 
                     } else if (data.message) {
@@ -1805,59 +1806,65 @@ const ApplicationForm = () => {
                                             </td>
                                         </tr>
 
-                                        <tr>
-                                            
-                                    <div className="bg-gray-100 p-4 rounded-lg w-3/6 my-6">
-                                        <h3 className="text-2xl font-semibold text-[#206b50] mb-4">Selected Colleges:</h3>
-                                        <ul className="space-y-4">
-                                            {selectedColleges.map((college, index) => (
-                                                <li key={index} className="flex items-center justify-between">
-                                                    <div className="flex items-center space-x-2">
-                                                        <span
-                                                            className={`w-6 h-6 text-white rounded-full flex items-center justify-center font-bold ${
-                                                                /* index === 0 ? "bg-blue-500" : index === 1 ? "bg-green-500" : "bg-yellow-500" */
-                                                                colors[index % colors.length]
-                                                                }`}
-                                                        >
-                                                            {index + 1}
-                                                        </span>
-                                                        <span className="text-lg">{college}</span>
-                                                    </div>
-                                                    <button
-                                                        type="button"
-                                                        onClick={() => handleRemoveCollege(college)}
-                                                        className="text-red-500 hover:underline"
-                                                    >
-                                                        Remove
-                                                    </button>
-                                                </li>
-                                            ))}
-                                        </ul>
-                                    </div>
 
-                                    <div className="space-y-6  w-3/6">
-                                        <h3 className="text-xl font-semibold">Select Your Colleges (Up to 10):</h3>
-                                        <div>
-                                            <label htmlFor="collegeDropdown" className="block text-lg font-medium">Select College:</label>
-                                            <select
-                                                id="collegeDropdown"
-                                                onChange={handleCollegeSelect}
-                                                value=""
-                                                className="w-full mt-2 p-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500"
-                                            >
-                                                <option value="" disabled>
-                                                    Choose a college
-                                                </option>
-                                                {collegeList
-                                                    .filter(college => !selectedColleges.includes(college))
-                                                    .map((college, index) => (
-                                                        <option key={index} value={college}>
-                                                            {college}
-                                                        </option>
+
+
+                                        {/* select colleges container row */}
+                                        <tr>
+
+                                            {/* college choices */}
+
+                                            <div className="bg-gray-100 p-4 rounded-lg w-3/6 my-6">
+                                                <h3 className="text-2xl font-semibold text-[#206b50] mb-4">Selected Colleges:</h3>
+                                                <ul className="space-y-4">
+                                                    {selectedColleges.map((college, index) => (
+                                                        <li key={index} className="flex items-center justify-between">
+                                                            <div className="flex items-center space-x-2">
+                                                                <span
+                                                                    className={`w-6 h-6 text-white rounded-full flex items-center justify-center font-bold ${
+                                                                        /* index === 0 ? "bg-blue-500" : index === 1 ? "bg-green-500" : "bg-yellow-500" */
+                                                                        colors[index % colors.length]
+                                                                        }`}
+                                                                >
+                                                                    {index + 1}
+                                                                </span>
+                                                                <span className="text-lg">{college}</span>
+                                                            </div>
+                                                            <button
+                                                                type="button"
+                                                                onClick={() => handleRemoveCollege(college)}
+                                                                className="text-red-500 hover:underline"
+                                                            >
+                                                                Remove
+                                                            </button>
+                                                        </li>
                                                     ))}
-                                            </select>
-                                        </div>
-                                    </div>
+                                                </ul>
+                                            </div>
+
+                                            <div className="space-y-6  w-3/6">
+                                                <h3 className="text-xl font-semibold">Select Your Colleges (Up to 10):</h3>
+                                                <div>
+                                                    <label htmlFor="collegeDropdown" className="block text-lg font-medium">Select College:</label>
+                                                    <select
+                                                        id="collegeDropdown"
+                                                        onChange={handleCollegeSelect}
+                                                        value=""
+                                                        className="w-full mt-2 p-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500"
+                                                    >
+                                                        <option value="" disabled>
+                                                            Choose a college
+                                                        </option>
+                                                        {collegeList
+                                                            .filter(college => !selectedColleges.includes(college))
+                                                            .map((college, index) => (
+                                                                <option key={index} value={college}>
+                                                                    {college}
+                                                                </option>
+                                                            ))}
+                                                    </select>
+                                                </div>
+                                            </div>
 
                                         </tr>
 
