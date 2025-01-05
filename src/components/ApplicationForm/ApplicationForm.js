@@ -1241,7 +1241,7 @@ const ApplicationForm = () => {
                                     <option value="December">12 - December</option>
                                 </select>
                                 <label htmlFor="year"> Year </label>
-                                <select name="b_year" id="year" style={{ height: '25px', width: '120px',  }} onBlur={handleOnblur}>
+                                <select name="b_year" id="year" style={{ height: '25px', width: '120px'/* , float: 'right' */ }} onBlur={handleOnblur}>
                                     <option value="selected" defaultValue={"selected"}>Select</option>
                                     {
                                         byear.map(birthYear => <option key={birthYear} value={birthYear}>{birthYear}</option>)
@@ -1258,7 +1258,7 @@ const ApplicationForm = () => {
                                     <option>Foreiner</option>
                                 </select>
                                 <label htmlFor='religion' style={{ marginLeft: '200px' }}> Religion </label>
-                                <select id='religion' style={{ height: '25px', width: '120px', float: 'right' }} name="religion" onBlur={handleOnblur}>
+                                <select id='religion' style={{ height: '25px', width: '120px'/* , float: 'right' */ }} name="religion" onBlur={handleOnblur}>
                                     <option>Select Religion</option>
                                     <option value="Buddhism">Buddhism</option>
                                     <option value="Christianity">Christianity</option>
