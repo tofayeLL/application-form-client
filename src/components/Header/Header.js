@@ -33,8 +33,8 @@ const Header = () => {
 
 
     return (
-        <div className="header">
-            <div className='menuTable'>
+        <div className="header  ">
+            <div className='menuTable '>
                 <table border-cellspacing="0" cellPadding="10">
                     <tbody>
                         {/* <tr cellPadding='0' style={{ backgroundColor: '#dfdfdf' }}>

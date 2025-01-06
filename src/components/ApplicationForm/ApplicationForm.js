@@ -1165,7 +1165,7 @@ const ApplicationForm = () => {
 
 
     return (
-        <div className='formWrapper px-[1px]'>
+        <div className='formWrapper  w-[58%] mx-auto px-1'>
             <form onSubmit={handleAddUser}>
 
                 <table cellSpacing="0" cellPadding="5" >

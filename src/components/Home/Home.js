@@ -17,10 +17,10 @@ const Home = () => {
     const pdfIcon = <FontAwesomeIcon icon={faFileAlt} />
     return (
         <div >
-            <div style={homeStyle}>
+            <div style={homeStyle} className="w-[50%] mx-auto">
                 {/* <h2>This is Home</h2> */}
                 {/* <Link to='/users/add'>Form</Link> */}
-                <fieldset style={{ border: '1px dashed rgb(40, 40, 40)', textAlign: 'left', padding: '40px' }}>
+                <fieldset style={{ border: '1px dashed rgb(40, 40, 40)', textAlign: 'left', padding: '40px' }} >
                     <legend><mark>Online and SMS based Recuitment System</mark></legend>
                     <Link to="adevertisement" style={homeLinkStyle}> {downloadIcon} Advertisement (Click here to download)</Link> <br /> <br />
                     <Link to="/applicationForm" style={homeLinkStyle}>{pdfIcon} Application Form (Click here to apply online)</Link>
