@@ -1814,8 +1814,8 @@ const ApplicationForm = () => {
 
                                             {/* college choices */}
 
-                                            <div className="bg-gray-100 p-4 rounded-lg w-3/6 my-6">
-                                                <h3 className="text-2xl font-semibold text-[#206b50] mb-4">Selected Colleges:</h3>
+                                            <div className="bg-gray-100 p-4 rounded-lg w-full my-6">
+                                                <h3 className="text-2xl font-semibold text-[#206b50] mb-4">Select Your Colleges (Up to 10)</h3>
                                                 <ul className="space-y-4">
                                                     {selectedColleges.map((college, index) => (
                                                         <li key={index} className="flex items-center justify-between">
@@ -1842,8 +1842,8 @@ const ApplicationForm = () => {
                                                 </ul>
                                             </div>
 
-                                            <div className="space-y-6  w-3/6">
-                                                <h3 className="text-xl font-semibold">Select Your Colleges (Up to 10):</h3>
+                                            <div className="space-y-6  w-full">
+                                                
                                                 <div>
                                                     <label htmlFor="collegeDropdown" className="block text-lg font-medium">Select College:</label>
                                                     <select
