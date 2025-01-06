@@ -42,7 +42,8 @@ const AppContent = withRouter(({ location }) => {
   const isDashboardRoute = location.pathname.includes('/dashboard/admin');
 
   return (
-    <div>
+    <div className="w-full">
+      <div >
       {/* Conditionally render Header */}
       {!isDashboardRoute && <Header />}
 
@@ -129,6 +130,7 @@ const AppContent = withRouter(({ location }) => {
           )}
         />
       </Switch>
+      </div>
     </div>
   );
 });

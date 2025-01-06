@@ -166,7 +166,7 @@ const Dashboard = () => {
                 </div>
 
                 {/* Main Content */}
-                <div className="flex-1 p-5 bg-white">
+                <div className="flex-1 p-5 bg-white ">
                     <Switch>
                         <Route exact path="/dashboard/admin" component={DashboardHome} />
                         <Route path="/dashboard/admin/dateApplicant" component={DateWiseApplicant} />
