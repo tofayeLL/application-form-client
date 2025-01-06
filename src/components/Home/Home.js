@@ -16,8 +16,8 @@ const Home = () => {
     const downloadIcon = <FontAwesomeIcon icon={faFileDownload} />
     const pdfIcon = <FontAwesomeIcon icon={faFileAlt} />
     return (
-        <div >
-            <div style={homeStyle} className="w-[50%] mx-auto">
+        <div className="w-[58%] mx-auto">
+            <div style={homeStyle} >
                 {/* <h2>This is Home</h2> */}
                 {/* <Link to='/users/add'>Form</Link> */}
                 <fieldset style={{ border: '1px dashed rgb(40, 40, 40)', textAlign: 'left', padding: '40px' }} >
