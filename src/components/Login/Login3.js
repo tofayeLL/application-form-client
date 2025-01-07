@@ -76,7 +76,7 @@ const Login3 = () => {
     };
 
     return (
-        <div style={loginStyle}>
+        <div style={loginStyle} className='w-[58%] mx-auto'>
             <h2 style={{ color: '#025c3b' }}>Login</h2>
             <form onSubmit={handleLogin2}>
                 <input style={fieldStyle} type="email" name='email' placeholder='Enter your email' /> <br />

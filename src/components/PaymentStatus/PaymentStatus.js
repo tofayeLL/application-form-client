@@ -26,7 +26,7 @@ const PaymentStatus = () => {
         }
     }
     return (
-        <div>
+        <div className='w-[58%] mx-auto'>
             <h4>Payment Status Page is not available</h4>
             <span>Input 1</span><input type="checkbox" id="1" name="chk" value="input1" onClick={myfun} onChange={e => console.log(e.target.value)} />
             <span>Input 2</span><input type="checkbox" id="2" name="chk" value="input2" onClick={myfun} onChange={e => console.log(e.target.value)} />

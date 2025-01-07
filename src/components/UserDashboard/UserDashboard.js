@@ -93,7 +93,7 @@ const UserDashboard = () => {
                         <div className="detail">
                             <span className="label">Choices:</span>
                             <div className="choices-container mt-2 space-y-2">
-                                {selectedColleges.map((college, index) => (
+                                {selectedColleges?.map((college, index) => (
                                     <div
                                         key={index}
                                         className="flex items-center justify-between border border-gray-300 px-4 py-2 rounded-md bg-gray-50 hover:bg-gray-100 transition"
