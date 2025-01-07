@@ -34,7 +34,7 @@ const UserDashboard = () => {
     const { app_id, _id, email, cp_number, password, images, applicantName, NID, selectedColleges } = userData || {};
 
     return (
-        <div className="dashboard-container">
+        <div className="dashboard-container w-[58%] mx-auto ">
             <div className="dashboard-card">
                 {/* Profile Section */}
                 <div className="profile-section ">
