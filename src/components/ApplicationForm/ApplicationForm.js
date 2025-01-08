@@ -906,9 +906,7 @@ const ApplicationForm = () => {
 
 
 
-    const [selectedPost, setSelectedPost] = useState(""); // To store the selected post
     const [selectedColleges, setSelectedColleges] = useState([]);
-    const [filteredColleges, setFilteredColleges] = useState([]); // Dynamic college list
 
 
     const collegeList = [
@@ -935,31 +933,31 @@ const ApplicationForm = () => {
     ];
 
     const collegeList1 = [
-        "Northern International College, Dhaka",
-        "Purbachal Model College, Gazipur",
-        "Dhaka Residential Model College",
-        "City Ideal College, Chattogram",
-        "Heritage College, Sylhet",
-        "Imperial College, Barishal",
-        "Bright Future College, Rajshahi",
-        "Central College, Mymensingh",
-        "Unity College, Khulna",
-        "Global Vision College, Rangpur"
-    ];
-    
-    const collegeList2 = [
-        "Crescent College, Narayanganj",
-        "Oxford International College, Comilla",
-        "Elite Academy College, Dhaka",
-        "Sunrise College, Feni",
-        "Noble College, Kushtia",
-        "Summit College, Noakhali",
-        "Golden Valley College, Tangail",
-        "Future Light College, Jessore",
-        "Springfield College, Dinajpur",
-        "Beacon College, Bogura"
-    ];
-    
+    "Northern International College, Dhaka",
+    "Purbachal Model College, Gazipur",
+    "Dhaka Residential Model College",
+    "City Ideal College, Chattogram",
+    "Heritage College, Sylhet",
+    "Imperial College, Barishal",
+    "Bright Future College, Rajshahi",
+    "Central College, Mymensingh",
+    "Unity College, Khulna",
+    "Global Vision College, Rangpur"
+];
+
+const collegeList2 = [
+    "Crescent College, Narayanganj",
+    "Oxford International College, Comilla",
+    "Elite Academy College, Dhaka",
+    "Sunrise College, Feni",
+    "Noble College, Kushtia",
+    "Summit College, Noakhali",
+    "Golden Valley College, Tangail",
+    "Future Light College, Jessore",
+    "Springfield College, Dinajpur",
+    "Beacon College, Bogura"
+];
+
 
 
 
@@ -976,23 +974,6 @@ const ApplicationForm = () => {
         "bg-gray-500",
 
     ];
-
-
-
-      // Post-to-College Mapping
-  const postCollegeMapping = {
-    "Computer Operator": collegeList,
-    "Steno Typist": collegeList1,
-    "LDA Computer Operator": collegeList2,
-    Driver: collegeList,
-    Cleaner: collegeList1,
-    "Data Analyst": collegeList2,
-  };
-
-
-
-
-
 
 
 
