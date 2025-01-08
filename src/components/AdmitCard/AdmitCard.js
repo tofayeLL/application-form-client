@@ -24,8 +24,8 @@ const AdmitCard = () => {
     }
 
     return (
-        <div style={admitStyle} >
-            <table style={{ margin: '0 auto', borderCollapse: 'collapse', textAlign: 'left', width: '100%' }} cellSpacing="0" cellPadding="4">
+        <div style={admitStyle}  >
+            <table style={{ margin: '0 auto', borderCollapse: 'collapse', textAlign: 'left', width: '100%',  }} cellSpacing="0" cellPadding="4">
                 <tbody>
                     <tr>
                         <td colSpan="4" style={{ textAlign: 'center', fontSize: '20px', fontWeight: 'bold', textDecoration: 'underline', paddingBottom: '20px' }}>Applicant Copy</td>
