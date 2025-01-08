@@ -932,31 +932,6 @@ const ApplicationForm = () => {
         "Pabna Edward College"
     ];
 
-    const collegeList1 = [
-    "Northern International College, Dhaka",
-    "Purbachal Model College, Gazipur",
-    "Dhaka Residential Model College",
-    "City Ideal College, Chattogram",
-    "Heritage College, Sylhet",
-    "Imperial College, Barishal",
-    "Bright Future College, Rajshahi",
-    "Central College, Mymensingh",
-    "Unity College, Khulna",
-    "Global Vision College, Rangpur"
-];
-
-const collegeList2 = [
-    "Crescent College, Narayanganj",
-    "Oxford International College, Comilla",
-    "Elite Academy College, Dhaka",
-    "Sunrise College, Feni",
-    "Noble College, Kushtia",
-    "Summit College, Noakhali",
-    "Golden Valley College, Tangail",
-    "Future Light College, Jessore",
-    "Springfield College, Dinajpur",
-    "Beacon College, Bogura"
-];
 
 
 
@@ -1158,7 +1133,7 @@ const collegeList2 = [
                         // Reset the form and images state after submission
                         setImages({ image1: null, image2: null });
                         setPreviews({ image1: null, image2: null });
-                        setSelectedColleges([]); 
+                        setSelectedColleges([]);
                         e.target.reset(); // Reset form fields
 
                     } else if (data.message) {
@@ -1870,7 +1845,7 @@ const collegeList2 = [
                                             </div>
 
                                             <div className="space-y-6  w-full">
-                                                
+
                                                 <div>
                                                     <label htmlFor="collegeDropdown" className="block text-lg font-medium">Select College:</label>
                                                     <select
