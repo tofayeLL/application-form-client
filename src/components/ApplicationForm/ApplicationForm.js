@@ -1176,8 +1176,8 @@ const ApplicationForm = () => {
                             <td>Name of the Post <small style={{ color: 'red' }}>*</small></td>
                             <td>:</td>
                             <td>
-                                <select className='inputField' style={{ backgroundColor: '#bdbaba', width: '100%', outline: 'none' }} name="postName" id="postName" onBlur={handleOnblur} >
-                                    <option value='0'>Select a Post</option>
+                                <select className='inputField' style={{ backgroundColor: '#bdbaba', width: '100%', outline: 'none' }} name="postName" id="postName" onBlur={handleOnblur} required >
+                                    <option value=''>Select a Post</option>
                                     <option value='Computer Operator'>Computer Operator</option>
                                     <option value='Steno Typist'>Steno Typist</option>
                                     <option value='LDA Computer Operator'>LDA Computer Operator</option>
