@@ -1032,7 +1032,95 @@ const ApplicationForm = () => {
       console.log("user images",imagess); */
 
 
+
+
+
+    //    age 
+
+    const [errorMessage, setErrorMessage] = useState("");
+    const [birthDate, setBirthDate] = useState({
+        day: "0",
+        month: "select",
+        year: "selected"
+    });
+
+    // Arrays for days, months, and years
+    const dayOptions = Array.from({ length: 31 }, (_, i) => i + 1); // For days
+    const monthOptions = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]; // Months
+    const yearOptions = Array.from({ length: 100 }, (_, i) => 2025 - i); // Years (Assuming the user can be born between 1925 and 2025)
+
+    const handleOnChange = (e) => {
+        const { name, value } = e.target;
+        setBirthDate(prev => ({
+            ...prev,
+            [name]: value
+        }));
+    };
+
+    const validateAge = () => {
+        const { day, month, year } = birthDate;
+      
+        // Check if all fields are selected
+        if (day === "0" || month === "select" || year === "selected") {
+          setErrorMessage("Please select a valid date.");
+          return;
+        }
+      
+        // Convert the selected month to its corresponding index (0-indexed)
+        const monthIndex = monthOptions.indexOf(month);
+      
+        // Create the birth date object
+        const birthDateObj = new Date(year, monthIndex, day);
+        const currentDate = new Date();
+      
+        // Calculate the difference in years
+        let ageYears = currentDate.getFullYear() - birthDateObj.getFullYear();
+      
+        // Adjust age based on month and day
+        let ageMonths = currentDate.getMonth() - birthDateObj.getMonth();
+        let ageDays = currentDate.getDate() - birthDateObj.getDate();
+      
+        if (ageMonths < 0) {
+          ageYears--; // Subtract one year if the current month is earlier
+          ageMonths += 12; // Adjust months to a positive number
+        }
+      
+        if (ageDays < 0) {
+          ageMonths--; // Subtract one month if the current day is earlier
+          const daysInPreviousMonth = new Date(
+            currentDate.getFullYear(),
+            currentDate.getMonth(),
+            0
+          ).getDate();
+          ageDays += daysInPreviousMonth; // Adjust days to a positive number
+        }
+      
+        // Log detailed age information
+        console.log("Detailed Age Calculation:");
+        console.log("Years:", ageYears);
+        console.log("Months:", ageMonths);
+        console.log("Days:", ageDays);
+      
+        // Check if age is valid
+        if (ageYears > 25 || (ageYears === 25 && (ageMonths > 0 || ageDays > 0))) {
+          setErrorMessage("Age must not be more than 25 years.");
+        } else {
+          setErrorMessage(""); // Clear error message if age is valid
+        }
+      };
+
+
+
+
+
+
+
+
+
+
+
     // Submit Form
+
 
     const handleAddUser = async (e) => {
         e.preventDefault();
@@ -1195,12 +1283,12 @@ const ApplicationForm = () => {
                         <tr>
                             <td>Father's Name <small style={{ color: 'red' }}>*</small></td>
                             <td>:</td>
-                            <td><input className='inputField' type="text" placeholder=" " name="fname" id="fname" onBlur={handleOnblur} required/></td>
+                            <td><input className='inputField' type="text" placeholder=" " name="fname" id="fname" onBlur={handleOnblur} required /></td>
                         </tr>
                         <tr>
                             <td>Mother's Name <small style={{ color: 'red' }}>*</small></td>
                             <td>:</td>
-                            <td><input className='inputField' type="text" placeholder=" " name="mname" id="mname" onBlur={handleOnblur}  required/></td>
+                            <td><input className='inputField' type="text" placeholder=" " name="mname" id="mname" onBlur={handleOnblur} required /></td>
                         </tr>
                         <tr>
                             <td>Gender <small style={{ color: 'red' }}>*</small></td>
@@ -1219,58 +1307,49 @@ const ApplicationForm = () => {
                             <td>:</td>
                             <td>
                                 <label htmlFor='date'> Day </label>
-                                <select style={{ height: '25px', width: '120px', marginRight: '15px', textAlign: 'center' }} id='date' name="b_day" onBlur={handleOnblur}>
-                                    <option value="0" defaultValue={"select"}>Select</option>
-                                    {
-                                        bday.map(birthDay => <option key={birthDay} value={birthDay}>{birthDay}</option>)
-                                    }
-
+                                <select
+                                    style={{ height: '25px', width: '120px', marginRight: '15px', textAlign: 'center' }}
+                                    id='date'
+                                    name="day"
+                                    onChange={handleOnChange}
+                                    onBlur={validateAge}
+                                    value={birthDate.day}
+                                >
+                                    <option value="0" defaultValue="select">Select</option>
+                                    {dayOptions.map(day => <option key={day} value={day}>{day}</option>)}
                                 </select>
+
                                 <label htmlFor='month'> Month </label>
-                                <select style={{ height: '25px', width: '120px', marginRight: '15px' }} name="b_month" id="month" onBlur={handleOnblur}>
-                                    <option value="select" defaultValue={"select"}>Select</option>
-                                    <option value="January">01 - January</option>
-                                    <option value="February">02 - February</option>
-                                    <option value="March">03 - March</option>
-                                    <option value="April">04 - April</option>
-                                    <option value="May">05 - May</option>
-                                    <option value="June">06 - June</option>
-                                    <option value="July">07 - July</option>
-                                    <option value="August">08 - August</option>
-                                    <option value="September">09 - September</option>
-                                    <option value="October">10 - October</option>
-                                    <option value="November">11 - November</option>
-                                    <option value="December">12 - December</option>
+                                <select
+                                    style={{ height: '25px', width: '120px', marginRight: '15px' }}
+                                    name="month"
+                                    id="month"
+                                    onChange={handleOnChange}
+                                    onBlur={validateAge}
+                                    value={birthDate.month}
+                                >
+                                    <option value="select">Select</option>
+                                    {monthOptions.map((month, index) => (
+                                        <option key={month} value={month}>{String(index + 1).padStart(2, '0')} - {month}</option>
+                                    ))}
                                 </select>
-                                <label htmlFor="year"> Year </label>
-                                <select name="b_year" id="year" style={{ height: '25px', width: '120px'/* , float: 'right' */ }} onBlur={handleOnblur}>
-                                    <option value="selected" defaultValue={"selected"}>Select</option>
-                                    {
-                                        byear.map(birthYear => <option key={birthYear} value={birthYear}>{birthYear}</option>)
-                                    }
-                                </select>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Nationality <small style={{ color: 'red' }}>*</small></td>
-                            <td>:</td>
-                            <td>
-                                <select style={{ height: '25px', width: '120px', marginRight: '10px' }} name="nationality" id="nationality" onBlur={handleOnblur}>
-                                    <option>Bangladeshi</option>
-                                    <option>Foreiner</option>
-                                </select>
-                                <label htmlFor='religion' style={{ marginLeft: '200px' }}> Religion </label>
-                                <select id='religion' style={{ height: '25px', width: '120px'/* , float: 'right' */ }} name="religion" onBlur={handleOnblur}>
-                                    <option>Select Religion</option>
-                                    <option value="Buddhism">Buddhism</option>
-                                    <option value="Christianity">Christianity</option>
-                                    <option value="Hinduism">Hinduism</option>
-                                    <option value="Islam">Islam</option>
-                                    <option value="Others">Others</option>
 
+                                <label htmlFor="year"> Year </label>
+                                <select
+                                    name="year"
+                                    id="year"
+                                    style={{ height: '25px', width: '120px' }}
+                                    onChange={handleOnChange}
+                                    onBlur={validateAge}
+                                    value={birthDate.year}
+                                >
+                                    <option value="selected">Select</option>
+                                    {yearOptions.map(year => <option key={year} value={year}>{year}</option>)}
                                 </select>
                             </td>
+
                         </tr>
+                        {errorMessage && <p style={{ color: 'red' }}>{errorMessage}</p>} {/* Error message */}
                         <tr>
                             <td>National ID <small style={{ color: 'red' }}>*</small></td>
                             <td>:</td>
