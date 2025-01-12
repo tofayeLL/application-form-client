@@ -1190,17 +1190,17 @@ const ApplicationForm = () => {
                         <tr>
                             <td>Applicant's Name <small style={{ color: 'red' }}>*</small></td>
                             <td>:</td>
-                            <td><input className='inputField' type="text" placeholder=" " name="applicantName" id="applicantName" onBlur={handleOnblur} /></td>
+                            <td><input className='inputField' type="text" placeholder=" " name="applicantName" id="applicantName" onBlur={handleOnblur} required /></td>
                         </tr>
                         <tr>
                             <td>Father's Name <small style={{ color: 'red' }}>*</small></td>
                             <td>:</td>
-                            <td><input className='inputField' type="text" placeholder=" " name="fname" id="fname" onBlur={handleOnblur} /></td>
+                            <td><input className='inputField' type="text" placeholder=" " name="fname" id="fname" onBlur={handleOnblur} required/></td>
                         </tr>
                         <tr>
                             <td>Mother's Name <small style={{ color: 'red' }}>*</small></td>
                             <td>:</td>
-                            <td><input className='inputField' type="text" placeholder=" " name="mname" id="mname" onBlur={handleOnblur} /></td>
+                            <td><input className='inputField' type="text" placeholder=" " name="mname" id="mname" onBlur={handleOnblur}  required/></td>
                         </tr>
                         <tr>
                             <td>Gender <small style={{ color: 'red' }}>*</small></td>
