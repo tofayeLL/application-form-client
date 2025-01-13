@@ -1059,55 +1059,55 @@ const ApplicationForm = () => {
 
     const validateAge = () => {
         const { day, month, year } = birthDate;
-      
+
         // Check if all fields are selected
         if (day === "0" || month === "select" || year === "selected") {
-          setErrorMessage("Please select a valid date.");
-          return;
+            setErrorMessage("Please select a valid date.");
+            return;
         }
-      
+
         // Convert the selected month to its corresponding index (0-indexed)
         const monthIndex = monthOptions.indexOf(month);
-      
+
         // Create the birth date object
         const birthDateObj = new Date(year, monthIndex, day);
         const currentDate = new Date();
-      
+
         // Calculate the difference in years
         let ageYears = currentDate.getFullYear() - birthDateObj.getFullYear();
-      
+
         // Adjust age based on month and day
         let ageMonths = currentDate.getMonth() - birthDateObj.getMonth();
         let ageDays = currentDate.getDate() - birthDateObj.getDate();
-      
+
         if (ageMonths < 0) {
-          ageYears--; // Subtract one year if the current month is earlier
-          ageMonths += 12; // Adjust months to a positive number
+            ageYears--; // Subtract one year if the current month is earlier
+            ageMonths += 12; // Adjust months to a positive number
         }
-      
+
         if (ageDays < 0) {
-          ageMonths--; // Subtract one month if the current day is earlier
-          const daysInPreviousMonth = new Date(
-            currentDate.getFullYear(),
-            currentDate.getMonth(),
-            0
-          ).getDate();
-          ageDays += daysInPreviousMonth; // Adjust days to a positive number
+            ageMonths--; // Subtract one month if the current day is earlier
+            const daysInPreviousMonth = new Date(
+                currentDate.getFullYear(),
+                currentDate.getMonth(),
+                0
+            ).getDate();
+            ageDays += daysInPreviousMonth; // Adjust days to a positive number
         }
-      
+
         // Log detailed age information
         console.log("Detailed Age Calculation:");
         console.log("Years:", ageYears);
         console.log("Months:", ageMonths);
         console.log("Days:", ageDays);
-      
+
         // Check if age is valid
         if (ageYears > 25 || (ageYears === 25 && (ageMonths > 0 || ageDays > 0))) {
-          setErrorMessage("Age must not be more than 25 years.");
+            setErrorMessage("Age must not be more than 25 years.");
         } else {
-          setErrorMessage(""); // Clear error message if age is valid
+            setErrorMessage(""); // Clear error message if age is valid
         }
-      };
+    };
 
 
 
@@ -1348,8 +1348,23 @@ const ApplicationForm = () => {
                                 </select>
                             </td>
 
+
+
+
+
                         </tr>
-                        {errorMessage && <p style={{ color: 'red' }}>{errorMessage}</p>} {/* Error message */}
+                        <div >
+                            {errorMessage && <p style={{ color: 'red' }} >{errorMessage}</p>} {/* Error message */}
+                        </div>
+
+
+
+
+
+
+
+
+
                         <tr>
                             <td>National ID <small style={{ color: 'red' }}>*</small></td>
                             <td>:</td>
