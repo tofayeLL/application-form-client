@@ -1063,7 +1063,8 @@ const ApplicationForm = () => {
         // Check if all fields are selected
         if (day === "0" || month === "select" || year === "selected") {
             setErrorMessage("Please select a valid date.");
-            return;
+            // return;
+            return false;
         }
 
         // Convert the selected month to its corresponding index (0-indexed)
@@ -1102,12 +1103,28 @@ const ApplicationForm = () => {
         console.log("Days:", ageDays);
 
         // Check if age is valid
+        /*  if (ageYears > 25 || (ageYears === 25 && (ageMonths > 0 || ageDays > 0))) {
+             setErrorMessage("Age not more than 25 years");
+         } else {
+             setErrorMessage(""); // Clear error message if age is valid
+         } */
+
+
+
+        // Check if age is valid
         if (ageYears > 25 || (ageYears === 25 && (ageMonths > 0 || ageDays > 0))) {
             setErrorMessage("Age must not be more than 25 years.");
+            return false;
         } else {
             setErrorMessage(""); // Clear error message if age is valid
+            return true;
         }
+
+
+
     };
+
+
 
 
 
@@ -1124,6 +1141,10 @@ const ApplicationForm = () => {
 
     const handleAddUser = async (e) => {
         e.preventDefault();
+        // Check age validity
+        if (!validateAge()) {
+            return; // Stop further execution if age is invalid
+        }
 
         if (applicant.postName <= 0) {
             Swal.fire({
