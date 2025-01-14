@@ -1543,6 +1543,7 @@ const ApplicationForm = () => {
                                                             <td>District</td>
                                                             <td>
                                                                 <select
+                                                                    style={{ width: '100%' }}
                                                                     name="M_District"
                                                                     id="M_District"
                                                                     onBlur={handleOnblur}
@@ -1565,6 +1566,7 @@ const ApplicationForm = () => {
                                                             <td>Upzilla</td>
                                                             <td>
                                                                 <select
+                                                                    style={{ width: '100%' }}
                                                                     name="M_Upzilla"
                                                                     id="M_Upzilla"
                                                                     onBlur={handleOnblur}
@@ -1617,19 +1619,22 @@ const ApplicationForm = () => {
                                             <td style={{ width: '48%' }}>
                                                 <table cellPadding="5" style={{ width: '100%', border: '1px solid #99C1D0' }}>
                                                     <tbody>
-                                                        <tr>
-                                                            <td colSpan="2">
-                                                                Permanent Address <small style={{ color: 'red' }}>*</small>
-                                                                <input
-                                                                    type="checkbox"
-                                                                    id="p_chk"
-                                                                    name="p_chk"
-                                                                    checked={sameAsMailing}
-                                                                    onChange={handleCheckboxChange}
-                                                                />
-                                                                <label htmlFor="p_chk">
-                                                                    <small>Same as Mailing Address</small>
-                                                                </label>
+                                                        <tr >
+                                                            <td colSpan="2" >
+                                                                
+                                                               <span className='flex items-center space-x-[2px]  '>
+                                                               Permanent Address <small style={{ color: 'red' }} className='pr-4'>*</small>
+                                                                    <input
+                                                                        type="checkbox"
+                                                                        id="p_chk"
+                                                                        name="p_chk"
+                                                                        checked={sameAsMailing}
+                                                                        onChange={handleCheckboxChange}
+                                                                    />
+                                                                    <label htmlFor="p_chk"  >
+                                                                        <small>Same as Mailing Address</small>
+                                                                    </label>
+                                                                    </span>
                                                             </td>
                                                         </tr>
                                                         <tr>
@@ -1661,61 +1666,61 @@ const ApplicationForm = () => {
                                                             </td>
                                                         </tr>
                                                         <tr>
-    <td>District</td>
-    <td>
-        {sameAsMailing ? (
-            <input
-                type="text"
-                value={mailingAddress.M_District} // Show the mailing address district value
-                onChange={e => handlePermanentChange('P_District', e.target.value)} // Allow updating when unchecked
-            />
-        ) : (
-            <select
-                style={{ width: '100%' }}
-                name="P_District"
-                id="P_District"
-                onBlur={handleOnblur}
-                value={permanentAddress.P_District}
-                onChange={e => handlePermanentChange('P_District', e.target.value)} // Update when unchecked
-            >
-                <option value="0">Select District</option>
-                {m_dist.map(d => (
-                    <option key={d} value={d}>
-                        {d}
-                    </option>
-                ))}
-            </select>
-        )}
-    </td>
-</tr>
-<tr>
-    <td>Upzilla</td>
-    <td>
-        {sameAsMailing ? (
-            <input
-                type="text"
-                value={mailingAddress.M_Upzilla} // Show the mailing address upzilla value
-                onChange={e => handlePermanentChange('P_Upzilla', e.target.value)} // Allow updating when unchecked
-            />
-        ) : (
-            <select
-                style={{ width: '100%' }}
-                name="P_Upzilla"
-                id="P_Upzilla"
-                onBlur={handleOnblur}
-                value={permanentAddress.P_Upzilla}
-                onChange={e => handlePermanentChange('P_Upzilla', e.target.value)} // Update when unchecked
-            >
-                <option value="0">Select Upzilla</option>
-                {m_upzilla.map(u => (
-                    <option key={u} value={u}>
-                        {u}
-                    </option>
-                ))}
-            </select>
-        )}
-    </td>
-</tr>
+                                                            <td>District</td>
+                                                            <td>
+                                                                {sameAsMailing ? (
+                                                                    <input
+                                                                        type="text"
+                                                                        value={mailingAddress.M_District} // Show the mailing address district value
+                                                                        onChange={e => handlePermanentChange('P_District', e.target.value)} // Allow updating when unchecked
+                                                                    />
+                                                                ) : (
+                                                                    <select
+                                                                        style={{ width: '100%' }}
+                                                                        name="P_District"
+                                                                        id="P_District"
+                                                                        onBlur={handleOnblur}
+                                                                        value={permanentAddress.P_District}
+                                                                        onChange={e => handlePermanentChange('P_District', e.target.value)} // Update when unchecked
+                                                                    >
+                                                                        <option value="0">Select District</option>
+                                                                        {m_dist.map(d => (
+                                                                            <option key={d} value={d}>
+                                                                                {d}
+                                                                            </option>
+                                                                        ))}
+                                                                    </select>
+                                                                )}
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Upzilla</td>
+                                                            <td>
+                                                                {sameAsMailing ? (
+                                                                    <input
+                                                                        type="text"
+                                                                        value={mailingAddress.M_Upzilla} // Show the mailing address upzilla value
+                                                                        onChange={e => handlePermanentChange('P_Upzilla', e.target.value)} // Allow updating when unchecked
+                                                                    />
+                                                                ) : (
+                                                                    <select
+                                                                        style={{ width: '100%' }}
+                                                                        name="P_Upzilla"
+                                                                        id="P_Upzilla"
+                                                                        onBlur={handleOnblur}
+                                                                        value={permanentAddress.P_Upzilla}
+                                                                        onChange={e => handlePermanentChange('P_Upzilla', e.target.value)} // Update when unchecked
+                                                                    >
+                                                                        <option value="0">Select Upzilla</option>
+                                                                        {m_upzilla.map(u => (
+                                                                            <option key={u} value={u}>
+                                                                                {u}
+                                                                            </option>
+                                                                        ))}
+                                                                    </select>
+                                                                )}
+                                                            </td>
+                                                        </tr>
                                                         <tr>
                                                             <td>Post Office</td>
                                                             <td>
