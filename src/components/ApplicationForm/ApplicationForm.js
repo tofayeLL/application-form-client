@@ -1038,15 +1038,16 @@ const ApplicationForm = () => {
     //    age validation
     const [errorMessage, setErrorMessage] = useState("");
     const [birthDate, setBirthDate] = useState({
-        day: "0",
-        month: "select",
-        year: "selected"
+        b_day: "0",       // Updated field name
+        b_month: "select", // Updated field name
+        b_year: "selected" // Updated field name
     });
 
     // Arrays for days, months, and years
     const dayOptions = Array.from({ length: 31 }, (_, i) => i + 1); // For days
-    const monthOptions = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]; // Months
-    const yearOptions = Array.from({ length: 100 }, (_, i) => 2025 - i); // Years (Assuming the user can be born between 1925 and 2025)
+    const monthOptions = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+    const yearOptions = Array.from({ length: 100 }, (_, i) => 2025 - i); // Years (1925 to 2025)
+
 
     const handleOnChange = (e) => {
         const { name, value } = e.target;
@@ -1056,72 +1057,52 @@ const ApplicationForm = () => {
         }));
     };
 
-    const validateAge = () => {
-        const { day, month, year } = birthDate;
 
-        // Check if all fields are selected
-        if (day === "0" || month === "select" || year === "selected") {
+    const validateAge = () => {
+        const { b_day, b_month, b_year } = birthDate; // Updated field names
+
+        if (b_day === "0" || b_month === "select" || b_year === "selected") {
             setErrorMessage("Please select a valid date.");
-            // return;
             return false;
         }
 
-        // Convert the selected month to its corresponding index (0-indexed)
-        const monthIndex = monthOptions.indexOf(month);
-
-        // Create the birth date object
-        const birthDateObj = new Date(year, monthIndex, day);
+        const monthIndex = monthOptions.indexOf(b_month); // Updated field name
+        const birthDateObj = new Date(b_year, monthIndex, b_day); // Updated field names
         const currentDate = new Date();
 
-        // Calculate the difference in years
         let ageYears = currentDate.getFullYear() - birthDateObj.getFullYear();
-
-        // Adjust age based on month and day
         let ageMonths = currentDate.getMonth() - birthDateObj.getMonth();
         let ageDays = currentDate.getDate() - birthDateObj.getDate();
 
         if (ageMonths < 0) {
-            ageYears--; // Subtract one year if the current month is earlier
-            ageMonths += 12; // Adjust months to a positive number
+            ageYears--;
+            ageMonths += 12;
         }
 
         if (ageDays < 0) {
-            ageMonths--; // Subtract one month if the current day is earlier
+            ageMonths--;
             const daysInPreviousMonth = new Date(
                 currentDate.getFullYear(),
                 currentDate.getMonth(),
                 0
             ).getDate();
-            ageDays += daysInPreviousMonth; // Adjust days to a positive number
+            ageDays += daysInPreviousMonth;
         }
 
-        // Log detailed age information
         console.log("Detailed Age Calculation:");
         console.log("Years:", ageYears);
         console.log("Months:", ageMonths);
         console.log("Days:", ageDays);
 
-        // Check if age is valid
-        /*  if (ageYears > 25 || (ageYears === 25 && (ageMonths > 0 || ageDays > 0))) {
-             setErrorMessage("Age not more than 25 years");
-         } else {
-             setErrorMessage(""); // Clear error message if age is valid
-         } */
-
-
-
-        // Check if age is valid
         if (ageYears > 25 || (ageYears === 25 && (ageMonths > 0 || ageDays > 0))) {
             setErrorMessage("Age must not be more than 25 years.");
             return false;
         } else {
-            setErrorMessage(""); // Clear error message if age is valid
+            setErrorMessage("");
             return true;
         }
-
-
-
     };
+
 
 
 
@@ -1212,6 +1193,12 @@ const ApplicationForm = () => {
         // Check age validity
         if (!validateAge()) {
             console.log("Age validation failed. Form submission stopped.");
+            Swal.fire({
+                title: 'Warning!',
+                text: 'age not more than 25',
+                icon: 'warning',
+                confirmButtonText: 'OK',
+            });
             return; // Stop further execution if age is invalid
         }
 
@@ -1297,6 +1284,10 @@ const ApplicationForm = () => {
                 status,
                 selectedColleges,
                 permanentAddress: finalPermanentAddress, // Add permanent address (either same as mailing or custom)
+                // Add birthDate fields to match database field names
+                b_day: birthDate.b_day,
+                b_month: birthDate.b_month,
+                b_year: birthDate.b_year,
             };
 
 
@@ -1425,27 +1416,27 @@ const ApplicationForm = () => {
                             <td>Date of Birth <small style={{ color: 'red' }}>*</small></td>
                             <td>:</td>
                             <td>
-                                <label htmlFor='date'> Day </label>
+                                <label htmlFor='b_day'> Day </label>
                                 <select
                                     style={{ height: '25px', width: '120px', marginRight: '15px', textAlign: 'center' }}
-                                    id='date'
-                                    name="day"
+                                    id='b_day'
+                                    name="b_day" // Updated field name
                                     onChange={handleOnChange}
                                     onBlur={validateAge}
-                                    value={birthDate.day}
+                                    value={birthDate.b_day} // Updated field name
                                 >
                                     <option value="0" defaultValue="select">Select</option>
                                     {dayOptions.map(day => <option key={day} value={day}>{day}</option>)}
                                 </select>
 
-                                <label htmlFor='month'> Month </label>
+                                <label htmlFor='b_month'> Month </label>
                                 <select
                                     style={{ height: '25px', width: '120px', marginRight: '15px' }}
-                                    name="month"
-                                    id="month"
+                                    name="b_month" // Updated field name
+                                    id="b_month"
                                     onChange={handleOnChange}
                                     onBlur={validateAge}
-                                    value={birthDate.month}
+                                    value={birthDate.b_month} // Updated field name
                                 >
                                     <option value="select">Select</option>
                                     {monthOptions.map((month, index) => (
@@ -1453,28 +1444,24 @@ const ApplicationForm = () => {
                                     ))}
                                 </select>
 
-                                <label htmlFor="year"> Year </label>
+                                <label htmlFor="b_year"> Year </label>
                                 <select
-                                    name="year"
-                                    id="year"
+                                    name="b_year" // Updated field name
+                                    id="b_year"
                                     style={{ height: '25px', width: '120px' }}
                                     onChange={handleOnChange}
                                     onBlur={validateAge}
-                                    value={birthDate.year}
+                                    value={birthDate.b_year} // Updated field name
                                 >
                                     <option value="selected">Select</option>
                                     {yearOptions.map(year => <option key={year} value={year}>{year}</option>)}
                                 </select>
                             </td>
-
-
-
-
-
                         </tr>
-                        <div >
-                            {errorMessage && <p style={{ color: 'red' }} >{errorMessage}</p>} {/* Error message */}
+                        <div>
+                            {errorMessage && <p style={{ color: 'red' }}>{errorMessage}</p>} {/* Error message */}
                         </div>
+
 
 
 
