@@ -1324,6 +1324,23 @@ const ApplicationForm = () => {
                         setImages({ image1: null, image2: null });
                         setPreviews({ image1: null, image2: null });
                         setSelectedColleges([]);
+                        setMailingAddress({
+                            M_CareOf: '',
+                            M_Village: '',
+                            M_District: '',
+                            M_Upzilla: '',
+                            M_POffice: '',
+                            M_PCode: '',
+                        }); // Reset mailing address
+                        setPermanentAddress({
+                            P_CareOf: '',
+                            P_Village: '',
+                            P_District: '',
+                            P_Upzilla: '',
+                            P_POffice: '',
+                            P_PCode: '',
+                        }); // Reset permanent address
+                        setSameAsMailing(false); // Reset checkbox
                         e.target.reset(); // Reset form fields
 
                     } else if (data.message) {
