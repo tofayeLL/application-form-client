@@ -1152,19 +1152,36 @@ const ApplicationForm = () => {
     const [sameAsMailing, setSameAsMailing] = useState(false);
 
     const handleCheckboxChange = () => {
-        setSameAsMailing(prev => !prev);
-    
-        if (!sameAsMailing) {
-            setPermanentAddress({
-                P_CareOf: mailingAddress.M_CareOf,
-                P_Village: mailingAddress.M_Village,
-                P_District: mailingAddress.M_District,
-                P_Upzilla: mailingAddress.M_Upzilla, // Ensure Upzilla is included here
-                P_POffice: mailingAddress.M_POffice,
-                P_PCode: mailingAddress.M_PCode,
-            });
-        }
+        console.log("Checkbox changed, sameAsMailing:", sameAsMailing); // Debugging the checkbox status
+        setSameAsMailing(prev => {
+            const newSameAsMailing = !prev;
+
+            if (newSameAsMailing) {
+                console.log("Copying values from mailingAddress:", mailingAddress); // Debugging the mailingAddress values
+                setPermanentAddress({
+                    P_CareOf: mailingAddress.M_CareOf,
+                    P_Village: mailingAddress.M_Village,
+                    P_District: mailingAddress.M_District,
+                    P_Upzilla: mailingAddress.M_Upzilla,
+                    P_POffice: mailingAddress.M_POffice,
+                    P_PCode: mailingAddress.M_PCode,
+                });
+            } else {
+                console.log("Resetting permanent address"); // Debugging reset
+                setPermanentAddress({
+                    P_CareOf: '',
+                    P_Village: '',
+                    P_District: '',
+                    P_Upzilla: '',
+                    P_POffice: '',
+                    P_PCode: '',
+                });
+            }
+
+            return newSameAsMailing;
+        });
     };
+
 
     const handleMailingChange = (field, value) => {
         setMailingAddress(prev => ({ ...prev, [field]: value }));
@@ -1644,46 +1661,61 @@ const ApplicationForm = () => {
                                                             </td>
                                                         </tr>
                                                         <tr>
-                                                            <td>District</td>
-                                                            <td>
-                                                                <select
-                                                                    name="P_District"
-                                                                    id="P_District"
-                                                                    onBlur={handleOnblur}
-                                                                    value={permanentAddress.P_District}
-                                                                    onChange={e => handlePermanentChange('P_District', e.target.value)}
-                                                                    disabled={sameAsMailing}
-                                                                >
-                                                                    <option value="0">Select District</option>
-                                                                    {p_dist.map(d => (
-                                                                        <option key={d} value={d}>
-                                                                            {d}
-                                                                        </option>
-                                                                    ))}
-                                                                </select>
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>Upzilla</td>
-                                                            <td>Upzilla</td>
-                                                            <td>
-                                                                <select
-                                                                    name="P_Upzilla"
-                                                                    id="P_Upzilla"
-                                                                    onBlur={handleOnblur}
-                                                                    value={permanentAddress.P_Upzilla} // Bind to the state
-                                                                    onChange={e => handlePermanentChange('P_Upzilla', e.target.value)}
-                                                                    disabled={sameAsMailing} // Disable when the checkbox is selected
-                                                                >
-                                                                    <option value="0">Select Upzilla</option>
-                                                                    {p_upzilla.map(u => (
-                                                                        <option key={u} value={u}>
-                                                                            {u}
-                                                                        </option>
-                                                                    ))}
-                                                                </select>
-                                                            </td>
-                                                        </tr>
+    <td>District</td>
+    <td>
+        {sameAsMailing ? (
+            <input
+                type="text"
+                value={mailingAddress.M_District} // Show the mailing address district value
+                onChange={e => handlePermanentChange('P_District', e.target.value)} // Allow updating when unchecked
+            />
+        ) : (
+            <select
+                style={{ width: '100%' }}
+                name="P_District"
+                id="P_District"
+                onBlur={handleOnblur}
+                value={permanentAddress.P_District}
+                onChange={e => handlePermanentChange('P_District', e.target.value)} // Update when unchecked
+            >
+                <option value="0">Select District</option>
+                {m_dist.map(d => (
+                    <option key={d} value={d}>
+                        {d}
+                    </option>
+                ))}
+            </select>
+        )}
+    </td>
+</tr>
+<tr>
+    <td>Upzilla</td>
+    <td>
+        {sameAsMailing ? (
+            <input
+                type="text"
+                value={mailingAddress.M_Upzilla} // Show the mailing address upzilla value
+                onChange={e => handlePermanentChange('P_Upzilla', e.target.value)} // Allow updating when unchecked
+            />
+        ) : (
+            <select
+                style={{ width: '100%' }}
+                name="P_Upzilla"
+                id="P_Upzilla"
+                onBlur={handleOnblur}
+                value={permanentAddress.P_Upzilla}
+                onChange={e => handlePermanentChange('P_Upzilla', e.target.value)} // Update when unchecked
+            >
+                <option value="0">Select Upzilla</option>
+                {m_upzilla.map(u => (
+                    <option key={u} value={u}>
+                        {u}
+                    </option>
+                ))}
+            </select>
+        )}
+    </td>
+</tr>
                                                         <tr>
                                                             <td>Post Office</td>
                                                             <td>
