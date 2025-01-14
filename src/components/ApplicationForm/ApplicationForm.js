@@ -1035,8 +1035,7 @@ const ApplicationForm = () => {
 
 
 
-    //    age 
-
+    //    age validation
     const [errorMessage, setErrorMessage] = useState("");
     const [birthDate, setBirthDate] = useState({
         day: "0",
@@ -1131,18 +1130,70 @@ const ApplicationForm = () => {
 
 
 
+    // same as mailing address fill up form
+    const [mailingAddress, setMailingAddress] = useState({
+        M_CareOf: '',
+        M_Village: '',
+        M_District: '',
+        M_Upzilla: '',
+        M_POffice: '',
+        M_PCode: '',
+    });
+
+    const [permanentAddress, setPermanentAddress] = useState({
+        P_CareOf: '',
+        P_Village: '',
+        P_District: '',
+        P_Upzilla: '',
+        P_POffice: '',
+        P_PCode: '',
+    });
+
+    const [sameAsMailing, setSameAsMailing] = useState(false);
+
+    const handleCheckboxChange = () => {
+        setSameAsMailing(prev => !prev);
+    
+        if (!sameAsMailing) {
+            setPermanentAddress({
+                P_CareOf: mailingAddress.M_CareOf,
+                P_Village: mailingAddress.M_Village,
+                P_District: mailingAddress.M_District,
+                P_Upzilla: mailingAddress.M_Upzilla, // Ensure Upzilla is included here
+                P_POffice: mailingAddress.M_POffice,
+                P_PCode: mailingAddress.M_PCode,
+            });
+        }
+    };
+
+    const handleMailingChange = (field, value) => {
+        setMailingAddress(prev => ({ ...prev, [field]: value }));
+    };
+
+    const handlePermanentChange = (field, value) => {
+        setPermanentAddress(prev => ({ ...prev, [field]: value }));
+    };
+
+
+
+
+
+
+
+
+
+
 
 
 
 
 
     // Submit Form
-
-
     const handleAddUser = async (e) => {
         e.preventDefault();
         // Check age validity
         if (!validateAge()) {
+            console.log("Age validation failed. Form submission stopped.");
             return; // Stop further execution if age is invalid
         }
 
@@ -1436,100 +1487,230 @@ const ApplicationForm = () => {
                                             <td style={{ width: '48%' }}>
                                                 <table cellPadding="5" style={{ width: '100%', border: '1px solid #99C1D0' }}>
                                                     <tbody>
-
                                                         <tr>
                                                             <td colSpan="2">Mailing Address <small style={{ color: 'red' }}>*</small></td>
                                                         </tr>
                                                         <tr>
                                                             <td>Care of</td>
-                                                            <td><input type="textarea" name="M_CareOf" id="M_CareOf" onBlur={handleOnblur} onChange={e => setCare(e.target.value)} /></td>
+                                                            <td>
+                                                                <input
+                                                                    type="text"
+                                                                    name="M_CareOf"
+                                                                    id="M_CareOf"
+                                                                    onBlur={handleOnblur}
+                                                                    onChange={e => {
+                                                                        handleMailingChange('M_CareOf', e.target.value);
+                                                                        setCare(e.target.value);
+                                                                    }}
+                                                                    value={mailingAddress.M_CareOf}
+                                                                />
+                                                            </td>
                                                         </tr>
                                                         <tr>
                                                             <td>Village/Town/Road</td>
-                                                            <td><input type="textarea" name="M_Village" id="M_Village" onBlur={handleOnblur} onChange={e => setVillage(e.target.value)} /></td>
+                                                            <td>
+                                                                <input
+                                                                    type="text"
+                                                                    name="M_Village"
+                                                                    id="M_Village"
+                                                                    onBlur={handleOnblur}
+                                                                    onChange={e => {
+                                                                        handleMailingChange('M_Village', e.target.value);
+                                                                        setVillage(e.target.value);
+                                                                    }}
+                                                                    value={mailingAddress.M_Village}
+                                                                />
+                                                            </td>
                                                         </tr>
                                                         <tr>
                                                             <td>District</td>
                                                             <td>
-                                                                <select style={{ width: '100%' }} name="M_District" id="M_District" onBlur={handleOnblur} onChange={e => setDist(e.target.value)}>
-                                                                    <option value="0" >Select District</option>
-                                                                    {
-                                                                        m_dist.map(d => <option key={d} value={d} >{d}</option>)
-                                                                    }
+                                                                <select
+                                                                    name="M_District"
+                                                                    id="M_District"
+                                                                    onBlur={handleOnblur}
+                                                                    onChange={e => {
+                                                                        handleMailingChange('M_District', e.target.value);
+                                                                        setDist(e.target.value);
+                                                                    }}
+                                                                    value={mailingAddress.M_District}
+                                                                >
+                                                                    <option value="0">Select District</option>
+                                                                    {m_dist.map(d => (
+                                                                        <option key={d} value={d}>
+                                                                            {d}
+                                                                        </option>
+                                                                    ))}
                                                                 </select>
                                                             </td>
                                                         </tr>
                                                         <tr>
                                                             <td>Upzilla</td>
                                                             <td>
-                                                                <select style={{ width: '100%' }} name="M_Upzilla" id="M_Upzilla" onBlur={handleOnblur} onChange={e => setMupzilla(e.target.value)}>
+                                                                <select
+                                                                    name="M_Upzilla"
+                                                                    id="M_Upzilla"
+                                                                    onBlur={handleOnblur}
+                                                                    onChange={e => {
+                                                                        handleMailingChange('M_Upzilla', e.target.value);
+                                                                        setMupzilla(e.target.value);
+                                                                    }}
+                                                                    value={mailingAddress.M_Upzilla}
+                                                                >
                                                                     <option value="0">Select Upzilla</option>
-                                                                    {
-                                                                        m_upzilla.map(u => <option key={u} value={u}>{u}</option>)
-                                                                    }
+                                                                    {m_upzilla.map(u => (
+                                                                        <option key={u} value={u}>
+                                                                            {u}
+                                                                        </option>
+                                                                    ))}
                                                                 </select>
                                                             </td>
                                                         </tr>
                                                         <tr>
                                                             <td>Post Office</td>
-                                                            <td><input type="text" name="M_POffice" id="M_POffice" onBlur={handleOnblur} /></td>
+                                                            <td>
+                                                                <input
+                                                                    type="text"
+                                                                    name="M_POffice"
+                                                                    id="M_POffice"
+                                                                    onBlur={handleOnblur}
+                                                                    onChange={e => handleMailingChange('M_POffice', e.target.value)}
+                                                                    value={mailingAddress.M_POffice}
+                                                                />
+                                                            </td>
                                                         </tr>
                                                         <tr>
                                                             <td>Post Code</td>
-                                                            <td><input type="number" name="M_PCode" id="M_PCode" onBlur={handleOnblur} /></td>
+                                                            <td>
+                                                                <input
+                                                                    type="number"
+                                                                    name="M_PCode"
+                                                                    id="M_PCode"
+                                                                    onBlur={handleOnblur}
+                                                                    onChange={e => handleMailingChange('M_PCode', e.target.value)}
+                                                                    value={mailingAddress.M_PCode}
+                                                                />
+                                                            </td>
                                                         </tr>
                                                     </tbody>
                                                 </table>
                                             </td>
                                             <td style={{ width: '2%', backgroundColor: '#dfdfdf' }}> </td>
+                                            {/* Permanent Address */}
                                             <td style={{ width: '48%' }}>
                                                 <table cellPadding="5" style={{ width: '100%', border: '1px solid #99C1D0' }}>
                                                     <tbody>
-
                                                         <tr>
                                                             <td colSpan="2">
                                                                 Permanent Address <small style={{ color: 'red' }}>*</small>
-                                                                {/* <input type="checkbox" id="p_chk" name="p_chk" value="cheked" onChange={e => setFill(e.target.value)} />
-                                                                <label htmlFor='p_chk'><small>same as present address</small></label> */}
+                                                                <input
+                                                                    type="checkbox"
+                                                                    id="p_chk"
+                                                                    name="p_chk"
+                                                                    checked={sameAsMailing}
+                                                                    onChange={handleCheckboxChange}
+                                                                />
+                                                                <label htmlFor="p_chk">
+                                                                    <small>Same as Mailing Address</small>
+                                                                </label>
                                                             </td>
                                                         </tr>
                                                         <tr>
                                                             <td>Care of</td>
-                                                            <td><input type="text" name="P_CareOf" id="P_CareOf" onBlur={handleOnblur} /></td>
+                                                            <td>
+                                                                <input
+                                                                    type="text"
+                                                                    name="P_CareOf"
+                                                                    id="P_CareOf"
+                                                                    onBlur={handleOnblur}
+                                                                    value={permanentAddress.P_CareOf}
+                                                                    onChange={e => handlePermanentChange('P_CareOf', e.target.value)}
+                                                                    disabled={sameAsMailing}
+                                                                />
+                                                            </td>
                                                         </tr>
                                                         <tr>
                                                             <td>Village/Town/Road</td>
-                                                            <td><input type="text" name="P_Village" id="P_Village" onBlur={handleOnblur} /></td>
+                                                            <td>
+                                                                <input
+                                                                    type="text"
+                                                                    name="P_Village"
+                                                                    id="P_Village"
+                                                                    onBlur={handleOnblur}
+                                                                    value={permanentAddress.P_Village}
+                                                                    onChange={e => handlePermanentChange('P_Village', e.target.value)}
+                                                                    disabled={sameAsMailing}
+                                                                />
+                                                            </td>
                                                         </tr>
                                                         <tr>
                                                             <td>District</td>
                                                             <td>
-                                                                <select style={{ width: '100%' }} name="P_District" id="P_District" onBlur={handleOnblur} onChange={e => setDist2(e.target.value)}>
-                                                                    <option value="0" >Select District</option>
-                                                                    {
-                                                                        p_dist.map(d => <option key={d} value={d} >{d}</option>)
-                                                                    }
+                                                                <select
+                                                                    name="P_District"
+                                                                    id="P_District"
+                                                                    onBlur={handleOnblur}
+                                                                    value={permanentAddress.P_District}
+                                                                    onChange={e => handlePermanentChange('P_District', e.target.value)}
+                                                                    disabled={sameAsMailing}
+                                                                >
+                                                                    <option value="0">Select District</option>
+                                                                    {p_dist.map(d => (
+                                                                        <option key={d} value={d}>
+                                                                            {d}
+                                                                        </option>
+                                                                    ))}
                                                                 </select>
                                                             </td>
                                                         </tr>
                                                         <tr>
                                                             <td>Upzilla</td>
+                                                            <td>Upzilla</td>
                                                             <td>
-                                                                <select style={{ width: '100%' }} name="P_Upzilla" id="P_Upz" onBlur={handleOnblur}>
+                                                                <select
+                                                                    name="P_Upzilla"
+                                                                    id="P_Upzilla"
+                                                                    onBlur={handleOnblur}
+                                                                    value={permanentAddress.P_Upzilla} // Bind to the state
+                                                                    onChange={e => handlePermanentChange('P_Upzilla', e.target.value)}
+                                                                    disabled={sameAsMailing} // Disable when the checkbox is selected
+                                                                >
                                                                     <option value="0">Select Upzilla</option>
-                                                                    {
-                                                                        p_upzilla.map(u => <option key={u} value={u}>{u}</option>)
-                                                                    }
+                                                                    {p_upzilla.map(u => (
+                                                                        <option key={u} value={u}>
+                                                                            {u}
+                                                                        </option>
+                                                                    ))}
                                                                 </select>
                                                             </td>
                                                         </tr>
                                                         <tr>
                                                             <td>Post Office</td>
-                                                            <td><input type="text" name="P_POffice" id="P_POffice" onBlur={handleOnblur} /></td>
+                                                            <td>
+                                                                <input
+                                                                    type="text"
+                                                                    name="P_POffice"
+                                                                    id="P_POffice"
+                                                                    onBlur={handleOnblur}
+                                                                    value={permanentAddress.P_POffice}
+                                                                    onChange={e => handlePermanentChange('P_POffice', e.target.value)}
+                                                                    disabled={sameAsMailing}
+                                                                />
+                                                            </td>
                                                         </tr>
                                                         <tr>
                                                             <td>Post Code</td>
-                                                            <td><input type="number" name="P_PCode" id="P_PCode" onBlur={handleOnblur} /></td>
+                                                            <td>
+                                                                <input
+                                                                    type="number"
+                                                                    name="P_PCode"
+                                                                    id="P_PCode"
+                                                                    onBlur={handleOnblur}
+                                                                    value={permanentAddress.P_PCode}
+                                                                    onChange={e => handlePermanentChange('P_PCode', e.target.value)}
+                                                                    disabled={sameAsMailing}
+                                                                />
+                                                            </td>
                                                         </tr>
                                                     </tbody>
                                                 </table>
