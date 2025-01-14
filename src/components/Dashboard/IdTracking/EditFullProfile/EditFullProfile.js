@@ -1285,16 +1285,16 @@ const EditFullProfile = () => {
                                                             </tr>
                                                             <tr>
                                                                 <td>Care of</td>
-                                                                <td><input type="text" name="P_CareOf" id="P_CareOf" onBlur={handleOnblur} defaultValue={applicantData?.P_CareOf} /></td>
+                                                                <td><input type="text" name="P_CareOf" id="P_CareOf" onBlur={handleOnblur} defaultValue={applicantData?.P_CareOf || applicantData?.permanentAddress?.P_CareOf} /></td>
                                                             </tr>
                                                             <tr>
                                                                 <td>Village/Town/Road</td>
-                                                                <td><input type="text" name="P_Village" id="P_Village" onBlur={handleOnblur} defaultValue={applicantData?.P_Village} /></td>
+                                                                <td><input type="text" name="P_Village" id="P_Village" onBlur={handleOnblur} defaultValue={applicantData?.P_Village || applicantData?.permanentAddress?.P_Village} /></td>
                                                             </tr>
                                                             <tr>
                                                                 <td>District</td>
                                                                 <td>
-                                                                    <select style={{ width: '100%' }} name="P_District" id="P_District" onBlur={handleOnblur} onChange={e => setDist2(e.target.value)} defaultValue={applicantData?.P_District} >
+                                                                    <select style={{ width: '100%' }} name="P_District" id="P_District" onBlur={handleOnblur} onChange={e => setDist2(e.target.value)} defaultValue={applicantData?.P_District || applicantData?.permanentAddress?.P_District} >
                                                                         <option value="0" >Select District</option>
                                                                         {
                                                                             p_dist.map(d => <option key={d} value={d} >{d}</option>)
@@ -1315,15 +1315,15 @@ const EditFullProfile = () => {
 
                                                                 </td> */}
 
-                                                                <td><input type="text" name="P_Upzilla" id="P_Upz" onBlur={handleOnblur} defaultValue={applicantData?.P_Upzilla} /></td>
+                                                                <td><input type="text" name="P_Upzilla" id="P_Upz" onBlur={handleOnblur} defaultValue={applicantData?.P_Upzilla || applicantData?.permanentAddress?.P_Upzilla} /></td>
                                                             </tr>
                                                             <tr>
                                                                 <td>Post Office</td>
-                                                                <td><input type="text" name="P_POffice" id="P_POffice" onBlur={handleOnblur} defaultValue={applicantData?.P_POffice} /></td>
+                                                                <td><input type="text" name="P_POffice" id="P_POffice" onBlur={handleOnblur} defaultValue={applicantData?.P_POffice || applicantData?.permanentAddress?.P_POffice} /></td>
                                                             </tr>
                                                             <tr>
                                                                 <td>Post Code</td>
-                                                                <td><input type="number" name="P_PCode" id="P_PCode" onBlur={handleOnblur} defaultValue={applicantData?.P_PCode} /></td>
+                                                                <td><input type="number" name="P_PCode" id="P_PCode" onBlur={handleOnblur} defaultValue={applicantData?.P_PCode || applicantData?.permanentAddress?.P_PCode} /></td>
                                                             </tr>
                                                         </tbody>
                                                     </table>

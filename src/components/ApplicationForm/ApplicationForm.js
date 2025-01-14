@@ -1181,6 +1181,7 @@ const ApplicationForm = () => {
             return newSameAsMailing;
         });
     };
+    console.log("yes i got it", permanentAddress)
 
 
     const handleMailingChange = (field, value) => {
@@ -1276,7 +1277,7 @@ const ApplicationForm = () => {
 
             const status = "Unpaid"
             // If "Same as Mailing Address" is checked, copy mailing address to permanent address
-            const finalPermanentAddress = sameAsMailing ? { ...mailingAddress } : permanentAddress;
+            const finalPermanentAddress = sameAsMailing ? permanentAddress : { ...mailingAddress };
 
 
 
@@ -1295,7 +1296,6 @@ const ApplicationForm = () => {
                 date: currentDate, // Include the current date
                 status,
                 selectedColleges,
-                mailingAddress, // Add mailing address
                 permanentAddress: finalPermanentAddress, // Add permanent address (either same as mailing or custom)
             };
 
