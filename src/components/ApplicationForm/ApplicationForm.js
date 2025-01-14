@@ -1275,7 +1275,18 @@ const ApplicationForm = () => {
             const currentDate = new Date().toISOString();
 
             const status = "Unpaid"
+            // If "Same as Mailing Address" is checked, copy mailing address to permanent address
+            const finalPermanentAddress = sameAsMailing ? { ...mailingAddress } : permanentAddress;
 
+
+
+            /*  const updateApplicant = {
+                 ...applicant,
+                 images: { image1: image1Url, image2: image2Url },
+                 date: currentDate, // Include the current date
+                 status,
+                 selectedColleges
+             } */
 
 
             const updateApplicant = {
@@ -1283,8 +1294,10 @@ const ApplicationForm = () => {
                 images: { image1: image1Url, image2: image2Url },
                 date: currentDate, // Include the current date
                 status,
-                selectedColleges
-            }
+                selectedColleges,
+                mailingAddress, // Add mailing address
+                permanentAddress: finalPermanentAddress, // Add permanent address (either same as mailing or custom)
+            };
 
 
 
@@ -1621,9 +1634,9 @@ const ApplicationForm = () => {
                                                     <tbody>
                                                         <tr >
                                                             <td colSpan="2" >
-                                                                
-                                                               <span className='flex items-center space-x-[2px]  '>
-                                                               Permanent Address <small style={{ color: 'red' }} className='pr-4'>*</small>
+
+                                                                <span className='flex items-center space-x-[2px]  '>
+                                                                    Permanent Address <small style={{ color: 'red' }} className='pr-4'>*</small>
                                                                     <input
                                                                         type="checkbox"
                                                                         id="p_chk"
@@ -1634,7 +1647,7 @@ const ApplicationForm = () => {
                                                                     <label htmlFor="p_chk"  >
                                                                         <small>Same as Mailing Address</small>
                                                                     </label>
-                                                                    </span>
+                                                                </span>
                                                             </td>
                                                         </tr>
                                                         <tr>
