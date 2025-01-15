@@ -981,7 +981,7 @@ const ApplicationForm = () => {
 
 
     // Handle image change
-    const handleImageChange = (e) => {
+    /* const handleImageChange = (e) => {
         const { name, files } = e.target;
         const file = files[0];
         if (file) {
@@ -1004,7 +1004,59 @@ const ApplicationForm = () => {
     };
 
     console.log("get up images", images);
+ */
 
+    const handleImageChange = (e) => {
+        const { name, files } = e.target;
+        const file = files[0];
+    
+        if (!file) return;
+    
+        // Validate file type
+        if (!file.type.includes("jpeg") && !file.type.includes("png")) {
+            alert("Invalid file format. Please upload a JPG or PNG image.");
+            return;
+        }
+    
+        // Validate dimensions
+        const img = new Image();
+        img.onload = () => {
+            if (
+                (name === "image1" && (img.width !== 300 || img.height !== 300)) ||
+                (name === "image2" && (img.width !== 120 || img.height !== 80))
+            ) {
+                alert(
+                    `Invalid dimensions for ${
+                        name === "image1" ? "Applicant Image" : "Signature"
+                    }. Expected ${
+                        name === "image1" ? "300x300" : "120x80"
+                    } pixels.`
+                );
+                return;
+            }
+    
+            // If validation passes, update state
+            setImages((prevImages) => ({
+                ...prevImages,
+                [name]: file,
+            }));
+    
+            // Generate a preview URL
+            const reader = new FileReader();
+            reader.onload = () => {
+                setPreviews((prevPreviews) => ({
+                    ...prevPreviews,
+                    [name]: reader.result,
+                }));
+            };
+            reader.readAsDataURL(file);
+        };
+        img.onerror = () => {
+            alert("Invalid image file.");
+        };
+        img.src = URL.createObjectURL(file);
+    };
+    
 
 
 
@@ -1263,6 +1315,9 @@ const ApplicationForm = () => {
             const currentDate = new Date().toISOString();
 
             const status = "Unpaid"
+
+
+
             // If "Same as Mailing Address" is checked, copy mailing address to permanent address
             // const finalPermanentAddress = sameAsMailing ? permanentAddress : { ...mailingAddress };
 
@@ -1275,6 +1330,8 @@ const ApplicationForm = () => {
                  status,
                  selectedColleges
              } */
+
+
 
 
             const updateApplicant = {
