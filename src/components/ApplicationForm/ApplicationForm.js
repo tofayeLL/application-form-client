@@ -1264,7 +1264,7 @@ const ApplicationForm = () => {
 
             const status = "Unpaid"
             // If "Same as Mailing Address" is checked, copy mailing address to permanent address
-            const finalPermanentAddress = sameAsMailing ? permanentAddress : { ...mailingAddress };
+            // const finalPermanentAddress = sameAsMailing ? permanentAddress : { ...mailingAddress };
 
 
 
@@ -1283,7 +1283,12 @@ const ApplicationForm = () => {
                 date: currentDate, // Include the current date
                 status,
                 selectedColleges,
-                permanentAddress: finalPermanentAddress, // Add permanent address (either same as mailing or custom)
+                P_CareOf: mailingAddress.M_CareOf,
+                P_Village: mailingAddress.M_Village,
+                P_District: mailingAddress.M_District,
+                P_Upzilla: mailingAddress.M_Upzilla,
+                P_POffice: mailingAddress.M_POffice,
+                P_PCode: mailingAddress.M_PCode, // Add permanent address (either same as mailing or custom)
                 // Add birthDate fields to match database field names
                 b_day: birthDate.b_day,
                 b_month: birthDate.b_month,

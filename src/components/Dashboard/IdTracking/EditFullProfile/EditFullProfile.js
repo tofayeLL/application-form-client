@@ -1128,12 +1128,13 @@ const EditFullProfile = () => {
                                         <option value="December">12 - December</option>
                                     </select>
                                     <label htmlFor="year"> Year </label>
-                                    <select name="b_year" id="year" style={{ height: '25px', width: '120px', float: 'right' }} onBlur={handleOnblur} defaultValue={applicantData?.b_year}>
-                                        <option value="selected" defaultValue={"selected"}>Select</option>
+                                    {/* <select name="b_year" id="year" style={{ height: '25px', width: '120px' }} onBlur={handleOnblur} defaultValue={applicantData?.b_year}>
+                                        <option value="selected" defaultValue={"select"}>Select</option>
                                         {
                                             byear.map(birthYear => <option key={birthYear} value={birthYear}>{birthYear}</option>)
                                         }
-                                    </select>
+                                    </select> */}
+                                     <input type="text" name="b_year" id="year" style={{ height: '25px', width: '120px' }} onBlur={handleOnblur} defaultValue={applicantData?.b_year} />
                                 </td>
                             </tr>
                             <tr>
