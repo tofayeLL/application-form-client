@@ -1486,8 +1486,9 @@ const ApplicationForm = () => {
                                     onChange={handleOnChange}
                                     onBlur={validateAge}
                                     value={birthDate.b_day} // Updated field name
+                                    required 
                                 >
-                                    <option value="0" defaultValue="select">Select</option>
+                                    <option value="" defaultValue="select">Select</option>
                                     {dayOptions.map(day => <option key={day} value={day}>{day}</option>)}
                                 </select>
 
@@ -1499,8 +1500,9 @@ const ApplicationForm = () => {
                                     onChange={handleOnChange}
                                     onBlur={validateAge}
                                     value={birthDate.b_month} // Updated field name
+                                    required 
                                 >
-                                    <option value="select">Select</option>
+                                    <option value="">Select</option>
                                     {monthOptions.map((month, index) => (
                                         <option key={month} value={month}>{String(index + 1).padStart(2, '0')} - {month}</option>
                                     ))}
@@ -1514,8 +1516,9 @@ const ApplicationForm = () => {
                                     onChange={handleOnChange}
                                     onBlur={validateAge}
                                     value={birthDate.b_year} // Updated field name
+                                    required 
                                 >
-                                    <option value="selected">Select</option>
+                                    <option value="">Select</option>
                                     {yearOptions.map(year => <option key={year} value={year}>{year}</option>)}
                                 </select>
                             </td>
