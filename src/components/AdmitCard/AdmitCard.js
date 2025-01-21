@@ -24,7 +24,7 @@ const AdmitCard = () => {
     }
 
     return (
-        <div style={admitStyle}  className='w-[58%] mx-auto' >
+        <div style={admitStyle}  className='w-[58%] mx-auto ' >
             <table style={{ margin: '0 auto', borderCollapse: 'collapse', textAlign: 'left', width: '100%',  }} cellSpacing="0" cellPadding="4">
                 <tbody>
                     <tr>

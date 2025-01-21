@@ -3,7 +3,7 @@ import circular from './media/vumi_montronaloy.pdf'
 
 const Advertisement = () => {
     return (
-        <div style={{ width: '100%' }}>
+        <div className='w-[58%] mx-auto'>
             <embed src={circular} style={{ width: '100%', height: '100vh' }}></embed>
         </div>
     );

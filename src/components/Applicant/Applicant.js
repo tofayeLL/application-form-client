@@ -19,7 +19,7 @@ const Applicant = () => {
         borderBottom: '2px solid #025c3b'
     };
     return (
-        <div style={adminStyle}>
+        <div style={adminStyle} className='w-[58%] mx-auto'>
             {
                 applicants.map(applicant => <h2 key={applicant._id} style={{ color: '#277BC0' }}>{applicant.applicantName} Info</h2>)
             }
