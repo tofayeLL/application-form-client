@@ -39,10 +39,8 @@ const ApplicantUnpaid = () => {
 
     return (
         <div>
-            <h1>I am from All applicant unpaid page</h1>
+            <h1>I am from All applicant unpaid page {applicantsData.length}</h1>
             <section>
-                <h1>I am from midwifery page (computer operator){applicantsData.length}</h1>
-
                 <div className="overflow-x-auto border border-gray-300 rounded-lg bg-white shadow-md">
                     <table className="table-auto w-full text-sm text-gray-600 border-collapse">
                         <thead>

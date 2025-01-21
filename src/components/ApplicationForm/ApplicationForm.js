@@ -1466,8 +1466,8 @@ const ApplicationForm = () => {
                             <td>Gender <small style={{ color: 'red' }}>*</small></td>
                             <td>:</td>
                             <td>
-                                <select style={{ padding: '3px', width: '150px' }} name="gender" id="gender" onBlur={handleOnblur} >
-                                    <option value='0'>Select Gender</option>
+                                <select style={{ padding: '3px', width: '150px' }} name="gender" id="gender" onBlur={handleOnblur} required >
+                                    <option value=''>Select Gender</option>
                                     <option value='Male'>Male</option>
                                     <option value='Female'>Female</option>
                                     <option value='Others'>Others</option>
