@@ -1104,13 +1104,15 @@ const EditFullProfile = () => {
                                 <td>:</td>
                                 <td>
                                     <label htmlFor='date'> Day </label>
-                                    <select style={{ height: '25px', width: '120px', marginRight: '15px', textAlign: 'center' }} id='date' name="b_day" onBlur={handleOnblur} defaultValue={applicantData?.b_day}>
+                                   {/*  <select style={{ height: '25px', width: '120px', marginRight: '15px', textAlign: 'center' }} id='date' name="b_day" onBlur={handleOnblur} defaultValue={applicantData?.b_day}>
                                         <option value="0" defaultValue={"select"}>Select</option>
                                         {
                                             bday.map(birthDay => <option key={birthDay} value={birthDay}>{birthDay}</option>)
                                         }
 
-                                    </select>
+                                    </select> */}
+                                     <input type="text" id='date' name="b_day" style={{ height: '25px', width: '120px', textAlign: 'center' }} onBlur={handleOnblur} defaultValue={applicantData?.b_day}/>
+
                                     <label htmlFor='month'> Month </label>
                                     <select style={{ height: '25px', width: '120px', marginRight: '15px' }} name="b_month" id="month" onBlur={handleOnblur} defaultValue={applicantData?.b_month}>
                                         <option value="select" defaultValue={"select"}>Select</option>
@@ -1134,7 +1136,7 @@ const EditFullProfile = () => {
                                             byear.map(birthYear => <option key={birthYear} value={birthYear}>{birthYear}</option>)
                                         }
                                     </select> */}
-                                     <input type="text" name="b_year" id="year" style={{ height: '25px', width: '120px' }} onBlur={handleOnblur} defaultValue={applicantData?.b_year} />
+                                     <input type="text" name="b_year" id="year" style={{ height: '25px', width: '120px', textAlign: 'center' }} onBlur={handleOnblur} defaultValue={applicantData?.b_year} />
                                 </td>
                             </tr>
                             <tr>

@@ -26,12 +26,13 @@ const Users = () => {
 
                     }
                 })
-        }  
+        }
     }
     return (
         <div>
             <h2>Available Users: {users.length}</h2>
             <div>
+                
                 <div>
                     {
                         users.map(user => <h3 key={user._id}>({users.indexOf(user) + 1}) {user.name}
@@ -41,6 +42,7 @@ const Users = () => {
 
                     }
                 </div>
+
             </div>
         </div>
 

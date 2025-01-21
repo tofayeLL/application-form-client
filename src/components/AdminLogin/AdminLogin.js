@@ -66,13 +66,13 @@ const AdminLogin = () => {
                 icon: 'error',
                 confirmButtonText: 'OK',
             });
-        }
+        } 
     };
 
 
 
     // Toggle password visibility
-    const togglePassword = () => {
+    const togglePassword = () => {  
         setPasswordVisible(!passwordVisible);
     };
     return (
