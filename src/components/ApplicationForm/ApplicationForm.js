@@ -1539,19 +1539,19 @@ const ApplicationForm = () => {
                         <tr>
                             <td>National ID <small style={{ color: 'red' }}>*</small></td>
                             <td>:</td>
-                            <td><input className='inputField' type="number" placeholder=" " name="NID" id="NID" onBlur={handleOnblur} /></td>
+                            <td><input className='inputField' type="number" placeholder=" " name="NID" id="NID" onBlur={handleOnblur} required /></td>
                         </tr>
                         <tr>
                             <td>Birth Registration No</td>
                             <td>:</td>
-                            <td><input className='inputField' type="number" placeholder=" " name="b_reg" id="b_reg" onBlur={handleOnblur} /></td>
+                            <td><input className='inputField' type="number" placeholder=" " name="b_reg" id="b_reg" onBlur={handleOnblur} required  /></td>
                         </tr>
                         <tr>
                             <td>Merital Status</td>
                             <td>:</td>
                             <td>
-                                <select style={{ padding: '3px', width: '150px' }} name="m_status" id="m_status" onBlur={handleOnblur}>
-                                    <option defaultValue='0'>Select Marital Status</option>
+                                <select style={{ padding: '3px', width: '150px' }} name="m_status" id="m_status" onBlur={handleOnblur} required >
+                                    <option defaultValue='0' value="">Select Marital Status</option>
                                     <option value='Married'>Married</option>
                                     <option value='Single'>Single</option>
                                 </select>
@@ -1561,8 +1561,8 @@ const ApplicationForm = () => {
                             <td>Quota</td>
                             <td>:</td>
                             <td>
-                                <select style={{ padding: '3px' }} name="quota" id="quota" onBlur={handleOnblur}>
-                                    <option defaultValue='0'>Select One</option>
+                                <select style={{ padding: '3px' }} name="quota" id="quota" onBlur={handleOnblur} required >
+                                    <option defaultValue='0' value="">Select One</option>
                                     <option value="Freedom Fighter">Freedom Fighter</option>
                                     <option value="Child of Freedom Fighter">Child of Freedom Fighter</option>
                                     <option value="Grand Child of Freedom Fighter">Grand Child of Freedom Fighter</option>
