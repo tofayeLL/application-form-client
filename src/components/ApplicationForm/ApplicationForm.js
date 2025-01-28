@@ -1602,6 +1602,7 @@ const ApplicationForm = () => {
                                                                         setCare(e.target.value);
                                                                     }}
                                                                     value={mailingAddress.M_CareOf}
+                                                                    required
                                                                 />
                                                             </td>
                                                         </tr>
@@ -1618,6 +1619,7 @@ const ApplicationForm = () => {
                                                                         setVillage(e.target.value);
                                                                     }}
                                                                     value={mailingAddress.M_Village}
+                                                                    required
                                                                 />
                                                             </td>
                                                         </tr>
@@ -1634,14 +1636,16 @@ const ApplicationForm = () => {
                                                                         setDist(e.target.value);
                                                                     }}
                                                                     value={mailingAddress.M_District}
+                                                                    required
                                                                 >
-                                                                    <option value="0">Select District</option>
+                                                                    <option value="" >Select District</option>
                                                                     {m_dist.map(d => (
                                                                         <option key={d} value={d}>
                                                                             {d}
                                                                         </option>
                                                                     ))}
                                                                 </select>
+
                                                             </td>
                                                         </tr>
                                                         <tr>
@@ -1657,8 +1661,9 @@ const ApplicationForm = () => {
                                                                         setMupzilla(e.target.value);
                                                                     }}
                                                                     value={mailingAddress.M_Upzilla}
+                                                                    required
                                                                 >
-                                                                    <option value="0">Select Upzilla</option>
+                                                                    <option value="">Select Upzilla</option>
                                                                     {m_upzilla.map(u => (
                                                                         <option key={u} value={u}>
                                                                             {u}
@@ -1677,6 +1682,7 @@ const ApplicationForm = () => {
                                                                     onBlur={handleOnblur}
                                                                     onChange={e => handleMailingChange('M_POffice', e.target.value)}
                                                                     value={mailingAddress.M_POffice}
+                                                                    required
                                                                 />
                                                             </td>
                                                         </tr>
@@ -1690,6 +1696,7 @@ const ApplicationForm = () => {
                                                                     onBlur={handleOnblur}
                                                                     onChange={e => handleMailingChange('M_PCode', e.target.value)}
                                                                     value={mailingAddress.M_PCode}
+                                                                    required
                                                                 />
                                                             </td>
                                                         </tr>
@@ -1712,6 +1719,7 @@ const ApplicationForm = () => {
                                                                         name="p_chk"
                                                                         checked={sameAsMailing}
                                                                         onChange={handleCheckboxChange}
+                                                                      
                                                                     />
                                                                     <label htmlFor="p_chk"  >
                                                                         <small>Same as Mailing Address</small>
@@ -1730,6 +1738,7 @@ const ApplicationForm = () => {
                                                                     value={permanentAddress.P_CareOf}
                                                                     onChange={e => handlePermanentChange('P_CareOf', e.target.value)}
                                                                     disabled={sameAsMailing}
+                                                                    required
                                                                 />
                                                             </td>
                                                         </tr>
@@ -1744,6 +1753,7 @@ const ApplicationForm = () => {
                                                                     value={permanentAddress.P_Village}
                                                                     onChange={e => handlePermanentChange('P_Village', e.target.value)}
                                                                     disabled={sameAsMailing}
+                                                                    required
                                                                 />
                                                             </td>
                                                         </tr>
@@ -1764,8 +1774,9 @@ const ApplicationForm = () => {
                                                                         onBlur={handleOnblur}
                                                                         value={permanentAddress.P_District}
                                                                         onChange={e => handlePermanentChange('P_District', e.target.value)} // Update when unchecked
+                                                                        required
                                                                     >
-                                                                        <option value="0">Select District</option>
+                                                                        <option value="">Select District</option>
                                                                         {m_dist.map(d => (
                                                                             <option key={d} value={d}>
                                                                                 {d}
@@ -1792,8 +1803,9 @@ const ApplicationForm = () => {
                                                                         onBlur={handleOnblur}
                                                                         value={permanentAddress.P_Upzilla}
                                                                         onChange={e => handlePermanentChange('P_Upzilla', e.target.value)} // Update when unchecked
+                                                                        rquired
                                                                     >
-                                                                        <option value="0">Select Upzilla</option>
+                                                                        <option value="">Select Upzilla</option>
                                                                         {m_upzilla.map(u => (
                                                                             <option key={u} value={u}>
                                                                                 {u}
