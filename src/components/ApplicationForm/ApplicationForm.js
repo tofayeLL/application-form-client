@@ -1480,7 +1480,7 @@ const ApplicationForm = () => {
                             <td>
                                 <label htmlFor='b_day'> Day </label>
                                 <select
-                                    style={{ height: '25px', width: '120px', marginRight: '15px', textAlign: 'center' }}
+                                    style={{ height: '25px', width: '80px', marginRight: '15px', textAlign: 'center' }}
                                     id='b_day'
                                     name="b_day" // Updated field name
                                     onChange={handleOnChange}
@@ -1494,7 +1494,7 @@ const ApplicationForm = () => {
 
                                 <label htmlFor='b_month'> Month </label>
                                 <select
-                                    style={{ height: '25px', width: '120px', marginRight: '15px' }}
+                                    style={{ height: '25px', width: '120px', marginRight: '15px', textAlign: 'center' }}
                                     name="b_month" // Updated field name
                                     id="b_month"
                                     onChange={handleOnChange}
@@ -1509,10 +1509,10 @@ const ApplicationForm = () => {
                                 </select>
 
                                 <label htmlFor="b_year"> Year </label>
-                                <select
+                                <select className='text-center'
                                     name="b_year" // Updated field name
                                     id="b_year"
-                                    style={{ height: '25px', width: '120px' }}
+                                    style={{ height: '25px', width: '80px',  }}
                                     onChange={handleOnChange}
                                     onBlur={validateAge}
                                     value={birthDate.b_year} // Updated field name
@@ -2284,10 +2284,6 @@ const ApplicationForm = () => {
                                             </div>
 
                                         </tr>
-
-
-
-
 
 
 
