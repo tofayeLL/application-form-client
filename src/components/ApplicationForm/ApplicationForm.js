@@ -2003,8 +2003,8 @@ const ApplicationForm = () => {
                                                         <tr>
                                                             <td>Result</td>
                                                             <td>
-                                                                <select style={{ width: '100%' }} name="hsc_result" id="hsc_result" onBlur={handleOnblur} onChange={e => setHsc_gpa(e.target.value)}>
-                                                                    <option value="0" >Select One</option>
+                                                                <select style={{ width: '100%' }} name="hsc_result" id="hsc_result" onBlur={handleOnblur} onChange={e => setHsc_gpa(e.target.value)} required>
+                                                                    <option value="" >Select One</option>
                                                                     <option value="1st Division">1st Division</option>
                                                                     <option value="2nd Division">2nd Division</option>
                                                                     <option value="3rd Division">3rd Division</option>
@@ -2018,8 +2018,8 @@ const ApplicationForm = () => {
                                                         <tr>
                                                             <td>Group/Subject</td>
                                                             <td>
-                                                                <select style={{ width: '100%' }} name="hsc_subject" id="hsc_subject" onBlur={handleOnblur}>
-                                                                    <option value="0" >Select One</option>
+                                                                <select style={{ width: '100%' }} name="hsc_subject" id="hsc_subject" onBlur={handleOnblur} required>
+                                                                    <option value="" >Select One</option>
                                                                     {
                                                                         hsc1.map(h => <option key={h} value={h}>{h}</option>)
                                                                     }
@@ -2029,8 +2029,8 @@ const ApplicationForm = () => {
                                                         <tr>
                                                             <td>Passing Year</td>
                                                             <td>
-                                                                <select style={{ width: '100%' }} name="hsc_pass" id="hsc_pass" onBlur={handleOnblur}>
-                                                                    <option value="0" >Select One</option>
+                                                                <select style={{ width: '100%' }} name="hsc_pass" id="hsc_pass" onBlur={handleOnblur} required>
+                                                                    <option value="" >Select One</option>
                                                                     {
                                                                         pass_year.map(p => <option key={p} value={p}>{p}</option>)
                                                                     }
