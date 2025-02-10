@@ -1936,8 +1936,8 @@ const ApplicationForm = () => {
                                                         <tr>
                                                             <td>Group/Subject</td>
                                                             <td>
-                                                                <select style={{ width: '100%' }} name="subject1" id="subject1" onBlur={handleOnblur}>
-                                                                    <option value="0">Select Subject</option>
+                                                                <select style={{ width: '100%' }} name="subject1" id="subject1" onBlur={handleOnblur} required>
+                                                                    <option value="">Select Subject</option>
                                                                     {
                                                                         ssc1.map(s => <option key={s} value={s}>{s}</option>)
                                                                     }
