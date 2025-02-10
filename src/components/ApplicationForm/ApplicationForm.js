@@ -1803,7 +1803,7 @@ const ApplicationForm = () => {
                                                                         onBlur={handleOnblur}
                                                                         value={permanentAddress.P_Upzilla}
                                                                         onChange={e => handlePermanentChange('P_Upzilla', e.target.value)} // Update when unchecked
-                                                                        rquired
+                                                                        required
                                                                     >
                                                                         <option value="">Select Upzilla</option>
                                                                         {m_upzilla.map(u => (
@@ -1826,6 +1826,7 @@ const ApplicationForm = () => {
                                                                     value={permanentAddress.P_POffice}
                                                                     onChange={e => handlePermanentChange('P_POffice', e.target.value)}
                                                                     disabled={sameAsMailing}
+                                                                    required
                                                                 />
                                                             </td>
                                                         </tr>
@@ -1840,6 +1841,7 @@ const ApplicationForm = () => {
                                                                     value={permanentAddress.P_PCode}
                                                                     onChange={e => handlePermanentChange('P_PCode', e.target.value)}
                                                                     disabled={sameAsMailing}
+                                                                    required
                                                                 />
                                                             </td>
                                                         </tr>
@@ -1855,22 +1857,22 @@ const ApplicationForm = () => {
                         <tr>
                             <td>Mobile Number <small style={{ color: 'red' }}>*</small></td>
                             <td>:</td>
-                            <td><input type='number' name="p_number" id="p_number" onBlur={handleOnblur} /> <small style={{ color: 'red', lineHeight: '.5' }}> *plz mention a mobile number for getting info</small></td>
+                            <td><input type='number' name="p_number" id="p_number" onBlur={handleOnblur}  required/> <small style={{ color: 'red', lineHeight: '.5' }}> *plz mention a mobile number for getting info</small></td>
                         </tr>
                         <tr>
                             <td>Confirm Mobile <small style={{ color: 'red' }}>*</small></td>
                             <td>:</td>
-                            <td><input type='number' name="cp_number" id="cp_number" onBlur={handleOnblur} /> <small>plz retype mobile number</small></td>
+                            <td><input type='number' name="cp_number" id="cp_number" onBlur={handleOnblur} required /> <small>plz retype mobile number</small></td>
                         </tr>
                         <tr>
                             <td>Email Address <small style={{ color: 'red' }}>*</small></td>
                             <td>:</td>
-                            <td><input type='email' className='inputField' name="email" id="email" onBlur={handleOnblur} /></td>
+                            <td><input type='email' className='inputField' name="email" id="email" onBlur={handleOnblur} required/></td>
                         </tr>
                         <tr>
                             <td>Password <small style={{ color: 'red' }}>*</small></td>
                             <td>:</td>
-                            <td><input type='password' className='inputField' name="password" id="password" onBlur={handleOnblur} /></td>
+                            <td><input type='password' className='inputField' name="password" id="password" onBlur={handleOnblur} required/></td>
                         </tr>
                         {/* academic qualification  */}
                         <tr>
@@ -1890,8 +1892,8 @@ const ApplicationForm = () => {
                                                         <tr>
                                                             <td>Examination</td>
                                                             <td>
-                                                                <select style={{ width: '100%' }} name="exam1" id="exam1" onBlur={handleOnblur} onChange={e => setExam1(e.target.value)}>
-                                                                    <option value="0" >Select One</option>
+                                                                <select style={{ width: '100%' }} name="exam1" id="exam1" onBlur={handleOnblur} onChange={e => setExam1(e.target.value)} required>
+                                                                    <option value="" >Select One</option>
                                                                     <option value="SSC">S.S.C</option>
                                                                     <option value="Dakhil">Dakhil</option>
                                                                     <option value="SSC_Vocational">S.S.C Vocational</option>
@@ -1904,8 +1906,8 @@ const ApplicationForm = () => {
                                                         <tr>
                                                             <td>Board</td>
                                                             <td>
-                                                                <select style={{ width: '100%' }} name="board1" id="board1" onBlur={handleOnblur}>
-                                                                    <option value="0">Select One</option>
+                                                                <select style={{ width: '100%' }} name="board1" id="board1" onBlur={handleOnblur} required>
+                                                                    <option value="">Select One</option>
                                                                     {
                                                                         ssc_board.map(board => <option key={board} value={board}>{board}</option>)
                                                                     }
@@ -1914,21 +1916,21 @@ const ApplicationForm = () => {
                                                         </tr>
                                                         <tr>
                                                             <td>Roll No</td>
-                                                            <td><input type="text" name="roll1" id="roll1" onBlur={handleOnblur} /></td>
+                                                            <td><input type="text" name="roll1" id="roll1" onBlur={handleOnblur} required/></td>
                                                         </tr>
                                                         <tr>
                                                             <td>Result</td>
                                                             <td>
-                                                                <select style={{ width: '100%' }} name="result1" id="result1" onBlur={handleOnblur} onChange={e => setSsc_gpa(e.target.value)}>
-                                                                    <option value="0" >Select One</option>
+                                                                <select style={{ width: '100%' }} name="result1" id="result1" onBlur={handleOnblur} onChange={e => setSsc_gpa(e.target.value)} required>
+                                                                    <option value="" >Select One</option>
                                                                     <option value="1st Division">1st Division</option>
                                                                     <option value="2nd Division">2nd Division</option>
                                                                     <option value="3rd Division">3rd Division</option>
                                                                     <option value="4">GPA(out of 4)</option>
                                                                     <option value="5">GPA(out of 5)</option>
                                                                 </select>
-                                                                <input type="text" id="ssc_4" name="result1" placeholder='GPA (out of 4)' onBlur={handleOnblur} style={{ display: ssc4_display, marginTop: '5px' }} />
-                                                                <input type="text" id="ssc_5" name="result1" onBlur={handleOnblur} style={{ display: ssc5_display, marginTop: '5px' }} placeholder='GPA (out of 5)' />
+                                                                <input type="text" id="ssc_4" name="result1" placeholder='GPA (out of 4)' onBlur={handleOnblur} style={{ display: ssc4_display, marginTop: '5px' }} required/>
+                                                                <input type="text" id="ssc_5" name="result1" onBlur={handleOnblur} style={{ display: ssc5_display, marginTop: '5px' }} placeholder='GPA (out of 5)' required/>
                                                             </td>
                                                         </tr>
                                                         <tr>
