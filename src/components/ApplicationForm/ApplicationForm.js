@@ -1947,8 +1947,8 @@ const ApplicationForm = () => {
                                                         <tr>
                                                             <td>Passing Year</td>
                                                             <td>
-                                                                <select style={{ width: '100%' }} name="year1" id="year1" onBlur={handleOnblur}>
-                                                                    <option value="0" >Select One</option>
+                                                                <select style={{ width: '100%' }} name="year1" id="year1" onBlur={handleOnblur} required>
+                                                                    <option value="" >Select One</option>
                                                                     {
                                                                         pass_year.map(y => <option key={y} value={y}>{y}</option>)
                                                                     }
@@ -1971,8 +1971,8 @@ const ApplicationForm = () => {
                                                         <tr>
                                                             <td>Examination</td>
                                                             <td>
-                                                                <select style={{ width: '100%' }} name="exam2" id="exam2" onBlur={handleOnblur} onChange={e => setExam2(e.target.value)}>
-                                                                    <option value="0" >Select One</option>
+                                                                <select style={{ width: '100%' }} name="exam2" id="exam2" onBlur={handleOnblur} onChange={e => setExam2(e.target.value)} required>
+                                                                    <option value="" >Select One</option>
                                                                     <option value="HSC">H.S.C</option>
                                                                     <option value="Alim">Alim</option>
                                                                     <option value="Business Management">Business Management</option>
@@ -1988,8 +1988,8 @@ const ApplicationForm = () => {
                                                         <tr>
                                                             <td>Board</td>
                                                             <td>
-                                                                <select style={{ width: '100%' }} onBlur={handleOnblur} name="hsc_board" id="hsc_board">
-                                                                    <option value="0">Select One</option>
+                                                                <select style={{ width: '100%' }} onBlur={handleOnblur} name="hsc_board" id="hsc_board" required>
+                                                                    <option value="">Select One</option>
                                                                     {
                                                                         ssc_board.map(board => <option key={board} value={board}>{board}</option>)
                                                                     }
@@ -1998,7 +1998,7 @@ const ApplicationForm = () => {
                                                         </tr>
                                                         <tr>
                                                             <td>Roll No</td>
-                                                            <td><input type="text" name="hsc_roll" id="hsc_roll" onBlur={handleOnblur} /></td>
+                                                            <td><input type="text" name="hsc_roll" id="hsc_roll" onBlur={handleOnblur} required/></td>
                                                         </tr>
                                                         <tr>
                                                             <td>Result</td>
