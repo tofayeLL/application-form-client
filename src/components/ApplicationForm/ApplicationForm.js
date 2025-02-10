@@ -1254,6 +1254,19 @@ const ApplicationForm = () => {
             return; // Stop further execution if age is invalid
         }
 
+        if (selectedColleges.length < 1) {
+            Swal.fire({
+                title: 'Warning!',
+                text: 'Please Choose Your colleges',
+                icon: 'warning',
+                confirmButtonText: 'OK',
+            });
+            return false;
+        }
+
+     
+
+
         if (applicant.postName <= 0) {
             Swal.fire({
                 title: 'Warning!',
