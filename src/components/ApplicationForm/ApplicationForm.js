@@ -1353,6 +1353,9 @@ const ApplicationForm = () => {
             };
 
 
+            console.log("for checking applicant", updateApplicant);
+
+
 
 
 
@@ -1929,8 +1932,8 @@ const ApplicationForm = () => {
                                                                     <option value="4">GPA(out of 4)</option>
                                                                     <option value="5">GPA(out of 5)</option>
                                                                 </select>
-                                                                <input type="text" id="ssc_4" name="result1" placeholder='GPA (out of 4)' onBlur={handleOnblur} style={{ display: ssc4_display, marginTop: '5px' }} required/>
-                                                                <input type="text" id="ssc_5" name="result1" onBlur={handleOnblur} style={{ display: ssc5_display, marginTop: '5px' }} placeholder='GPA (out of 5)' required/>
+                                                                <input type="text" id="ssc_4" name="result1" placeholder='GPA (out of 4)' onBlur={handleOnblur} style={{ display: ssc4_display, marginTop: '5px' }} />
+                                                                <input type="text" id="ssc_5" name="result1" onBlur={handleOnblur} style={{ display: ssc5_display, marginTop: '5px' }} placeholder='GPA (out of 5)' />
                                                             </td>
                                                         </tr>
                                                         <tr>
@@ -2065,8 +2068,8 @@ const ApplicationForm = () => {
                                                         <tr>
                                                             <td style={{ width: '23%' }}>Examination</td>
                                                             <td style={{ width: '25%' }}>
-                                                                <select style={{ width: '100%' }} name="exam3" id="exam3" onBlur={handleOnblur} onChange={e => setExam3(e.target.value)}>
-                                                                    <option value="0" >Select One</option>
+                                                                <select style={{ width: '100%' }} name="exam3" id="exam3" onBlur={handleOnblur} onChange={e => setExam3(e.target.value)} required>
+                                                                    <option value="" >Select One</option>
                                                                     <option value="BSC_Engineering">BSC Engineering</option>
                                                                     <option value="BSC_in_Agriculture">BSC In Agriculture</option>
                                                                     <option value="MBBS">MBBS</option>
@@ -2082,8 +2085,8 @@ const ApplicationForm = () => {
 
                                                             <td style={{ width: '23%' }}>Result</td>
                                                             <td style={{ width: '25%' }}>
-                                                                <select style={{ width: '100%' }} onBlur={handleOnblur} id="exam3_result1" name="exam3_result" onChange={e => setHnrs_gpa(e.target.value)}>
-                                                                    <option value="0" >Select One</option>
+                                                                <select style={{ width: '100%' }} onBlur={handleOnblur} id="exam3_result1" name="exam3_result" onChange={e => setHnrs_gpa(e.target.value)} required>
+                                                                    <option value="" >Select One</option>
                                                                     <option value="1st Class">1st Class</option>
                                                                     <option value="2nd Class">2nd Class</option>
                                                                     <option value="3rd Class">3rd Class</option>
@@ -2098,8 +2101,8 @@ const ApplicationForm = () => {
                                                         <tr>
                                                             <td style={{ width: '23%' }}>Subject/Degree</td>
                                                             <td style={{ width: '25%' }}>
-                                                                <select style={{ width: '100%' }} onBlur={handleOnblur} id="exam3_sub" name="exam3_sub">
-                                                                    <option value="0">Select One</option>
+                                                                <select style={{ width: '100%' }} onBlur={handleOnblur} id="exam3_sub" name="exam3_sub" required>
+                                                                    <option value="">Select One</option>
                                                                     {
                                                                         graduate1.map(g => <option key={g} value={g}>{g}</option>)
                                                                     }
@@ -2109,8 +2112,8 @@ const ApplicationForm = () => {
                                                             <td></td>
                                                             <td style={{ width: '23%' }}>Passing Year</td>
                                                             <td style={{ width: '25%' }}>
-                                                                <select style={{ width: '100%' }} onBlur={handleOnblur} id="exam3_passyr" name="exam3_passyr">
-                                                                    <option value="0">Select One</option>
+                                                                <select style={{ width: '100%' }} onBlur={handleOnblur} id="exam3_passyr" name="exam3_passyr" required>
+                                                                    <option value="">Select One</option>
                                                                     {
                                                                         pass_year.map(py => <option key={py} value={py}>{py}</option>)
                                                                     }
@@ -2121,8 +2124,8 @@ const ApplicationForm = () => {
                                                         <tr>
                                                             <td>University/Institution</td>
                                                             <td style={{ width: '25%' }}>
-                                                                <select style={{ width: '100%' }} name="university" id="university" onBlur={handleOnblur}>
-                                                                    <option value="0">Select One</option>
+                                                                <select style={{ width: '100%' }} name="university" id="university" onBlur={handleOnblur}  required>
+                                                                    <option value="">Select One</option>
                                                                     {
                                                                         university.map(u => <option key={u} value={u}>{u}</option>)
                                                                     }
@@ -2133,8 +2136,8 @@ const ApplicationForm = () => {
                                                             <td style={{ width: '2%' }}></td>
                                                             <td>Course Duration</td>
                                                             <td style={{ width: '25%' }}>
-                                                                <select style={{ width: '100%' }} onBlur={handleOnblur} id="exam3_duration" name="exam3_duration">
-                                                                    <option value="0">Select One</option>
+                                                                <select style={{ width: '100%' }} onBlur={handleOnblur} id="exam3_duration" name="exam3_duration"  required>
+                                                                    <option value="">Select One</option>
                                                                     <option value="02 Years">02 Years</option>
                                                                     <option value="03 Years">03 Years</option>
                                                                     <option value="04 Years">04 Years</option>
@@ -2153,8 +2156,8 @@ const ApplicationForm = () => {
                                                     <tbody>
                                                         <tr style={{ backgroundColor: '#bfdfbf' }}>
                                                             <td colSpan="5">Departmental Candidate Status
-                                                                <select style={{ marginLeft: '80px', width: '200px' }} name="d_candidate" id="d_candidate" onBlur={handleOnblur} >
-                                                                    <option value='0'>Select One</option>
+                                                                <select style={{ marginLeft: '80px', width: '200px' }} name="d_candidate" id="d_candidate" onBlur={handleOnblur} required>
+                                                                    <option value=''>Select One</option>
                                                                     <option value='yes'>yes</option>
                                                                     <option value='no'>no</option>
 
@@ -2348,7 +2351,7 @@ const ApplicationForm = () => {
 
 
                 <br /><br /><br />
-                <input type="submit" value="Submit" id="submit_btn" disabled={selectedColleges.length < 1} style={{ padding: '10px 20px', marginBottom: '20px' }} /> <br />
+                <input type="submit" value="Submit" id="submit_btn" style={{ padding: '10px 20px', marginBottom: '20px' }} /> <br />
 
                 {id ? <Link to={`/admitCard/${id}`} style={{ textDecoration: 'none' }}>Print Application</Link> : <p></p>} <br />
 
