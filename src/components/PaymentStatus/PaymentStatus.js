@@ -33,20 +33,18 @@ const PaymentStatus = () => {
 
 
 
-    const pay = async () => {
-
+    const handleClick = async () => {
+        console.log("Bkash Payment Button Clicked"); // Debugging log
+    
         try {
-            const data = await axiosPublic.post('/bkash/payment/create', { amount: 50, orderId: 1 }, { withCredentials: true })
-
-            console.log(data.data);
-
+            const res = await axiosPublic.post('/bkash/payment/create', { amount: 100, orderId: 1 }, { withCredentials: true });
+            console.log("Response from server:", res.data);
         } catch (error) {
-
-            console.log(error.res.data.message);
-
+            console.error("Error from server:", error.response?.data || error.message);
         }
+    };
 
-    }
+
     return (
         <section>
             <div className='w-[58%] mx-auto'>
@@ -65,7 +63,7 @@ const PaymentStatus = () => {
 
 
             <div className='my-20'>
-                <button className="px-4 py-2 bg-[#088658] text-white rounded-lg shadow hover:bg-[#025c3b]">
+                <button onClick={handleClick} className="px-4 py-2 bg-[#088658] text-white rounded-lg shadow hover:bg-[#025c3b]">
                     Bkash Pay
                 </button>
             </div>
