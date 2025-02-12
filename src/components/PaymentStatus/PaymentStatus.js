@@ -1,8 +1,14 @@
 import React from 'react';
 import useAxiosPublic from '../../hooks/useAxiosPublic';
+import useIndividualUserData from '../../hooks/useIndividualUserData';
 
 
 const PaymentStatus = () => {
+    const { userData } = useIndividualUserData();
+    console.log(userData);
+
+    const { app_id } = userData || {};
+    console.log("payment page",app_id)
 
     const axiosPublic = useAxiosPublic();
 
@@ -38,7 +44,7 @@ const PaymentStatus = () => {
         console.log("Bkash Payment Button Clicked"); // Debugging log
     
         try {
-            const data = await axiosPublic.post('/bkash/payment/create', { amount: 100, orderId: 1 }, { withCredentials: true });
+            const data = await axiosPublic.post('/bkash/payment/create', { amount: 50, orderId: 1, applicantId: app_id }, { withCredentials: true });
             // console.log("Response from server:", data);
             window.location.href = data.data.bkashURL;
         } catch (error) {
