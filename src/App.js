@@ -27,6 +27,8 @@ import Dashboard from "./components/Dashboard/Dashboard";
 import AdminLogin from "./components/AdminLogin/AdminLogin";
 import AdminProvider from "./contexts/AdminProvider/AdminProvider";
 import AdminProtectedRoute from "./components/AdminProtectedRoute/AdminProtectedRoute ";
+import Success from "./components/Success/Success";
+import Error from "./components/Error/Error";
 
 
 
@@ -91,6 +93,15 @@ const AppContent = withRouter(({ location }) => {
         {/* applicant login */}
         <Route path="/login3">
           <Login3></Login3>
+        </Route>
+
+        {/* payment error */}
+        <Route path='/error'>
+          <Error></Error>
+        </Route>
+        {/* payment success */}
+        <Route path='/success'>
+         <Success></Success>
         </Route>
 
 

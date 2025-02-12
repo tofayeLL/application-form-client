@@ -1,6 +1,7 @@
 import React from 'react';
 import useAxiosPublic from '../../hooks/useAxiosPublic';
 
+
 const PaymentStatus = () => {
 
     const axiosPublic = useAxiosPublic();
@@ -38,10 +39,14 @@ const PaymentStatus = () => {
     
         try {
             const data = await axiosPublic.post('/bkash/payment/create', { amount: 100, orderId: 1 }, { withCredentials: true });
-            console.log("Response from server:", data);
+            // console.log("Response from server:", data);
             window.location.href = data.data.bkashURL;
         } catch (error) {
-            console.error(error.response?.data);
+            console.log(error?.response?.data)
+           
+       
+
+           
         }
     };
 
