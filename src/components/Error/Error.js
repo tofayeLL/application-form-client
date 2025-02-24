@@ -1,11 +1,17 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
+import {  toast } from 'react-hot-toast';
 
 const Error = () => {
     const history = useHistory();
     const searchData = new URLSearchParams(window.location.search)
-    const message = searchData.get('message')
+    const message = searchData.get('message');
 
+    useEffect(() => {
+        // Display an error toast when the component mounts
+        toast.error(`Payment failed: ${message || "Unknown error"}`);
+    }, [message]); 
+ 
     return (
         <div className="">
             <h2 className="text-red-600 text-xl font-bold">Payment Failed</h2>

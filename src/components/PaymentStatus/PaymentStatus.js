@@ -44,7 +44,7 @@ const PaymentStatus = () => {
         console.log("Bkash Payment Button Clicked"); // Debugging log
     
         try {
-            const data = await axiosPublic.post('/bkash/payment/create', { amount: 50, orderId: 1, applicantId: app_id }, { withCredentials: true });
+            const data = await axiosPublic.post('/bkash/payment/create', { amount: 110, orderId: 1, applicantId: app_id }, { withCredentials: true });
             // console.log("Response from server:", data);
             window.location.href = data.data.bkashURL;
         } catch (error) {

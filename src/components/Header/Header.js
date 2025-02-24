@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 // import useAuth from '../../hooks/useAuth';
 import './Header.css';
-import { Toaster, toast } from 'react-hot-toast';
+import {  toast } from 'react-hot-toast';
 import bsri from '../../assets/images/bsri.png';
 import govt_logo from '../../assets/images/govt_logo.png';
 import { UserContext } from '../../contexts/UserProvider/UserProvider';
