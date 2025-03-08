@@ -1188,7 +1188,7 @@ const EditFullProfile = () => {
                                         <option value='Single'>Single</option>
                                     </select>
                                 </td>
-                            </tr>
+                            </tr>    
                             <tr>
                                 <td>Quota</td>
                                 <td>:</td>
