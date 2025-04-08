@@ -1,20 +1,38 @@
-import React from 'react';
+import React, { useState } from 'react';
 import useAxiosPublic from '../../hooks/useAxiosPublic';
 import useIndividualUserData from '../../hooks/useIndividualUserData';
 
-
 const PaymentStatus = () => {
     const { userData } = useIndividualUserData();
-    console.log(userData);
-
     const { app_id } = userData || {};
-    console.log("payment page",app_id)
-
     const axiosPublic = useAxiosPublic();
 
-    function myfun() {
-        // let a = document.getElementsByName('chk');
-        // let y = document.getElementById('zx');
+    const [amount, setAmount] = useState('');
+
+    const handleClick = async () => {
+        if (!amount || isNaN(amount) || Number(amount) <= 0) {
+            alert("Please enter a valid amount");
+            return;
+        }
+
+        console.log("Bkash Payment Button Clicked");
+
+        try {
+            const data = await axiosPublic.post('/bkash/payment/create', {
+                amount: Number(amount),
+                orderId: 1,
+                applicantId: app_id,
+            }, {
+                withCredentials: true
+            });
+
+            window.location.href = data.data.bkashURL;
+        } catch (error) {
+            console.log(error?.response?.data);
+        }
+    };
+
+    /* function myfun() {
         let a = document.getElementById('1');
         let b = document.getElementById('2');
         let c = document.getElementById('3');
@@ -23,59 +41,49 @@ const PaymentStatus = () => {
         b.disabled = false;
         c.disabled = false;
 
-        if (a.checked === true && b.checked === true) {
-            // b.disabled = true;
+        if (a.checked && b.checked) {
             c.disabled = true;
         }
-        if (b.checked === true && c.checked === true) {
+        if (b.checked && c.checked) {
             a.disabled = true;
-            // c.disabled = true;
         }
-        if (c.checked === true && a.checked === true) {
+        if (c.checked && a.checked) {
             b.disabled = true;
-            // a.disabled = true;
         }
-    }
-
-
-
-
-    const handleClick = async () => {
-        console.log("Bkash Payment Button Clicked"); // Debugging log
-    
-        try {
-            const data = await axiosPublic.post('/bkash/payment/create', { amount: 110, orderId: 1, applicantId: app_id }, { withCredentials: true });
-            // console.log("Response from server:", data);
-            window.location.href = data.data.bkashURL;
-        } catch (error) {
-            console.log(error?.response?.data)
-           
-       
-
-           
-        }
-    };
-
+    } */
 
     return (
         <section>
             <div className='w-[58%] mx-auto'>
-                <h4>Payment Status Page is not available</h4>
-                <span>Input 1</span><input type="checkbox" id="1" name="chk" value="input1" onClick={myfun} onChange={e => console.log(e.target.value)} />
-                <span>Input 2</span><input type="checkbox" id="2" name="chk" value="input2" onClick={myfun} onChange={e => console.log(e.target.value)} />
-                <span>Input 3</span><input type="checkbox" id="3" name="chk" value="input2" onClick={myfun} onChange={e => console.log(e.target.value)} />
-                {/* <span>Input 4</span><input type="checkbox" id="4" name="chk" onClick={myfun} />
-            <span>Input 5</span><input type="checkbox" id="5" name="chk" onClick={myfun} /> */}
-                {/* <span>Input 6</span><input type="checkbox" id="6" name="chk" onClick={myfun} /> */}
+                <h4 className="text-lg font-semibold mb-4">Payment Status Page</h4>
 
+                <div className="mb-6">
+                    <label htmlFor="amount" className="block text-sm font-medium text-gray-700 mb-1">
+                        Enter Payment Amount (BDT)
+                    </label>
+                    <input
+                        type="number"
+                        id="amount"
+                        value={amount}
+                        onChange={(e) => setAmount(e.target.value)}
+                        className="w-auto px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#088658]"
+                        placeholder="Enter amount"
+                    />
+                </div>
 
+                {/*  <div className="space-x-4 mb-10">
+                    <span>Input 1</span>
+                    <input type="checkbox" id="1" name="chk" value="input1" onClick={myfun} />
+                    <span>Input 2</span>
+                    <input type="checkbox" id="2" name="chk" value="input2" onClick={myfun} />
+                    <span>Input 3</span>
+                    <input type="checkbox" id="3" name="chk" value="input3" onClick={myfun} />
+                </div> */}
 
-            </div>
-
-
-
-            <div className='my-20'>
-                <button onClick={handleClick} className="px-4 py-2 bg-[#088658] text-white rounded-lg shadow hover:bg-[#025c3b]">
+                <button
+                    onClick={handleClick}
+                    className="px-4 py-2 bg-[#088658] text-white rounded-lg shadow hover:bg-[#025c3b] transition"
+                >
                     Bkash Pay
                 </button>
             </div>
