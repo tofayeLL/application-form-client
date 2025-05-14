@@ -1038,18 +1038,8 @@ const EditFullProfile = () => {
 
 
 
-
-
-
-
-
-
-
     return (
         <section>
-
-
-
 
 
             <div className='formWrapper px-[1px]'>
@@ -1337,6 +1327,7 @@ const EditFullProfile = () => {
                                 </td>
 
                             </tr>
+
                             <tr>
                                 <td>Mobile Number <small style={{ color: 'red' }}>*</small></td>
                                 <td>:</td>
@@ -1357,6 +1348,7 @@ const EditFullProfile = () => {
                                 <td>:</td>
                                 <td><input type='password' className='inputField' name="password" id="password" onBlur={handleOnblur} defaultValue={applicantData?.password} /></td>
                             </tr>
+
                             {/* academic qualification  */}
                             <tr>
                                 <td colSpan="3">
@@ -1700,7 +1692,7 @@ const EditFullProfile = () => {
 
 
 
-
+ 
 
         </section >
     );

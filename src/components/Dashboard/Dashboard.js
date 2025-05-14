@@ -110,12 +110,14 @@ const Dashboard = () => {
                                 </Link>
                             </li>
                             <li>
+                                
                                 <Link
                                     to="/dashboard/admin/applicantUnpaid"
                                     className="block p-1 pl-4 text-start bg-[#e0f0d9] text-gray-900 rounded-md hover:bg-[#73dfb7]  transition-colors"
                                 >
                                     All Applicant (Unpaid)
                                 </Link>
+
                             </li>
                             <li>
                                 <Link
@@ -164,6 +166,7 @@ const Dashboard = () => {
                         </ul>
                     </nav>
                 </div>
+
 
                 {/* Main Content */}
                 <div className="flex-1 p-5 bg-white ">

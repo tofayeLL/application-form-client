@@ -10,6 +10,8 @@ const DashboardHome = () => {
     const [error, setError] = useState(null);
 
 
+
+
     useEffect(() => {
         const fetchData = async () => {
             try {
@@ -25,11 +27,19 @@ const DashboardHome = () => {
         fetchData();
     }, [axiosPublic]);
 
+
+
     if (loading) return <div className="flex flex-col justify-center min-h-screen items-center spinner-container ">
         <div className="spinner">
             {/* loading spinner */}
         </div>
     </div>
+
+
+    // all applicant in payment 
+   
+
+
     if (error) return <p>Error: {error}</p>;
 
 
