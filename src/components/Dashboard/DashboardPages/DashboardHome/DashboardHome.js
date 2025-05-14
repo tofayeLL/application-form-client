@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import useAxiosPublic from '../../../../hooks/useAxiosPublic';
+import usePaidApplicantData from '../../../../hooks/usePaidApplicantData';
 
 
 const DashboardHome = () => {
@@ -8,6 +9,7 @@ const DashboardHome = () => {
     const [applicantsData, setApplicantsData] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
+    const { paidUsers } = usePaidApplicantData();
 
 
 
@@ -76,7 +78,7 @@ const DashboardHome = () => {
                     {/* Card 2 */}
                     <div className='bg-white shadow-md rounded-lg p-3 border border-gray-200'>
                         <h2 className='text-lg font-semibold text-gray-700'>Application (paid)</h2>
-                        <p className='text-2xl font-bold text-green-500 mt-2'>9998</p>
+                        <p className='text-2xl font-bold text-green-500 mt-2'>{paidUsers?.length}</p>
 
                     </div>
 
