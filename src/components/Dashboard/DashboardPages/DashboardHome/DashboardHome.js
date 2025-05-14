@@ -9,7 +9,13 @@ const DashboardHome = () => {
     const [applicantsData, setApplicantsData] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
+
+    // all payments collection applicant
     const { paidUsers } = usePaidApplicantData();
+    console.log(paidUsers);
+
+    // Calculate total amount from paid users
+    const totalPaidAmount = paidUsers?.reduce((sum, user) => sum + (user.amount || 0), 0);
 
 
 
@@ -39,7 +45,7 @@ const DashboardHome = () => {
 
 
     // all applicant in payment 
-   
+
 
 
     if (error) return <p>Error: {error}</p>;
@@ -71,7 +77,7 @@ const DashboardHome = () => {
                     {/* Card 1 */}
                     <div className='bg-white shadow-md rounded-lg p-3 border border-gray-200'>
                         <h2 className='text-lg font-semibold text-gray-700'>Total Application</h2>
-                        <p className='text-2xl font-bold text-blue-500 mt-2'>{applicantsData.length}</p>
+                        <p className='text-2xl font-bold text-blue-500 mt-2'>{applicantsData?.length}</p>
 
                     </div>
 
@@ -92,7 +98,7 @@ const DashboardHome = () => {
                     {/* Card 4 */}
                     <div className='bg-white shadow-md rounded-lg p-3 border border-gray-200'>
                         <h2 className='text-lg font-semibold text-gray-700'>Total Amount</h2>
-                        <p className='text-2xl font-bold text-red-500 mt-2'>4979000</p>
+                        <p className='text-2xl font-bold text-red-500 mt-2'>{totalPaidAmount}</p>
 
                     </div>
                 </div>
