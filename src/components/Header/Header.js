@@ -72,7 +72,7 @@ const Header = () => {
                             </td>
                             <td className='border-r-[1px] border-green-950'><Link to="/payment" style={menuStyle}>Payment Status</Link></td>
                             <td className='border-r-[1px] border-green-950'><Link to="/instruction" style={menuStyle}>Instructions</Link></td>
-                            <td className='border-r-[1px] border-green-950'><Link to="applicant" style={menuStyle}>Admit Card</Link></td>
+                            <td className='border-r-[1px] border-green-950'><Link to="/applicant" style={menuStyle}>Admit Card</Link></td>
                         </tr>
                     </tbody>
                 </table>

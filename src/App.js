@@ -127,6 +127,8 @@ const AppContent = withRouter(({ location }) => {
         <Route path="/adminRoute">
           <AdminRoute></AdminRoute>
         </Route>
+
+        {/* applicant admit card components */}
         <Route path="/applicant">
           <Applicant></Applicant>
         </Route>
