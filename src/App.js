@@ -29,6 +29,7 @@ import AdminProvider from "./contexts/AdminProvider/AdminProvider";
 import AdminProtectedRoute from "./components/AdminProtectedRoute/AdminProtectedRoute ";
 import Success from "./components/Success/Success";
 import Error from "./components/Error/Error";
+import ApplicantAdmitCard from "./components/ApplicantAdmitCard/ApplicantAdmitCard";
 
 
 
@@ -130,7 +131,8 @@ const AppContent = withRouter(({ location }) => {
 
         {/* applicant admit card components */}
         <Route path="/applicant">
-          <Applicant></Applicant>
+          {/* <Applicant></Applicant> */}
+          <ApplicantAdmitCard></ApplicantAdmitCard>
         </Route>
 
         {/* Admin Protected Route */}
