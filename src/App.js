@@ -128,12 +128,15 @@ const AppContent = withRouter(({ location }) => {
         <Route path="/adminRoute">
           <AdminRoute></AdminRoute>
         </Route>
+        
 
         {/* applicant admit card components */}
-        <Route path="/applicant">
-          {/* <Applicant></Applicant> */}
+         <ProtectedRoute path="/applicant">
+           {/* <Applicant></Applicant> */}
           <ApplicantAdmitCard></ApplicantAdmitCard>
-        </Route>
+        
+        </ProtectedRoute >
+        
 
         {/* Admin Protected Route */}
         <Route
