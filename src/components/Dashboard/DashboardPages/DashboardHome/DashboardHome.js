@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import useAxiosPublic from '../../../../hooks/useAxiosPublic';
 import usePaidApplicantData from '../../../../hooks/usePaidApplicantData';
+import useAdmitCount from '../../../../hooks/useAdmitCount';
 
 
 const DashboardHome = () => {
@@ -12,7 +13,14 @@ const DashboardHome = () => {
 
     // all payments collection applicant
     const { paidUsers } = usePaidApplicantData();
-    console.log(paidUsers);
+    // console.log(paidUsers);
+
+
+    // get all admit card download count
+    const { admitCardCount } = useAdmitCount();
+    console.log("admitcard count", admitCardCount);
+    // Safely extract the download count from the first item
+    const downloadCount = admitCardCount?.[0]?.downloadCount || 0;
 
     // Calculate total amount from paid users
     const totalPaidAmount = paidUsers?.reduce((sum, user) => sum + (user.amount || 0), 0);
@@ -91,7 +99,7 @@ const DashboardHome = () => {
                     {/* Card 3 */}
                     <div className='bg-white shadow-md rounded-lg p-3 border border-gray-200'>
                         <h2 className='text-lg font-semibold text-gray-700'>Admit Print</h2>
-                        <p className='text-2xl font-bold text-purple-500 mt-2'>9654(904)</p>
+                        <p className='text-2xl font-bold text-purple-500 mt-2'>{downloadCount?.toLocaleString()}</p>
 
                     </div>
 
