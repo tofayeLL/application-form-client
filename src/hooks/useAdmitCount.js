@@ -1,8 +1,8 @@
-import { useEffect, useState } from 'react';
-import useAxiosPublic from './useAxiosPublic';
+import { useEffect, useState } from "react";
+import useAxiosPublic from "./useAxiosPublic";
 
 
-const usePaidApplicantData = () => {
+const useAdmitCount = () => {
     const axiosPublic = useAxiosPublic();
     const [paidUsers, setPaidUsers] = useState([]);
     const [loading, setLoading] = useState(true);
@@ -11,7 +11,7 @@ const usePaidApplicantData = () => {
     useEffect(() => {
         const fetchPaidUsers = async () => {
             try {
-                const res = await axiosPublic.get('/payments');
+                const res = await axiosPublic.get('/admitCardCounts');
                 setPaidUsers(res.data); // Adjust if your backend returns {data: [...]}
             } catch (err) {
                 console.error('Error fetching paid users:', err);
@@ -27,4 +27,5 @@ const usePaidApplicantData = () => {
     return { paidUsers, loading, error };
 };
 
-export default usePaidApplicantData;
+
+export default useAdmitCount;
