@@ -92,18 +92,14 @@ const ApplicantAdmitCard = () => {
 
     
     return (
-        <section>
-            <p>I am from applicant page</p>
-            <section>
-            <h1>Admit Card page</h1>
+    
 
-
-            <section className="min-h-screen flex flex-col justify-center items-center bg-gray-100 pb-4 " >
+                <section className="min-h-screen flex flex-col justify-center items-center  pb-4 " >
 
                 {/* !isPdfGenerated && */ (
-                    <div className='py-4'>
+                    <div className='py-4 '>
                         <button
-                            className="px-4 py-2 bg-[#088658] text-white rounded-lg shadow hover:bg-[#025c3b] "
+                            className="px-4 py-2 font-bold text-[#088658] bg-white rounded-lg shadow hover:bg-[#025c3b] "
                             onClick={generatePDF}
                         >
                             Download Admit Card
@@ -119,7 +115,7 @@ const ApplicantAdmitCard = () => {
 
 
                     {/* container */}
-                    <div className="bg-white shadow-lg w-[800px] border-[1px] border-gray-100" id="admit-card">
+                    <div className="bg-white shadow-lg w-[800px] mx-auto border-[1px] border-gray-100" id="admit-card">
                         {/* content container */}
                         <div className='border-[2px] border-black p-4' >
                             <div className='flex justify-end'>
@@ -266,9 +262,16 @@ const ApplicantAdmitCard = () => {
 
                 </div>
             </section>
-        </section >
+
+
+
+
+
+         
+
+       
             
-        </section>
+       
     );
 };
 
